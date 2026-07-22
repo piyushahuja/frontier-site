@@ -81,6 +81,38 @@
 </style>
 </head>
 <body>
+
+<!-- Password Gate -->
+<div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:var(--paper);display:flex;align-items:center;justify-content:center">
+  <form id="pw-form" style="text-align:center;font-family:'Libre Franklin',sans-serif">
+    <div style="font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:24px"><span style="color:var(--accent)">■</span> Frontiers</div>
+    <input id="pw-input" type="password" placeholder="Enter password" autofocus
+      style="font-size:16px;padding:10px 16px;border:2px solid var(--ink);background:var(--paper);font-family:inherit;width:240px;outline:none">
+    <br>
+    <button type="submit"
+      style="margin-top:12px;padding:8px 28px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;background:var(--ink);color:var(--paper);border:none;cursor:pointer;font-family:inherit">Enter</button>
+    <div id="pw-error" style="color:var(--accent);font-size:13px;margin-top:12px;visibility:hidden">Incorrect password</div>
+  </form>
+</div>
+<script>
+(function(){
+  if(sessionStorage.getItem('pw-ok')==='1'){
+    document.getElementById('pw-gate').style.display='none';
+  }
+  document.getElementById('pw-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var val = document.getElementById('pw-input').value;
+    if(val === 'frontier'){
+      sessionStorage.setItem('pw-ok','1');
+      document.getElementById('pw-gate').style.display='none';
+    } else {
+      document.getElementById('pw-error').style.visibility='visible';
+      document.getElementById('pw-input').value='';
+    }
+  });
+})();
+</script>
+
 <nav><div class="wrap">
   <div class="mark"><span class="sq">■</span> {{NAME}}</div>
   <div class="navlinks">

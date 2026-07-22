@@ -96,21 +96,12 @@
 </div>
 <script>
 (function(){
-  // SHA-256 hash of the password — change the hash to change the password
-  // Default password: "frontier"
-  const HASH = '0a8898bede5tried';
-  async function sha256(str){
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  }
-  // Check if already authenticated this session
   if(sessionStorage.getItem('pw-ok')==='1'){
     document.getElementById('pw-gate').style.display='none';
   }
-  document.getElementById('pw-form').addEventListener('submit', async function(e){
+  document.getElementById('pw-form').addEventListener('submit', function(e){
     e.preventDefault();
-    const val = document.getElementById('pw-input').value;
-    const h = await sha256(val);
+    var val = document.getElementById('pw-input').value;
     if(val === 'frontier'){
       sessionStorage.setItem('pw-ok','1');
       document.getElementById('pw-gate').style.display='none';
