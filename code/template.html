@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ROBOTS}}
+<title>{{TITLE}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f7f4ee; --ink:#161412; --accent:#7c1d1d; --muted:#6f665c; --rule:#d8cfc0; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Libre Franklin",sans-serif;font-size:18px;line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+  a{color:var(--accent)}
+  .serif{font-family:"Source Serif 4",Georgia,serif}
+  nav{border-bottom:2px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:10}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;flex-wrap:wrap}
+  .mark{font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase}
+  .mark .sq{color:var(--accent)}
+  .navlinks a{margin-left:26px;text-decoration:none;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+  .navlinks a:hover{color:var(--accent)}
+  header.hero{border-bottom:2px solid var(--ink);padding:70px 0}
+  header.hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:end}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:20px}
+  h1{font-family:"Source Serif 4",serif;font-size:58px;line-height:1.02;font-weight:500;letter-spacing:-.015em;margin:0}
+  .lede{font-size:19px;color:#3a352f;border-left:3px solid var(--accent);padding-left:18px}
+  section{border-bottom:1px solid var(--rule);padding:56px 0}
+  .sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
+  .secno{font-family:"Source Serif 4",serif;font-size:15px;color:var(--accent);font-weight:500}
+  .sechead h2{font-size:13px;text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin:0}
+  .lead-serif{font-family:"Source Serif 4",serif;font-size:23px;line-height:1.4;max-width:780px;margin:0 0 22px}
+  .cols{column-count:2;column-gap:44px;max-width:940px}
+  .cols p{margin:0 0 1em;break-inside:avoid}
+  em{font-style:italic;color:var(--accent)}
+  .figure{display:flex;align-items:center;gap:26px;background:var(--ink);color:var(--paper);padding:28px 34px;margin:30px 0;flex-wrap:wrap}
+  .figure .big{font-family:"Source Serif 4",serif;font-size:30px;line-height:1.1}
+  .figure .big .a{color:#e0a0a0}
+  .figure .cap{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#b8ada0;border-left:1px solid #555;padding-left:20px}
+  .statement{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0}
+  .statement .s{font-family:"Source Serif 4",serif;font-size:30px;line-height:1.18;letter-spacing:-.01em;max-width:820px}
+  .statement .s em{font-style:italic;color:var(--accent)}
+  .statement .t{font-size:15px;color:var(--muted);margin-top:14px;max-width:640px}
+  .ladder{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-top:10px}
+  .ladder div{padding:16px 12px;border-right:1px solid var(--rule)}
+  .ladder div:last-child{border-right:0}
+  .ladder .yr{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:6px}
+  .ladder .t{font-family:"Source Serif 4",serif;font-size:18px}
+  .tracks{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:780px;margin-top:14px}
+  .tracks span{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 16px;font-size:14px;width:33.33%}
+  /* speakers */
+  .speakers{border-top:2px solid var(--ink);margin-top:30px}
+  .sp{display:grid;grid-template-columns:88px 54px 1fr;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule)}
+  .sp .date{font-family:"Source Serif 4",serif;font-size:14px;color:var(--muted);line-height:1.3}
+  .sp .date b{display:block;color:var(--accent);font-size:17px;font-weight:600}
+  .avatar{position:relative;width:54px;height:54px;border-radius:2px;overflow:hidden;background:var(--paper);border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:"Source Serif 4",serif;font-size:18px;color:var(--ink)}
+  .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .sp .who b{font-size:18px;font-weight:600}
+  .sp .who div{font-size:14px;color:#4a443c;margin-top:2px}
+  .sp.tbd{opacity:.6}
+  .sp.tbd .avatar{border-style:dashed}
+  .quote{font-family:"Source Serif 4",serif;font-size:27px;font-style:italic;line-height:1.4;max-width:840px;margin:34px 0 0}
+  .quote cite{display:block;font-family:"Libre Franklin";font-size:13px;font-style:normal;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:14px}
+  .projgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .projgrid .p{background:var(--paper);padding:26px 22px}
+  .projgrid .pn{font-family:"Source Serif 4",serif;font-size:12px;color:var(--accent)}
+  .projgrid h3{font-size:20px;margin:6px 0 10px}
+  .projgrid p{font-size:15px;color:#4a443c;margin:0}
+  .peoplegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:900px}
+  .peoplegrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:600;margin:0 0 10px;border-top:2px solid var(--ink);padding-top:10px}
+  .peoplegrid div{line-height:1.85}
+  .peoplegrid .sub{color:var(--muted);font-size:14px}
+  .supporters{margin-top:40px}
+  .supporters .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
+  .logos{display:flex;gap:16px;flex-wrap:wrap}
+  .logos .slot{width:130px;height:56px;border:1px dashed var(--rule);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
+  footer{background:var(--ink);color:var(--paper);padding:40px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
+  footer a{color:#e0a0a0}
+  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid,.peoplegrid{grid-template-columns:1fr 1fr} .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
+  @media(max-width:480px){ .peoplegrid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="mark"><span class="sq">■</span> {{NAME}}</div>
+  <div class="navlinks">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#series">Lecture Series</a>
+    <a href="#projects">Live Projects</a>
+    <a href="#people">People</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">{{EYEBROW}}</div>
+    <h1>{{TAGLINE}}</h1>
+  </div>
+  <p class="lede">{{HERO_LEDE}}</p>
+</div></header>
+
+<section id="manifesto"><div class="wrap">
+  <div class="sechead"><span class="secno">01</span><h2>Manifesto</h2></div>
+{{MANIFESTO}}
+</div></section>
+
+<section id="series"><div class="wrap">
+  <div class="sechead"><span class="secno">02</span><h2>Lecture Series</h2></div>
+  <p class="lead-serif">{{SERIES_LEAD}}</p>
+  <p style="max-width:780px">{{SERIES_BODY}}</p>
+  <div class="tracks">{{TRACKS}}</div>
+
+  <div class="speakers">
+{{SPEAKERS}}
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <div class="sechead"><span class="secno">03</span><h2>Live Projects</h2></div>
+  <div class="projgrid">
+{{PROJECTS}}
+  </div>
+  <h3 style="font-family:'Source Serif 4',serif;font-weight:500;font-size:22px;margin:44px 0 0">{{TIMELINE_TITLE}}</h3>
+  <p style="max-width:780px;margin:8px 0 0;color:#4a443c">{{TIMELINE_INTRO}}</p>
+  <div class="ladder">
+{{LADDER}}
+  </div>
+</div></section>
+
+<section id="people"><div class="wrap">
+  <div class="sechead"><span class="secno">04</span><h2>People</h2></div>
+  <div class="peoplegrid">
+{{PEOPLE}}
+  </div>
+  <div class="supporters">
+    <div class="lbl">{{SUPPORTERS_LABEL}}</div>
+    <div class="logos">{{SUPPORTERS_LOGOS}}</div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>{{FOOTER_LEFT}}</span>
+  <span>Write to us — <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></span>
+</div></footer>
+</body>
+</html>

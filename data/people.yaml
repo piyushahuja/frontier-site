@@ -1,0 +1,31 @@
+groups:
+  - title: Organisers
+    members:
+      - name: Piyush Ahuja
+        sub: IIT Delhi · Oxford · Cambridge
+      - name: Dhruv Malrana
+        sub: IIT Delhi · DeepMind · Deep Cogito
+      - name: Ankush Gupta
+        sub: Berkeley · Oxford · DeepMind
+
+  - title: Advisors
+    members:
+      - name: Prof. Naveen Garg
+        sub: Head, CSE, IIT Delhi · Bhatnagar laureate
+      - name: Prof. Chetan Arora
+        sub: CSE, IIT Delhi · Computer Vision
+
+  - title: Friends
+    members:
+      - name: Ananye Agarwal
+        sub: IIT Delhi · CMU · Skild AI
+      - name: Shreya Sharma
+        sub: IIT Delhi · World Labs
+      - name: Savin Goyal
+        sub: IIT Delhi · Netflix · Outerbounds
+      - name: Ankit Tomar
+        sub: IIT Delhi · Bizongo
+
+supporters:
+  label: Supported by
+  logos: 3

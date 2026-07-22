@@ -1,0 +1,34 @@
+# One block per speaker. Photo is auto-loaded from
+# assets/speakers/<slugified-name>.jpg  (falls back to initials if missing).
+# Add tbd: true for a placeholder slot.
+
+- date: "19 Aug"
+  day: Wed
+  name: Ashish Kapoor
+  bio: IIT Delhi · Microsoft Research · General Robotics
+
+- date: "26 Aug"
+  day: Wed
+  name: Soumyadeb Mitra
+  bio: IIT Delhi · RudderStack
+
+- date: Sep
+  day: ""
+  name: Otkrist Gupta
+  bio: IIT Delhi · MIT · Lendbuzz
+
+- date: "21 Sep"
+  day: Mon
+  name: Rajul Garg
+  bio: IIT Delhi · GlobalLogic · Leo Capital
+
+- date: "19 Oct"
+  day: Mon
+  name: Raghu Mahajan
+  bio: Stanford · IAS Princeton · ICTS-TIFR
+
+- date: "28 Oct"
+  day: ""
+  name: To be announced
+  bio: Further speakers confirmed through November
+  tbd: true

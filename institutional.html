@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontier — Institutional</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#fcfcfc; --ink:#111; --muted:#6b6b6b; --rule:#e6e6e6; --panel:#f4f4f4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+  a{color:inherit}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:400}
+  nav{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--bg);z-index:10}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:66px;flex-wrap:wrap}
+  .mark{font-family:"Fraunces",serif;font-size:20px;letter-spacing:.02em}
+  .navlinks a{margin-left:30px;text-decoration:none;color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:.09em}
+  .navlinks a:hover{color:var(--ink)}
+  header.hero{padding:120px 0 90px;border-bottom:1px solid var(--rule)}
+  .eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:26px}
+  h1{font-size:60px;line-height:1.06;letter-spacing:-.02em;margin:0 0 30px;max-width:13ch}
+  .lede{font-size:21px;color:#333;max-width:620px;font-weight:300;margin:0}
+  section{padding:80px 0;border-bottom:1px solid var(--rule)}
+  .grid2{display:grid;grid-template-columns:220px 1fr;gap:48px}
+  .label{font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);padding-top:6px}
+  .body p{margin:0 0 1.1em;max-width:60ch}
+  .body h2{font-size:32px;letter-spacing:-.01em;margin:0 0 20px}
+  em{font-style:normal;border-bottom:1px solid #ccc}
+  .figure{border:1px solid var(--ink);padding:40px;text-align:center;margin:8px 0 24px}
+  .figure .big{font-family:"Fraunces",serif;font-size:34px;letter-spacing:-.01em}
+  .figure .big .a{color:var(--muted);margin:0 .4em}
+  .figure .sub{font-size:20px;color:#333;margin-top:6px}
+  .figure .cap{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:16px}
+  .ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--rule);margin-top:8px}
+  .ladder div{padding:20px 16px;border-right:1px solid var(--rule)}
+  .ladder div:last-child{border-right:0}
+  .ladder .yr{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+  .ladder .t{font-family:"Fraunces",serif;font-size:19px}
+  .tracks{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .tracks span{border:1px solid var(--rule);padding:7px 14px;font-size:13px;color:#333}
+  /* speakers */
+  .speakers{border-top:1px solid var(--rule);margin-top:26px}
+  .sp{display:grid;grid-template-columns:96px 46px 1fr auto;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule)}
+  .sp .date{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;line-height:1.35}
+  .sp .date b{display:block;color:var(--ink);font-size:15px;font-weight:600;letter-spacing:0;text-transform:none}
+  .avatar{width:46px;height:46px;border-radius:50%;background:var(--panel);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-family:"Fraunces",serif;font-size:17px;color:#555}
+  .sp .who b{font-size:17px;font-weight:600}
+  .sp .who div{font-size:14px;color:var(--muted);margin-top:2px}
+  .sp .fmt{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border:1px solid var(--rule);padding:4px 9px;white-space:nowrap}
+  .sp.tbd{opacity:.6}
+  .sp.tbd .avatar{border-style:dashed}
+  .quote{font-family:"Fraunces",serif;font-size:27px;line-height:1.42;font-weight:400;max-width:820px;margin:34px 0 0}
+  .quote cite{display:block;font-family:"Inter";font-size:13px;font-style:normal;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:16px}
+  .projgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+  .projgrid .p{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 24px}
+  .projgrid h3{font-size:20px;margin:0 0 10px}
+  .projgrid p{font-size:15px;color:#444;margin:0}
+  .peoplegrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px}
+  .peoplegrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px;font-weight:500}
+  .peoplegrid div{font-size:16px;line-height:1.9}
+  footer{padding:50px 0 80px;color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  @media(max-width:820px){ h1{font-size:40px} .grid2,.ladder,.projgrid,.peoplegrid{grid-template-columns:1fr} .ladder div,.projgrid .p{border-right:0} .sp{grid-template-columns:44px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} .sp .fmt{display:none} }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="mark">◆ Frontier</div>
+  <div class="navlinks">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#series">Lecture Series</a>
+    <a href="#projects">Live Projects</a>
+    <a href="#people">People</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">A frontier-science initiative · IIT Delhi</div>
+  <h1>Strategic enterprises from frontier science</h1>
+  <p class="lede">India's future world leaders are already here. We connect them — early — to people a few steps ahead, and give them permission to build something of genuine global consequence.</p>
+</div></header>
+
+<section id="manifesto"><div class="wrap"><div class="grid2">
+  <div class="label">Manifesto</div>
+  <div class="body">
+    <p>India keeps only about a fifth of the value of the large enterprises its people build. Over the last decade, long-term ownership capital arrived, plateaued, and almost none of it reached the frontier of science. It came to <em>rent</em> talent, not to <em>own</em> what that talent creates.</p>
+    <div class="figure">
+      <div class="big">NVIDIA <span class="a">≈</span> all of listed India</div>
+      <div class="sub">$4.9 trillion &nbsp;≈&nbsp; $5 trillion</div>
+      <div class="cap">One company · every listed Indian company combined · as of July 2026</div>
+    </div>
+    <p>That is the gap concentrated excellence closes: not many good companies — a few of genuine global consequence.</p>
+    <p>A nation that only imports the frontier cannot help steer it. A country that consumes technology built elsewhere is a client, not a partner. Self-reliance — <em>atmanirbharta</em> — was the first step. The frontier company is where self-reliance matures into contribution: to be a friend the world actually needs, India must be a maker at the frontier, not merely a market for it.</p>
+    <h2 style="margin-top:36px">A six-year ladder</h2>
+    <div class="ladder">
+      <div><div class="yr">Year 2</div><div class="t">Exposure</div></div>
+      <div><div class="yr">Year 3</div><div class="t">Projects</div></div>
+      <div><div class="yr">Year 4</div><div class="t">Publish</div></div>
+      <div><div class="yr">+1–2 yrs</div><div class="t">Found</div></div>
+      <div><div class="yr">Then</div><div class="t">Frontier</div></div>
+    </div>
+  </div>
+</div></div></section>
+
+<section id="series"><div class="wrap"><div class="grid2">
+  <div class="label">Lecture Series</div>
+  <div class="body" style="max-width:none">
+    <h2 style="max-width:60ch">On campus, weekly, through the Monsoon semester</h2>
+    <p>At IIT Delhi's Department of Computer Science, alumni ten to twenty years ahead return to tell the truth about the decisions they made — what they got right, what they got wrong, what they wish they had known. Not placement talks: first-person reflection. Convened with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.</p>
+    <div class="tracks"><span>Academia &amp; Research</span><span>Research → Venture</span><span>Industry &amp; Product</span><span>Capital &amp; Investing</span><span>Public Service</span><span>Alternative Paths</span></div>
+
+    <div class="speakers">
+      <div class="sp">
+        <div class="date"><b>19 Aug</b>Wed</div>
+        <div class="avatar">AK</div>
+        <div class="who"><b>Ashish Kapoor</b><div>Robotics &amp; computer vision; brings frontier researchers to mentor student projects</div></div>
+        <div class="fmt">In person</div>
+      </div>
+      <div class="sp">
+        <div class="date"><b>26 Aug</b>Wed</div>
+        <div class="avatar">SM</div>
+        <div class="who"><b>Soumyadeb Mitra</b><div>Founder &amp; CEO, RudderStack</div></div>
+        <div class="fmt">In person</div>
+      </div>
+      <div class="sp">
+        <div class="date"><b>2 Sep</b>Wed</div>
+        <div class="avatar">DS</div>
+        <div class="who"><b>Dipinder Sekhon</b><div>Founder, iKites AI (computer vision); a decade in US big tech</div></div>
+        <div class="fmt">In person</div>
+      </div>
+      <div class="sp">
+        <div class="date"><b>Sep</b>Wk 2</div>
+        <div class="avatar">OG</div>
+        <div class="who"><b>Otkrist Gupta</b><div>VP of Research, Lendbuzz; PhD, MIT Media Lab</div></div>
+        <div class="fmt">Remote · 10 PM IST</div>
+      </div>
+      <div class="sp">
+        <div class="date"><b>21 Sep</b>Mon</div>
+        <div class="avatar">RG</div>
+        <div class="who"><b>Rajul Garg</b><div>Founder &amp; Managing Partner, Leo Capital; earlier GlobalLogic, Pine Labs</div></div>
+        <div class="fmt">Remote · 3 PM IST</div>
+      </div>
+      <div class="sp">
+        <div class="date"><b>19 Oct</b>Mon</div>
+        <div class="avatar">RM</div>
+        <div class="who"><b>Raghu Mahajan</b><div>Theoretical physicist, ICTS-TIFR; formerly Stanford &amp; IAS Princeton</div></div>
+        <div class="fmt">5 PM IST</div>
+      </div>
+      <div class="sp tbd">
+        <div class="date"><b>28 Oct</b>&nbsp;</div>
+        <div class="avatar">?</div>
+        <div class="who"><b>To be announced</b><div>Further speakers confirmed through November</div></div>
+        <div class="fmt">—</div>
+      </div>
+    </div>
+
+    <blockquote class="quote">We are living through a transformative period in technology, and today's students have an extraordinary opportunity to shape what comes next. AI has become a great leveler — a smart, motivated student can now have as much opportunity to build something impactful as someone with decades of experience.<cite>— Soumyadeb Mitra</cite></blockquote>
+  </div>
+</div></div></section>
+
+<section id="projects"><div class="wrap"><div class="grid2">
+  <div class="label">Live Projects</div>
+  <div class="body" style="max-width:none">
+    <div class="projgrid">
+      <div class="p"><h3>EMG → Force</h3><p>Undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers. Toward a first-author NeurIPS paper from the department.</p></div>
+      <div class="p"><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
+      <div class="p"><h3>Compute at IIT</h3><p>Closing the infrastructure gap — shared GPUs to real training clusters — with alumni at NVIDIA and Meta.</p></div>
+    </div>
+  </div>
+</div></div></section>
+
+<section id="people"><div class="wrap"><div class="grid2">
+  <div class="label">People</div>
+  <div class="body" style="max-width:none">
+    <div class="peoplegrid">
+      <div><h4>Organisers</h4><div>Piyush Ahuja<br>Dhruv Malrana<br>Savin Goyal<br>Ankit Tomar</div></div>
+      <div><h4>Faculty</h4><div>Prof. Naveen Garg<br><span style="color:var(--muted);font-size:14px">Head, CSE, IIT Delhi</span></div></div>
+      <div><h4>Advisors &amp; Friends</h4><div style="color:var(--muted)">Announced in time.</div></div>
+    </div>
+  </div>
+</div></div></section>
+
+<footer><div class="wrap">
+  <span>Frontier · IIT Delhi</span>
+  <span>Write to us — <a href="mailto:hello@example.org">hello@example.org</a></span>
+</div></footer>
+</body>
+</html>

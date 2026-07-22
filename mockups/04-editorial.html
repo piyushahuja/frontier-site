@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontier — Style 04 · Editorial Grid</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f7f4ee; --ink:#161412; --accent:#7c1d1d; --muted:#6f665c; --rule:#d8cfc0; --measure:700px; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Libre Franklin",sans-serif;font-size:18px;line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+  a{color:var(--accent)}
+  .serif{font-family:"Source Serif 4",Georgia,serif}
+  nav{border-bottom:2px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:10}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;flex-wrap:wrap}
+  .mark{font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase}
+  .mark .sq{color:var(--accent)}
+  .navlinks a{margin-left:26px;text-decoration:none;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+  .navlinks a:hover{color:var(--accent)}
+  header.hero{border-bottom:2px solid var(--ink);padding:70px 0}
+  header.hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:end}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:20px}
+  h1{font-family:"Source Serif 4",serif;font-size:58px;line-height:1.02;font-weight:500;letter-spacing:-.015em;margin:0}
+  .lede{font-size:19px;color:#3a352f;border-left:3px solid var(--accent);padding-left:18px}
+  section{border-bottom:1px solid var(--rule);padding:56px 0}
+  .sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
+  .secno{font-family:"Source Serif 4",serif;font-size:15px;color:var(--accent);font-weight:500}
+  .sechead h2{font-size:13px;text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin:0}
+  .lead-serif{font-family:"Source Serif 4",serif;font-size:23px;line-height:1.4;max-width:760px;margin:0 0 22px}
+  .cols{column-count:2;column-gap:44px;max-width:920px}
+  .cols p{margin:0 0 1em;break-inside:avoid}
+  em{font-style:italic;color:var(--accent)}
+  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} }
+  .figure{display:flex;align-items:center;gap:26px;background:var(--ink);color:var(--paper);padding:28px 34px;margin:30px 0;flex-wrap:wrap}
+  .figure .big{font-family:"Source Serif 4",serif;font-size:30px;line-height:1.1}
+  .figure .big .a{color:#e0a0a0}
+  .figure .cap{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#b8ada0;border-left:1px solid #555;padding-left:20px}
+  .ladder{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-top:10px}
+  .ladder div{padding:16px 12px;border-right:1px solid var(--rule);position:relative}
+  .ladder div:last-child{border-right:0}
+  .ladder .yr{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:6px}
+  .ladder .t{font-family:"Source Serif 4",serif;font-size:18px}
+  .tracks{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:760px;margin-top:14px}
+  .tracks span{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 16px;font-size:14px;width:33.33%}
+  @media(max-width:600px){ .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} }
+  .quote{font-family:"Source Serif 4",serif;font-size:26px;font-style:italic;line-height:1.4;max-width:760px;margin:24px 0 0}
+  .quote cite{display:block;font-family:"Libre Franklin";font-size:13px;font-style:normal;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:12px}
+  .projgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .projgrid .p{background:var(--paper);padding:26px 22px}
+  .projgrid .pn{font-family:"Source Serif 4",serif;font-size:12px;color:var(--accent)}
+  .projgrid h3{font-size:20px;margin:6px 0 10px}
+  .projgrid p{font-size:15px;color:#4a443c;margin:0}
+  .peoplegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:900px}
+  .peoplegrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:600;margin:0 0 10px;border-top:2px solid var(--ink);padding-top:10px}
+  .peoplegrid div{line-height:1.85}
+  footer{background:var(--ink);color:var(--paper);padding:40px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
+  footer a{color:#e0a0a0}
+  @media(max-width:760px){ .projgrid,.peoplegrid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="mark"><span class="sq">■</span> Frontier</div>
+  <div class="navlinks">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#series">Lecture Series</a>
+    <a href="#projects">Live Projects</a>
+    <a href="#people">People</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">A frontier-science initiative · IIT Delhi</div>
+    <h1>Strategic enterprises from frontier science</h1>
+  </div>
+  <p class="lede">India's future world leaders are already here. We connect them — early — to people a few steps ahead, and give them permission to build something of genuine global consequence.</p>
+</div></header>
+
+<section id="manifesto"><div class="wrap">
+  <div class="sechead"><span class="secno">01</span><h2>Manifesto</h2></div>
+  <p class="lead-serif">India keeps only about a fifth of the value of the large enterprises its people build — and almost none of the capital that arrived this past decade reached the frontier of science.</p>
+  <div class="figure">
+    <div class="big">NVIDIA <span class="a">≈</span> all of listed India<br><span style="font-size:20px;color:#cfc7bc">$4.9 trillion &nbsp;≈&nbsp; $5 trillion</span></div>
+    <div class="cap">One company now worth about as much as every publicly listed company in India combined · as of July 2026</div>
+  </div>
+  <div class="cols">
+    <p>Long-term ownership capital arrived, plateaued, and came to <em>rent</em> talent — not to <em>own</em> what that talent creates. That is the gap concentrated excellence closes: not many good companies, but a few of genuine global consequence.</p>
+    <p>A nation that only imports the frontier cannot help steer it. A country that consumes technology built elsewhere is a client, not a partner. Self-reliance — <em>atmanirbharta</em> — was the first step. The frontier company is where self-reliance matures into contribution: to be a friend the world actually needs, India must be a <em>maker</em> at the frontier, not merely a market for it.</p>
+  </div>
+  <div class="ladder">
+    <div><div class="yr">Year 2</div><div class="t">Exposure</div></div>
+    <div><div class="yr">Year 3</div><div class="t">Projects</div></div>
+    <div><div class="yr">Year 4</div><div class="t">Publish</div></div>
+    <div><div class="yr">+1–2 yrs</div><div class="t">Found</div></div>
+    <div><div class="yr">Then</div><div class="t">Frontier</div></div>
+  </div>
+</div></section>
+
+<section id="series"><div class="wrap">
+  <div class="sechead"><span class="secno">02</span><h2>Lecture Series</h2></div>
+  <p class="lead-serif">On campus, weekly, through the Monsoon semester. Alumni ten to twenty years ahead return to tell the truth about the decisions they made.</p>
+  <p style="max-width:760px">Not placement talks: first-person reflection — what they got right, what they got wrong, what they wish they had known. Convened at IIT Delhi's Department of Computer Science with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.</p>
+  <div class="tracks"><span>Academia &amp; Research</span><span>Research → Venture</span><span>Industry &amp; Product</span><span>Capital &amp; Investing</span><span>Public Service</span><span>Alternative Paths</span></div>
+  <blockquote class="quote">The point was never a job. It was permission to work on something that might matter in twenty years.<cite>A speaker · Monsoon 2026</cite></blockquote>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <div class="sechead"><span class="secno">03</span><h2>Live Projects</h2></div>
+  <div class="projgrid">
+    <div class="p"><div class="pn">i.</div><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers. In preparation for NeurIPS.</p></div>
+    <div class="p"><div class="pn">ii.</div><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
+    <div class="p"><div class="pn">iii.</div><h3>Compute at IIT</h3><p>Closing the infrastructure gap — from shared GPUs to real training clusters — with alumni at NVIDIA and Meta.</p></div>
+  </div>
+</div></section>
+
+<section id="people"><div class="wrap">
+  <div class="sechead"><span class="secno">04</span><h2>People</h2></div>
+  <div class="peoplegrid">
+    <div><h4>Organisers</h4><div>Piyush Ahuja<br>Dhruv Malrana<br>Savin Goyal<br>Ankit Tomar</div></div>
+    <div><h4>Faculty</h4><div>Prof. Naveen Garg<br><span style="color:var(--muted);font-size:14px">Head, CSE, IIT Delhi</span></div></div>
+    <div><h4>Advisors &amp; Friends</h4><div style="color:var(--muted)">Announced in time.</div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>Frontier · IIT Delhi · frontier science</span>
+  <span>Write to us — <a href="mailto:hello@example.org">hello@example.org</a></span>
+</div></footer>
+</body>
+</html>

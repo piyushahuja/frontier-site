@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontier — Style 01 · LaTeX / Distill</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<style>
+  :root{ --ink:#1a1a1a; --muted:#555; --rule:#ddd; --paper:#fbfbf9; --measure:640px; }
+  *{box-sizing:border-box}
+  html{-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Computer Modern Serif","Latin Modern Roman",Georgia,serif;
+    font-size:19px;line-height:1.58;}
+  a{color:inherit}
+  .wrap{max-width:920px;margin:0 auto;padding:0 32px}
+  /* nav */
+  nav{border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+  nav .wrap{display:flex;align-items:baseline;justify-content:space-between;padding-top:18px;padding-bottom:14px;flex-wrap:wrap;gap:8px}
+  .mark{font-variant:small-caps;letter-spacing:.06em;font-size:20px}
+  .mark .glyph{margin-right:.4em}
+  .navlinks a{margin-left:26px;text-decoration:none;color:var(--muted);font-size:16px;font-variant:small-caps;letter-spacing:.04em}
+  .navlinks a:hover{color:var(--ink)}
+  /* hero */
+  header.hero{padding:70px 0 40px;border-bottom:1px solid var(--rule)}
+  header.hero .wrap{max-width:var(--measure)}
+  .eyebrow{font-variant:small-caps;letter-spacing:.12em;color:var(--muted);font-size:15px;margin-bottom:14px}
+  h1.title{font-size:38px;line-height:1.2;font-weight:400;margin:0 0 18px}
+  .lede{font-size:20px;color:#333;margin:0}
+  /* article w/ sidenotes */
+  main .wrap{max-width:var(--measure);position:relative;padding-top:48px;padding-bottom:80px}
+  section{margin-bottom:56px}
+  h2{font-size:15px;font-variant:small-caps;letter-spacing:.1em;color:var(--muted);font-weight:400;margin:0 0 4px}
+  h2 .num{color:var(--ink)}
+  h3{font-size:23px;font-weight:400;margin:.2em 0 .5em}
+  p{margin:0 0 1em}
+  .sidenote{float:right;clear:right;width:200px;margin-right:-232px;font-size:14px;line-height:1.4;color:var(--muted);text-align:left}
+  .sup{font-size:.7em;vertical-align:super;color:var(--muted)}
+  hr.rule{border:0;border-top:1px solid var(--rule);margin:0}
+  /* figure: the equation */
+  .figure{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:22px 0;margin:28px 0;text-align:center}
+  .eq{font-size:26px}
+  .eq .approx{color:var(--muted);margin:0 .5em}
+  .figcap{font-size:14px;color:var(--muted);margin-top:10px}
+  /* timeline */
+  .ladder{list-style:none;padding:0;margin:16px 0;font-size:17px}
+  .ladder li{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;gap:16px}
+  .ladder .yr{width:120px;color:var(--muted);flex:none}
+  /* projects */
+  .proj{border-left:2px solid var(--ink);padding:2px 0 2px 16px;margin:18px 0}
+  .proj .name{font-variant:small-caps;letter-spacing:.04em}
+  /* people */
+  .people{display:flex;flex-wrap:wrap;gap:6px 28px;font-size:17px;margin-top:8px}
+  .role{color:var(--muted);font-size:14px;font-variant:small-caps;letter-spacing:.08em;margin-top:18px}
+  footer{border-top:1px solid var(--rule);padding:26px 0 60px;color:var(--muted);font-size:15px}
+  footer .wrap{max-width:var(--measure);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media(max-width:900px){ .sidenote{float:none;width:auto;margin:8px 0 16px;padding-left:14px;border-left:1px solid var(--rule)} }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="mark"><span class="glyph">◆</span>Frontier</div>
+  <div class="navlinks">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#series">Lecture Series</a>
+    <a href="#projects">Live Projects</a>
+    <a href="#people">People</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">A frontier-science initiative · IIT Delhi</div>
+  <h1 class="title">Strategic enterprises from frontier science</h1>
+  <p class="lede">India's future world leaders are already here. We connect them — early — to people a few steps ahead, and give them permission to build something of genuine global consequence.</p>
+</div></header>
+
+<main><div class="wrap">
+
+  <section id="manifesto">
+    <h2><span class="num">§1</span> &nbsp;Manifesto</h2>
+    <p>India keeps only about a fifth of the value of the large enterprises its people build.<span class="sup">1</span> Over the last decade, long-term ownership capital arrived, plateaued, and almost none of it reached the frontier of science. It came to rent talent, not to own what that talent creates.<span class="sidenote"><span class="sup">1</span> Ownership, not employment, is where value compounds. A country can supply the world's researchers and still keep little of what they make.</span></p>
+
+    <p>Consider the scale of what is missed.</p>
+
+    <div class="figure">
+      <div class="eq">NVIDIA <span class="approx">≈</span> all of listed India</div>
+      <div class="eq" style="font-size:20px;color:#333">$4.9&nbsp;trillion <span class="approx">≈</span> $5&nbsp;trillion</div>
+      <div class="figcap">One company is now worth about as much as every publicly listed company in India combined.<br>As of July 2026. Sources: company market cap; BSE aggregate.</div>
+    </div>
+
+    <p>That is the gap concentrated excellence closes: not many good companies — a few of genuine global consequence.</p>
+
+    <p>A nation that only imports the frontier cannot help steer it. A country that consumes technology built elsewhere is a client, not a partner. Self-reliance — <em>atmanirbharta</em> — was the first step. The frontier company is where self-reliance matures into contribution: to be a friend the world actually needs, India must be a <em>maker</em> at the frontier, not merely a market for it.</p>
+
+    <h3>A six-year ladder</h3>
+    <ul class="ladder">
+      <li><span class="yr">Year 2</span> Exposure. Students meet people building at the frontier, and get permission to think in decades.</li>
+      <li><span class="yr">Year 3</span> Projects. They begin real research inside the community.</li>
+      <li><span class="yr">Year 4</span> Publish. The work reaches the frontier — NeurIPS and its peers.</li>
+      <li><span class="yr">+1–2 yrs</span> Found. Companies spin out.</li>
+      <li><span class="yr">Then</span> Frontier. One becomes a company of genuine global consequence.</li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <section id="series" style="padding-top:40px">
+    <h2><span class="num">§2</span> &nbsp;Lecture Series</h2>
+    <h3>On campus, weekly, Monsoon semester</h3>
+    <p>At IIT Delhi's Department of Computer Science, alumni ten to twenty years ahead return to tell the truth about the decisions they made — what they got right, what they got wrong, what they wish they had known. Not placement talks; first-person reflection. Convened with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.<span class="sidenote">Six tracks over twelve weeks: Academia &amp; Research · Research→Venture · Industry &amp; Product · Capital &amp; Investing · Public Service · Alternative Paths.</span></p>
+    <p style="color:var(--muted);font-size:16px">Speakers include Savin Goyal (Outerbounds), Ananya Agarwal (Neo Labs), Raghu Mahajan (ICTS), and others.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="projects" style="padding-top:40px">
+    <h2><span class="num">§3</span> &nbsp;Live Projects</h2>
+    <div class="proj">
+      <div class="name">EMG → Force</div>
+      <p style="margin:.3em 0 0">Three undergraduates trained a transformer on Meta's EMG-to-pose benchmark and beat the published result, then ran a scaling-law study with frontier researchers. In preparation for NeurIPS.</p>
+    </div>
+    <div class="proj">
+      <div class="name">Indic Scaling Laws</div>
+      <p style="margin:.3em 0 0">How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p>
+    </div>
+    <div class="proj">
+      <div class="name">Compute at IIT</div>
+      <p style="margin:.3em 0 0">Closing the infrastructure gap — from shared GPUs to real training clusters — with alumni at NVIDIA and Meta.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="people" style="padding-top:40px">
+    <h2><span class="num">§4</span> &nbsp;People</h2>
+    <div class="role">Organisers</div>
+    <div class="people"><span>Piyush Ahuja</span><span>Dhruv Malrana</span><span>Savin Goyal</span><span>Ankit Tomar</span></div>
+    <div class="role">Faculty</div>
+    <div class="people"><span>Prof. Naveen Garg — Head, CSE, IIT Delhi</span></div>
+    <div class="role">Advisors &amp; Friends</div>
+    <div class="people"><span style="color:var(--muted)">Announced in time.</span></div>
+  </section>
+
+</div></main>
+
+<footer><div class="wrap">
+  <span>Frontier · IIT Delhi</span>
+  <span>Write to us — <a href="mailto:hello@example.org">hello@example.org</a></span>
+</div></footer>
+</body>
+</html>
