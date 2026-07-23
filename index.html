@@ -14,16 +14,17 @@
   a{color:var(--accent)}
   .serif{font-family:"Source Serif 4",Georgia,serif}
   nav{border-bottom:2px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:10}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;flex-wrap:wrap}
+  nav .wrap{display:flex;justify-content:center;align-items:center;height:64px;flex-wrap:wrap}
   .mark{font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase}
   .mark .sq{color:var(--accent)}
-  .navlinks a{margin-left:26px;text-decoration:none;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+  .navlinks{margin-left:0;display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .navlinks a{text-decoration:none;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:500}
   .navlinks a:hover{color:var(--accent)}
-  header.hero{border-bottom:2px solid var(--ink);padding:70px 0}
-  header.hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:end}
-  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:20px}
-  h1{font-family:"Source Serif 4",serif;font-size:58px;line-height:1.02;font-weight:500;letter-spacing:-.015em;margin:0}
-  .lede{font-size:19px;color:#3a352f;border-left:3px solid var(--accent);padding-left:18px}
+  header.hero{border-bottom:2px solid var(--ink);padding:76px 0 70px}
+  header.hero .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:6px}
+  h1{font-family:"Source Serif 4",serif;font-size:clamp(44px,5vw,64px);line-height:0.96;font-weight:500;letter-spacing:-.015em;margin:0;max-width:760px}
+  .lede{font-size:19px;color:#3a352f;border-left:0;padding-left:0;margin:0;max-width:760px;line-height:1.7}
   section{border-bottom:1px solid var(--rule);padding:56px 0}
   .sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
   .secno{font-family:"Source Serif 4",serif;font-size:15px;color:var(--accent);font-weight:500}
@@ -65,10 +66,10 @@
   .projgrid .pn{font-family:"Source Serif 4",serif;font-size:12px;color:var(--accent)}
   .projgrid h3{font-size:20px;margin:6px 0 10px}
   .projgrid p{font-size:15px;color:#4a443c;margin:0}
-  .peoplegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:900px}
-  .peoplegrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:600;margin:0 0 10px;border-top:2px solid var(--ink);padding-top:10px}
-  .peoplegrid div{line-height:1.85}
-  .peoplegrid .sub{color:var(--muted);font-size:14px}
+  .peoplegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:980px}
+  .person-card{padding:18px 0;border-top:1px solid var(--rule)}
+  .person-name{font-size:18px;font-weight:600;line-height:1.35}
+  .peoplegrid .sub{color:var(--muted);font-size:14px;margin-top:4px;line-height:1.55}
   .supporters{margin-top:40px}
   .supporters .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
   .logos{display:flex;gap:16px;flex-wrap:wrap}
@@ -76,8 +77,7 @@
   footer{background:var(--ink);color:var(--paper);padding:40px 0}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
   footer a{color:#e0a0a0}
-  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid,.peoplegrid{grid-template-columns:1fr 1fr} .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
-  @media(max-width:480px){ .peoplegrid{grid-template-columns:1fr} }
+  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .peoplegrid{grid-template-columns:1fr} .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
 </style>
 </head>
 <body>
@@ -114,25 +114,22 @@
 </script>
 
 <nav><div class="wrap">
-  <div class="mark"><span class="sq">■</span> Frontiers</div>
   <div class="navlinks">
-    <a href="#manifesto">Manifesto</a>
-    <a href="#series">Lecture Series</a>
-    <a href="#projects">Live Projects</a>
-    <a href="#people">People</a>
+    <a href="#series">Talks</a>
+    <a href="#projects">Projects</a>
+    <a href="#people">Supporters</a>
   </div>
 </div></nav>
 
 <header class="hero"><div class="wrap">
   <div>
-    <div class="eyebrow">A frontier-tech initiative · IIT Delhi</div>
-    <h1>Where India's Best Minds Meet The Frontier</h1>
+    <div class="eyebrow">A public interest initiative · IIT Delhi</div>
+    <h1>A place at the Frontier<br>for Indian Minds<br></h1>
   </div>
-  <p class="lede">India doesn't lack talent. It lacks early bridges to the frontier. We're building them.</p>
+  <p class="lede">India doesn't lack talent. It lacks early bridges to the frontier. Let's build them.</p>
 </div></header>
 
 <section id="manifesto"><div class="wrap">
-  <div class="sechead"><span class="secno">01</span><h2>Manifesto</h2></div>
   <p class="lead-serif">Every student has a kernel — a life force, a <em>vita activa</em> — that holds the potential for their life's best work. Most emerge from the assembly line of family, school, and college with their wings compressed. Some find they have wings and start to spread them, but this can take years. With the right person at the right moment, we can speed that up. And when you speed it up across enough people, something shifts — not just for them, but for the country.</p>
   <div class="cols">
     <p>The great poet Mary Oliver asks: <em>"Tell me, what is it you plan to do with your one wild and precious life?"</em> The question lives with an equal sense of anxiety and possibility for every student — and perhaps with a tinge of regret and self-satisfaction for us alumni. We cannot decide for them what they will do with that life. But we know how much it matters to choose the right doors while they are still open.</p>
@@ -154,7 +151,7 @@
 </div></section>
 
 <section id="series"><div class="wrap">
-  <div class="sechead"><span class="secno">02</span><h2>Lecture Series</h2></div>
+  <div class="sechead"><span class="secno">02</span><h2>Talks</h2></div>
   <p class="lead-serif">On campus, weekly, through the Monsoon semester. Alumni ten to twenty years ahead return to tell the truth about the decisions they made.</p>
   <p style="max-width:780px">Not placement talks: first-person reflection — what they got right, what they got wrong, what they wish they had known. Convened at IIT Delhi's Department of Computer Science with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.</p>
   <div class="tracks"><span>Academia &amp; Research</span><span>Research → Venture</span><span>Industry &amp; Product</span><span>Capital &amp; Investing</span><span>Public Service</span><span>Alternative Paths</span></div>
@@ -194,7 +191,7 @@
 </div></section>
 
 <section id="projects"><div class="wrap">
-  <div class="sechead"><span class="secno">03</span><h2>Live Projects</h2></div>
+  <div class="sechead"><span class="secno">03</span><h2>Projects</h2></div>
   <div class="projgrid">
     <div class="p"><div class="pn">i.</div><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers. Toward a first-author NeurIPS paper from the department.</p></div>
     <div class="p"><div class="pn">ii.</div><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
@@ -212,23 +209,35 @@
 </div></section>
 
 <section id="people"><div class="wrap">
-  <div class="sechead"><span class="secno">04</span><h2>People</h2></div>
+  <div class="sechead"><span class="secno">04</span><h2>Supporters</h2></div>
   <div class="peoplegrid">
-    <div><h4>Organisers</h4>
-      <div>Piyush Ahuja</div><div class="sub">IIT Delhi · Oxford · Cambridge</div>
-      <div style="margin-top:10px">Dhruv Malrana</div><div class="sub">IIT Delhi · DeepMind · Deep Cogito</div>
-      <div style="margin-top:10px">Ankush Gupta</div><div class="sub">Berkeley · Oxford · DeepMind</div>
-    </div>
-    <div><h4>Advisors</h4>
-      <div>Prof. Naveen Garg</div><div class="sub">Head, CSE, IIT Delhi · Bhatnagar laureate</div>
-      <div style="margin-top:10px">Prof. Chetan Arora</div><div class="sub">CSE, IIT Delhi · Computer Vision</div>
-    </div>
-    <div><h4>Friends</h4>
-      <div>Ananye Agarwal</div><div class="sub">IIT Delhi · CMU · Skild AI</div>
-      <div style="margin-top:10px">Shreya Sharma</div><div class="sub">IIT Delhi · World Labs</div>
-      <div style="margin-top:10px">Savin Goyal</div><div class="sub">IIT Delhi · Netflix · Outerbounds</div>
-      <div style="margin-top:10px">Ankit Tomar</div><div class="sub">IIT Delhi · Bizongo</div>
-    </div>
+    <div class="person-card">
+      <div class="person-name">Piyush Ahuja</div>
+<div class="sub">IIT Delhi · Oxford · Cambridge</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Dhruv Malrana</div>
+<div class="sub">IIT Delhi · DeepMind · Deep Cogito</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Ankush Gupta</div>
+<div class="sub">Berkeley · Oxford · DeepMind</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Prof. Naveen Garg</div>
+<div class="sub">Head, CSE, IIT Delhi · Bhatnagar laureate</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Prof. Chetan Arora</div>
+<div class="sub">CSE, IIT Delhi · Computer Vision</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Ananye Agarwal</div>
+<div class="sub">IIT Delhi · CMU · Skild AI</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Shreya Sharma</div>
+<div class="sub">IIT Delhi · World Labs</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Savin Goyal</div>
+<div class="sub">IIT Delhi · Netflix · Outerbounds</div>    </div>
+    <div class="person-card">
+      <div class="person-name">Ankit Tomar</div>
+<div class="sub">IIT Delhi · Bizongo</div>    </div>
   </div>
   <div class="supporters">
     <div class="lbl">Supported by</div>

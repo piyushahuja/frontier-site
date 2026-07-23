@@ -14,16 +14,17 @@
   a{color:var(--accent)}
   .serif{font-family:"Source Serif 4",Georgia,serif}
   nav{border-bottom:2px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:10}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;flex-wrap:wrap}
+  nav .wrap{display:flex;justify-content:center;align-items:center;height:64px;flex-wrap:wrap}
   .mark{font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase}
   .mark .sq{color:var(--accent)}
-  .navlinks a{margin-left:26px;text-decoration:none;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+  .navlinks{margin-left:0;display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .navlinks a{text-decoration:none;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:500}
   .navlinks a:hover{color:var(--accent)}
-  header.hero{border-bottom:2px solid var(--ink);padding:70px 0}
-  header.hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:end}
-  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:20px}
-  h1{font-family:"Source Serif 4",serif;font-size:58px;line-height:1.02;font-weight:500;letter-spacing:-.015em;margin:0}
-  .lede{font-size:19px;color:#3a352f;border-left:3px solid var(--accent);padding-left:18px}
+  header.hero{border-bottom:2px solid var(--ink);padding:76px 0 70px}
+  header.hero .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:6px}
+  h1{font-family:"Source Serif 4",serif;font-size:clamp(44px,5vw,64px);line-height:0.96;font-weight:500;letter-spacing:-.015em;margin:0;max-width:760px}
+  .lede{font-size:19px;color:#3a352f;border-left:0;padding-left:0;margin:0;max-width:760px;line-height:1.7}
   section{border-bottom:1px solid var(--rule);padding:56px 0}
   .sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
   .secno{font-family:"Source Serif 4",serif;font-size:15px;color:var(--accent);font-weight:500}
@@ -65,10 +66,10 @@
   .projgrid .pn{font-family:"Source Serif 4",serif;font-size:12px;color:var(--accent)}
   .projgrid h3{font-size:20px;margin:6px 0 10px}
   .projgrid p{font-size:15px;color:#4a443c;margin:0}
-  .peoplegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:900px}
-  .peoplegrid h4{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:600;margin:0 0 10px;border-top:2px solid var(--ink);padding-top:10px}
-  .peoplegrid div{line-height:1.85}
-  .peoplegrid .sub{color:var(--muted);font-size:14px}
+  .peoplegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:980px}
+  .person-card{padding:18px 0;border-top:1px solid var(--rule)}
+  .person-name{font-size:18px;font-weight:600;line-height:1.35}
+  .peoplegrid .sub{color:var(--muted);font-size:14px;margin-top:4px;line-height:1.55}
   .supporters{margin-top:40px}
   .supporters .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
   .logos{display:flex;gap:16px;flex-wrap:wrap}
@@ -76,8 +77,7 @@
   footer{background:var(--ink);color:var(--paper);padding:40px 0}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
   footer a{color:#e0a0a0}
-  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid,.peoplegrid{grid-template-columns:1fr 1fr} .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
-  @media(max-width:480px){ .peoplegrid{grid-template-columns:1fr} }
+  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .peoplegrid{grid-template-columns:1fr} .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
 </style>
 </head>
 <body>
@@ -114,12 +114,10 @@
 </script>
 
 <nav><div class="wrap">
-  <div class="mark"><span class="sq">■</span> {{NAME}}</div>
   <div class="navlinks">
-    <a href="#manifesto">Manifesto</a>
-    <a href="#series">Lecture Series</a>
-    <a href="#projects">Live Projects</a>
-    <a href="#people">People</a>
+    <a href="#series">Talks</a>
+    <a href="#projects">Projects</a>
+    <a href="#people">Supporters</a>
   </div>
 </div></nav>
 
@@ -132,12 +130,11 @@
 </div></header>
 
 <section id="manifesto"><div class="wrap">
-  <div class="sechead"><span class="secno">01</span><h2>Manifesto</h2></div>
 {{MANIFESTO}}
 </div></section>
 
 <section id="series"><div class="wrap">
-  <div class="sechead"><span class="secno">02</span><h2>Lecture Series</h2></div>
+  <div class="sechead"><span class="secno">02</span><h2>Talks</h2></div>
   <p class="lead-serif">{{SERIES_LEAD}}</p>
   <p style="max-width:780px">{{SERIES_BODY}}</p>
   <div class="tracks">{{TRACKS}}</div>
@@ -148,7 +145,7 @@
 </div></section>
 
 <section id="projects"><div class="wrap">
-  <div class="sechead"><span class="secno">03</span><h2>Live Projects</h2></div>
+  <div class="sechead"><span class="secno">03</span><h2>Projects</h2></div>
   <div class="projgrid">
 {{PROJECTS}}
   </div>
@@ -160,7 +157,7 @@
 </div></section>
 
 <section id="people"><div class="wrap">
-  <div class="sechead"><span class="secno">04</span><h2>People</h2></div>
+  <div class="sechead"><span class="secno">04</span><h2>Supporters</h2></div>
   <div class="peoplegrid">
 {{PEOPLE}}
   </div>
