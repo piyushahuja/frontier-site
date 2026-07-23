@@ -49,6 +49,10 @@ def fmt(s):
     return s
 
 
+def fmt_breaks(s):
+    return fmt(s).replace("\n", "<br>")
+
+
 def slugify(name):
     s = name.lower()
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
@@ -153,18 +157,22 @@ def build_ladder(steps):
 
 # ---- people ----------------------------------------------------------------
 def build_people(groups):
-    out = []
+    members = []
     for g in groups:
-        lines = ['    <div><h4>%s</h4>' % fmt(g["title"])]
-        for j, m in enumerate(g["members"]):
-            style = ' style="margin-top:10px"' if j else ""
-            row = '      <div%s>%s</div>' % (style, fmt(m["name"]))
-            if m.get("sub"):
-                row += '<div class="sub">%s</div>' % fmt(m["sub"])
-            lines.append(row)
-        lines.append('    </div>')
-        out.append("\n".join(lines))
-    return "\n".join(out)
+        members.extend(g.get("members", []))
+
+    cards = []
+    for m in members:
+        name = fmt(m["name"])
+        sub = fmt(m.get("sub", ""))
+        sub_html = '<div class="sub">%s</div>' % sub if sub else ""
+        cards.append(
+            '    <div class="person-card">\n'
+            '      <div class="person-name">%s</div>\n'
+            '%s'
+            '    </div>' % (name, sub_html)
+        )
+    return "\n".join(cards)
 
 
 def build_logos(supporters):
@@ -188,7 +196,7 @@ def main():
         "{{TITLE}}": fmt(meta.get("title", meta["name"])),
         "{{NAME}}": fmt(meta["name"]),
         "{{EYEBROW}}": fmt(meta["eyebrow"]),
-        "{{TAGLINE}}": fmt(meta["tagline"]),
+        "{{TAGLINE}}": fmt_breaks(meta["tagline"]),
         "{{HERO_LEDE}}": fmt(meta["hero_lede"]),
         "{{MANIFESTO}}": build_manifesto(read("manifesto.md")),
         "{{SERIES_LEAD}}": fmt(series["lead"]),

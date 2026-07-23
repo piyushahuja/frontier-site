@@ -1,9 +1,11 @@
 name: Frontiers
 title: Frontier — draft
-eyebrow: A frontier-tech initiative · IIT Delhi
-tagline: Where India's Best Minds Meet The Frontier
-hero_lede: India doesn't lack talent. It lacks early bridges to the frontier. We're
-  building them.
+eyebrow: A public interest initiative · IIT Delhi
+tagline: |
+  A place at the Frontier
+  for Indian Minds
+hero_lede: India doesn't lack talent. It lacks early bridges to the frontier. Let's
+  build them.
 contact_email: hello@example.org
 footer_left: Frontier · IIT Delhi · frontier tech
 noindex: true
