@@ -7,9 +7,10 @@
 <title>Frontier — draft</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
 <style>
-  :root{ --paper:#f7f4ee; --ink:#161412; --accent:#7c1d1d; --muted:#6f665c; --rule:#d8cfc0; }
+  :root{ --paper:#f7f4ee; --ink:#161412; --accent:#7c1d1d; --muted:#6f665c; --rule:#d8cfc0; --label:#8a8178; }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Libre Franklin",sans-serif;font-size:18px;line-height:1.6}
+  html{overflow-x:clip}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Libre Franklin",sans-serif;font-size:18px;line-height:1.6;overflow-x:clip}
   .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
   a{color:var(--accent)}
   .serif{font-family:"Source Serif 4",Georgia,serif}
@@ -22,83 +23,62 @@
   .navlinks a:hover{color:var(--accent)}
   header.hero{border-bottom:2px solid var(--ink);padding:76px 0 70px}
   header.hero .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
-  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:6px}
   h1{font-family:"Source Serif 4",serif;font-size:clamp(44px,5vw,64px);line-height:0.96;font-weight:500;letter-spacing:-.015em;margin:0;max-width:760px}
-  .lede{font-size:19px;color:#3a352f;border-left:0;padding-left:0;margin:0;max-width:760px;line-height:1.7}
+  .lede{font-size:19px;color:#3a352f;margin:0;max-width:680px;line-height:1.7}
+  /* PRIMITIVE · section + label */
   section{border-bottom:2px solid var(--ink);padding:56px 0;scroll-margin-top:66px}
-  .sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
-  .secno{font-family:"Source Serif 4",serif;font-size:15px;color:var(--accent);font-weight:500}
-  .sechead h2{font-size:13px;text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin:0}
-  .lead-serif{font-family:"Source Serif 4",serif;font-size:23px;line-height:1.4;max-width:780px;margin:0 0 22px}
-  .cols{column-count:2;column-gap:44px;max-width:940px}
-  .cols p{margin:0 0 1em;break-inside:avoid}
-  em{font-style:italic;color:var(--accent)}
-  .figure{display:flex;align-items:center;gap:26px;background:var(--ink);color:var(--paper);padding:28px 34px;margin:30px 0;flex-wrap:wrap}
-  .figure .big{font-family:"Source Serif 4",serif;font-size:30px;line-height:1.1}
-  .figure .big .a{color:#e0a0a0}
-  .figure .cap{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#b8ada0;border-left:1px solid #555;padding-left:20px}
-  .statement{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 0;margin:32px 0}
-  .statement .s{font-family:"Source Serif 4",serif;font-size:30px;line-height:1.18;letter-spacing:-.01em;max-width:820px}
-  .statement .s em{font-style:italic;color:var(--accent)}
-  .statement .t{font-size:15px;color:var(--muted);margin-top:14px;max-width:640px}
-  .ladder{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule);margin-top:10px}
-  .ladder div{padding:16px 12px;border-right:1px solid var(--rule)}
-  .ladder div:last-child{border-right:0}
-  .ladder .yr{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:6px}
-  .ladder .t{font-family:"Source Serif 4",serif;font-size:18px}
-  .tracks{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:920px;margin-top:14px}
-  .tracks .track{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:16px 18px}
-  .tracks .tname{font-family:"Source Serif 4",serif;font-size:17px;font-weight:600;color:var(--ink)}
-  .tracks .twho{font-size:13px;color:#4a443c;margin-top:5px;line-height:1.5}
-  .tracks .tcov{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.55}
-  .tracks .tcov b{display:block;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--accent);margin-bottom:2px}
-  /* speakers */
-  .speakers{border-top:1px solid var(--rule);margin-top:30px}
-  .sp{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start;padding:16px 0;border-bottom:1px solid var(--rule)}
-  .sp .date{font-family:"Source Serif 4",serif;font-size:14px;color:var(--muted);line-height:1.3;min-width:0}
-  .sp .date b{display:block;color:var(--accent);font-size:17px;font-weight:600}
-  .sp .who{min-width:0}
-  .sp .who b{font-size:18px;font-weight:600}
-  .sp .who div{font-size:14px;color:#4a443c;margin-top:2px}
-  .sp.tbd{opacity:.6}
-  .quote{font-family:"Source Serif 4",serif;font-size:27px;font-style:italic;line-height:1.4;max-width:840px;margin:34px 0 0}
-  .quote cite{display:block;font-family:"Libre Franklin";font-size:13px;font-style:normal;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:14px}
-  .projgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
-  .projgrid .p{background:var(--paper);padding:26px 22px}
-  .projgrid h3{font-size:20px;margin:6px 0 10px}
-  .projgrid p{font-size:15px;color:#4a443c;margin:0}
+  .label{font-size:12px;text-transform:uppercase;letter-spacing:.18em;font-weight:600;color:var(--label);margin-bottom:26px}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--label);font-weight:600;margin-bottom:6px}
+  /* PRIMITIVE · prose */
+  .lead-serif{font-family:"Source Serif 4",serif;font-size:23px;line-height:1.4;max-width:720px;margin:0 0 22px}
+  .prose{max-width:660px}
+  .prose p{margin:0 0 1.1em}
+  .prose.wide{max-width:760px}
+  em{font-style:italic;color:inherit}
+  .pull{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 0;margin:32px 0;max-width:820px}
+  .pull .s{font-family:"Source Serif 4",serif;font-size:28px;line-height:1.22;letter-spacing:-.01em;font-style:italic}
+  .pull .t{font-size:15px;color:var(--muted);margin-top:14px;font-style:normal}
+  /* PRIMITIVE · row (tracks + speakers) */
+  .rows{border-top:1px solid var(--rule);max-width:920px;margin-top:14px}
+  .row{display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule)}
+  .row .rname{font-family:"Source Serif 4",serif;font-size:20px;font-weight:500;line-height:1.2}
+  .row .rmeta{font-family:"Source Serif 4",serif;font-size:17px;font-weight:600;color:var(--ink);line-height:1.25}
+  .row .rmeta span{display:block;font-family:"Libre Franklin";font-size:13px;font-weight:400;color:var(--muted);margin-top:2px}
+  .row .rbody{font-size:15px;color:#4a443c;line-height:1.55}
+  .row .rbody b{display:block;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:2px}
+  .row.tbd{opacity:.5}
+  /* PRIMITIVE · card (projects) */
+  .cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:34px;margin-top:6px}
+  .cards .p{border-top:2px solid var(--ink);padding-top:16px}
+  .cards h3{font-family:"Source Serif 4",serif;font-weight:500;font-size:21px;margin:0 0 10px}
+  .cards p{font-size:15px;color:#4a443c;margin:0;line-height:1.55}
+  /* PRIMITIVE · chips (supporters) */
   .supporter-cloud{display:flex;flex-wrap:wrap;gap:12px 14px;max-width:980px}
   .supporter-chip{position:relative;padding:10px 14px;border:1px solid var(--rule);border-radius:999px;font-size:15px;line-height:1.2;color:var(--ink);background:var(--paper);cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
   .supporter-chip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .supporter-chip .tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(6px);padding:8px 10px;background:var(--ink);color:var(--paper);font-size:12px;line-height:1.3;white-space:nowrap;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:20}
   .supporter-chip:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(0)}
-  .supporters{margin-top:40px}
-  .supporters .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
-  .logos{display:flex;gap:16px;flex-wrap:wrap}
-  .logos .slot{width:130px;height:56px;border:1px dashed var(--rule);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
   footer{background:var(--ink);color:var(--paper);padding:40px 0}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
   footer a{color:#e0a0a0}
   /* value-capture figure (the ownership gap) */
   .capture{margin:8px 0 6px;max-width:860px}
-  .capture .eyebrow{margin-bottom:14px}
-  .capture .headline{font-family:"Source Serif 4",serif;font-weight:500;font-size:clamp(26px,3.4vw,36px);line-height:1.08;letter-spacing:-.012em;margin:0 0 24px;max-width:20ch}
-  .capture .big{font-family:"Source Serif 4",serif;font-weight:500;font-size:clamp(58px,8.5vw,88px);line-height:.86;color:var(--accent);letter-spacing:-.025em}
+  .capture .headline{font-family:"Source Serif 4",serif;font-weight:500;font-size:clamp(26px,3.4vw,36px);line-height:1.08;letter-spacing:-.012em;margin:14px 0 24px;max-width:20ch}
+  .capture .big{font-family:"Source Serif 4",serif;font-weight:500;font-size:clamp(58px,8.5vw,84px);line-height:.86;color:var(--accent);letter-spacing:-.025em}
   .capture .bigsub{font-size:15px;color:var(--muted);margin:12px 0 30px;max-width:52ch}
-  .capture .barlbl{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;margin-bottom:11px}
+  .capture .barlbl{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--label);font-weight:600;margin-bottom:11px}
   .split{display:flex;gap:2px;border-radius:5px;overflow:hidden}
   .split .seg{padding:15px 18px;min-width:0;display:flex;flex-direction:column;justify-content:center}
   .split .seg .v{font-family:"Source Serif 4",serif;font-size:21px;font-weight:600;line-height:1.05}
-  .split .seg .m{font-size:12.5px;margin-top:4px;line-height:1.3}
+  .split .seg .m{font-size:12px;margin-top:4px;line-height:1.3}
   .split .india{flex:0 0 20%;background:#e9e1d1;color:var(--ink)}
-  .split .india .v{color:var(--accent)}
-  .split .india .m{color:#6f665c}
+  .split .india .m{color:var(--muted)}
   .split .abroad{flex:1 1 80%;background:var(--ink);color:var(--paper)}
   .split .abroad .m{color:#b8ada0}
   .split-legend{display:none}
-  .capture .read{font-size:15.5px;color:#4a443c;margin:22px 0 0;max-width:660px;line-height:1.65}
+  .capture .read{font-size:15px;color:#4a443c;margin:20px 0 0;max-width:640px;line-height:1.6}
   .capture .read b{font-weight:600;color:var(--ink)}
-  .capture .src{font-size:12.5px;color:var(--muted);margin-top:22px;padding-top:16px;border-top:1px solid var(--rule);line-height:1.55;max-width:740px}
+  .capture .src{font-size:13px;color:var(--muted);margin-top:20px;line-height:1.5;max-width:720px}
   /* lifecycle timeline (project -> funded company) */
   .flow{margin:26px 0 2px;max-width:1000px}
   .flow .track{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
@@ -107,11 +87,19 @@
   .flow .node{position:relative;padding:34px 22px 0 0}
   .flow .node::before{content:"";position:absolute;top:6px;left:0;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink);z-index:1}
   .flow .node.dest::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px rgba(124,29,29,.14)}
-  .flow .yr{font-size:11px;text-transform:uppercase;letter-spacing:.11em;color:var(--accent);font-weight:600;margin-bottom:5px}
+  .flow .yr{font-size:11px;text-transform:uppercase;letter-spacing:.11em;color:var(--label);font-weight:600;margin-bottom:5px}
   .flow .t{font-family:"Source Serif 4",serif;font-size:20px;line-height:1.12;font-weight:500}
   .flow .d{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4;max-width:19ch}
   .flow .node.dest .t{color:var(--accent)}
-  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .supporter-cloud{gap:10px 12px} .tracks{grid-template-columns:1fr} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w}
+  @media(max-width:760px){
+    header.hero .wrap{gap:18px} h1{font-size:40px}
+    .prose,.prose.wide{max-width:none}
+    .supporter-cloud{gap:10px 12px}
+    .cards{grid-template-columns:1fr;gap:0}
+    .cards .p{border-top:1px solid var(--rule);padding:18px 0}
+    .cards .p:first-child{border-top:2px solid var(--ink)}
+    .row{grid-template-columns:1fr;gap:4px;padding:16px 0}
+    .row .rname,.row .rmeta{margin-bottom:2px}
     /* split bar -> proportional block + legend below */
     .split{border-radius:4px}
     .split .seg{padding:0;min-height:40px}
@@ -164,7 +152,7 @@
   });
 
   // Randomise project order on each load (Fisher-Yates).
-  var grid = document.querySelector('.projgrid');
+  var grid = document.querySelector('.cards');
   if(grid){
     var cards = Array.prototype.slice.call(grid.children);
     for(var i = cards.length - 1; i > 0; i--){
@@ -194,15 +182,15 @@
 
 <section id="manifesto"><div class="wrap">
   <p class="lead-serif">Every student has a kernel — a life force, a <em>vita activa</em> — that holds the potential for their life's best work. Most emerge from the assembly line of family, school, and college with their wings compressed. Some find they have wings and start to spread them, but this can take years. With the right person at the right moment, we can speed that up. And when you speed it up across enough people, something shifts — not just for them, but for the country.</p>
-  <div class="cols">
+  <div class="prose">
     <p>The great poet Mary Oliver asks: <em>"Tell me, what is it you plan to do with your one wild and precious life?"</em> The question lives with an equal sense of anxiety and possibility for every student — and perhaps with a tinge of regret and self-satisfaction for us alumni. We cannot decide for them what they will do with that life. But we know how much it matters to choose the right doors while they are still open.</p>
     <p>A nation that only imports the frontier cannot help steer it. A country that consumes technology built elsewhere is a client, not a partner. But nations don't build at the frontier — <em>people</em> do, and those people are sitting in lecture halls right now, wings folded, waiting for someone to show them the sky is real.</p>
   </div>
-  <div class="statement">
-    <div class="s" style="font-style:italic">"We are living through a transformative period in technology, and today's students have an extraordinary opportunity to shape what comes next."</div>
+  <div class="pull">
+    <div class="s">"We are living through a transformative period in technology, and today's students have an extraordinary opportunity to shape what comes next."</div>
     <div class="t">Soumyadeb Mitra · RudderStack</div>
   </div>
-  <div class="cols">
+  <div class="prose">
     <p>Our post-independence science model — the IITs, ISRO, TIFR, the atomic program — was noble and nation-building, but it optimised for broad public uplift and self-sufficiency. This effort is about something different: unlocking concentrated excellence, one student at a time, until a handful of them build enterprises of genuine global consequence.</p>
     <p>At critical moments, you can raise someone's aspirations simply by suggesting they do something more ambitious than they had in mind. It costs relatively little to do this, but the benefit to them — and to the world — can be enormous. Three things compound in ways most students never hear about early enough:</p>
     <p><em>Compounding is invisible and decisive.</em> Learning, capital, and power all compound. Most careers progress linearly; the ones that matter find a compounding curve early.</p>
@@ -224,82 +212,78 @@
       <div class="li"><span class="sw india"></span><span><b>~$120B</b> kept in India · 61 companies</span></div>
       <div class="li"><span class="sw abroad"></span><span><b>~$480B</b> built abroad · 156 companies, 142 in the US</span></div>
     </div>
-    <p class="read">India keeps about a quarter of the <b>companies</b> (61 of 217) but only about a fifth of the <b>value</b> — the largest are built abroad (Perplexity, Cursor). India's most valuable is Zerodha, at $9B.</p>
-    <div class="src">Hurun Global Unicorn Index 2026: 217 Indian-founded unicorns worth ~$599B; 156 abroad (142 in the US), 61 in India (Zerodha $9B, Zepto $7B, Razorpay $6B). India's ~$120B is our estimate from disclosed marks — Hurun does not publish the home/abroad value split.</div>
+    <p class="read">India keeps about a quarter of the <b>companies</b> (61 of 217) but only about a fifth of the <b>value</b> — the largest are built abroad. India's most valuable is worth about $9B.</p>
+    <div class="src">Hurun Global Unicorn Index 2026: 217 Indian-founded unicorns worth ~$599B; 156 abroad (142 in the US), 61 in India. India's ~$120B is our estimate from disclosed marks — Hurun does not publish the home/abroad value split.</div>
   </div>
 
-  <div class="cols">
+  <div class="prose">
     <p>In Joseph Campbell's monomyth, the hero departs the ordinary world when he receives a call to adventure — Frodo in the Shire, Harry Potter at Privet Drive, Luke Skywalker on Tatooine. With the help of a mentor — Gandalf, Hagrid, Obi-Wan — the hero crosses a guarded threshold into a world of wonder. There, assisted by allies, the hero faces an ordeal and rises to it.</p>
     <p>We are the mentors and the allies. We are Gandalf, Hagrid. Self-reliance — <em>atmanirbharta</em> — was the first step. But for self-reliance to mature into contribution, India must be a <em>maker</em> at the frontier, not merely a market for it. That does not happen in policy documents. It happens when one student meets one person a few steps ahead, early enough, and gets permission to take a risk worth taking.</p>
   </div>
 </div></section>
 
 <section id="series"><div class="wrap">
-  <div class="sechead"><h2>Talks</h2></div>
+  <div class="label">Talks</div>
   <p class="lead-serif">On campus, weekly, through the Monsoon semester ('26). Alumni ten to twenty years ahead return to tell the truth about the decisions they made.</p>
-  <p style="max-width:780px">Not placement talks: first-person reflection — what they got right, what they got wrong, what they wish they had known. Convened at IIT Delhi's Department of Computer Science with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.</p>
-  <div class="tracks">    <div class="track">
-      <div class="tname">Academia &amp; Research Labs</div>
-      <div class="twho">Professors, lab directors, corporate research scientists.</div>
-      <div class="tcov"><b>Covers</b> the PhD decision, building a lab, publishing vs. impact, academic life in India vs. abroad, academia vs. industry.</div>
+  <p class="prose wide">Not placement talks: first-person reflection — what they got right, what they got wrong, what they wish they had known. Convened at IIT Delhi's Department of Computer Science with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.</p>
+  <div class="rows">
+    <div class="row">
+      <div class="rname">Academia &amp; Research Labs</div>
+      <div class="rbody">Professors, lab directors, and research scientists — on the PhD decision, building a lab, publishing vs. impact, and academia vs. industry.</div>
     </div>
-    <div class="track">
-      <div class="tname">Research → Venture</div>
-      <div class="twho">Scientists who translated research into deep-tech companies.</div>
-      <div class="tcov"><b>Covers</b> when to leave the lab, co-founder dynamics, IP and licensing, fundraising as a technical founder.</div>
+    <div class="row">
+      <div class="rname">Research → Venture</div>
+      <div class="rbody">Scientists who turned research into deep-tech companies — when to leave the lab, co-founder dynamics, IP, and fundraising as a technical founder.</div>
     </div>
-    <div class="track">
-      <div class="tname">Industry &amp; Product</div>
-      <div class="twho">Engineers, tech leads, and product leaders at big tech and growth-stage companies, with or without postgraduate study.</div>
-      <div class="tcov"><b>Covers</b> research teams vs. product teams, career growth, compensation vs. learning tradeoffs, India vs. abroad.</div>
+    <div class="row">
+      <div class="rname">Industry &amp; Product</div>
+      <div class="rbody">Engineers and product leaders at big tech and growth-stage companies — research vs. product, career growth, and the learning-vs-compensation tradeoff.</div>
     </div>
-    <div class="track">
-      <div class="tname">Capital &amp; Investing</div>
-      <div class="twho">VCs, angels, and operators-turned-investors.</div>
-      <div class="tcov"><b>Covers</b> how venture capital works, evaluating deep-tech deals, the operator-to-investor transition, what founders get wrong.</div>
+    <div class="row">
+      <div class="rname">Capital &amp; Investing</div>
+      <div class="rbody">VCs, angels, and operators-turned-investors — how venture capital works, evaluating deep-tech deals, and what founders get wrong.</div>
     </div>
-    <div class="track">
-      <div class="tname">Public Service &amp; Impact</div>
-      <div class="twho">Government tech (Aadhaar-scale), NGOs, policy, societal applications of CS.</div>
-      <div class="tcov"><b>Covers</b> why this path, working within institutions, impact measurement, career sustainability.</div>
+    <div class="row">
+      <div class="rname">Public Service &amp; Impact</div>
+      <div class="rbody">Government tech at Aadhaar scale, NGOs, and policy — why this path, working within institutions, and career sustainability.</div>
     </div>
-    <div class="track">
-      <div class="tname">Research &amp; Venture</div>
-      <div class="twho">Builders of alternative institutions (neo-incubators, independent labs), open-source leaders, unconventional research-to-market models.</div>
-      <div class="tcov"><b>Covers</b> why existing institutions fail, designing new ones, what's next.</div>
-    </div></div>
+    <div class="row">
+      <div class="rname">Alternative Paths</div>
+      <div class="rbody">Builders of new institutions — neo-incubators, independent labs, open-source leaders — on why existing institutions fail and how to design better ones.</div>
+    </div>
+  </div>
 
-  <div class="speakers">
-    <div class="sp">
-      <div class="date"><b>19 Aug</b>Wed</div>
-      <div class="who"><b>Ashish Kapoor</b><div>IIT Delhi · Microsoft Research · General Robotics</div></div>
+  <div class="rows">
+    <div class="row">
+      <div class="rmeta">19 Aug<span>Wed</span></div>
+      <div class="rbody"><b>Ashish Kapoor</b>IIT Delhi · Microsoft Research · General Robotics</div>
     </div>
-    <div class="sp">
-      <div class="date"><b>26 Aug</b>Wed</div>
-      <div class="who"><b>Soumyadeb Mitra</b><div>IIT Delhi · RudderStack</div></div>
+    <div class="row">
+      <div class="rmeta">26 Aug<span>Wed</span></div>
+      <div class="rbody"><b>Soumyadeb Mitra</b>IIT Delhi · RudderStack</div>
     </div>
-    <div class="sp">
-      <div class="date"><b>Sep</b></div>
-      <div class="who"><b>Otkrist Gupta</b><div>IIT Delhi · MIT · Lendbuzz</div></div>
+    <div class="row">
+      <div class="rmeta">Sep</div>
+      <div class="rbody"><b>Otkrist Gupta</b>IIT Delhi · MIT · Lendbuzz</div>
     </div>
-    <div class="sp">
-      <div class="date"><b>21 Sep</b>Mon</div>
-      <div class="who"><b>Rajul Garg</b><div>IIT Delhi · GlobalLogic · Pine Labs · Leo Capital</div></div>
+    <div class="row">
+      <div class="rmeta">21 Sep<span>Mon</span></div>
+      <div class="rbody"><b>Rajul Garg</b>IIT Delhi · GlobalLogic · Pine Labs · Leo Capital</div>
     </div>
-    <div class="sp">
-      <div class="date"><b>19 Oct</b>Mon</div>
-      <div class="who"><b>Raghu Mahajan</b><div>Stanford · IAS Princeton · ICTS-TIFR</div></div>
+    <div class="row">
+      <div class="rmeta">19 Oct<span>Mon</span></div>
+      <div class="rbody"><b>Raghu Mahajan</b>Stanford · IAS Princeton · ICTS-TIFR</div>
     </div>
-    <div class="sp tbd">
-      <div class="date"><b>28 Oct</b></div>
-      <div class="who"><b>To be announced</b><div>Further speakers confirmed through November</div></div>
+    <div class="row tbd">
+      <div class="rmeta">28 Oct</div>
+      <div class="rbody"><b>To be announced</b>Further speakers confirmed through November</div>
     </div>
   </div>
 </div></section>
 
 <section id="projects"><div class="wrap">
-  <div class="sechead"><h2>Projects</h2></div>
-  <div class="projgrid">
+  <div class="label">Projects</div>
+  <div class="cards">
     <div class="p"><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers.</p></div>
     <div class="p"><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
     <div class="p"><h3>Multi-Node Compute</h3><p>Closing the infrastructure gap — from single shared GPUs to multi-node training clusters that can actually hold a frontier run — with alumni at NVIDIA and Meta.</p></div>
@@ -338,7 +322,7 @@
 </div></section>
 
 <section id="people"><div class="wrap">
-  <div class="sechead"><h2>Supporters</h2></div>
+  <div class="label">Supporters</div>
   <div class="supporter-cloud">
     <a class="supporter-chip" href="https://www.linkedin.com/in/drvdhruv" target="_blank" rel="noopener">Dhruv Malrana<span class="tooltip">IIT Delhi · DeepMind · Deep Cogito</span></a>
     <a class="supporter-chip" href="https://ankushgupta.org/" target="_blank" rel="noopener">Ankush Gupta<span class="tooltip">Berkeley · Oxford · DeepMind</span></a>
@@ -370,7 +354,7 @@
       }
       items.forEach(function(item){ container.appendChild(item); });
     }
-    shuffle(document.querySelector('#projects .projgrid'));
+    shuffle(document.querySelector('#projects .cards'));
     shuffle(document.querySelector('#people .supporter-cloud'));
   })();
 </script>
