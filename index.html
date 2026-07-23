@@ -25,7 +25,7 @@
   .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:6px}
   h1{font-family:"Source Serif 4",serif;font-size:clamp(44px,5vw,64px);line-height:0.96;font-weight:500;letter-spacing:-.015em;margin:0;max-width:760px}
   .lede{font-size:19px;color:#3a352f;border-left:0;padding-left:0;margin:0;max-width:760px;line-height:1.7}
-  section{border-bottom:1px solid var(--rule);padding:56px 0}
+  section{border-bottom:2px solid var(--ink);padding:56px 0;scroll-margin-top:66px}
   .sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
   .secno{font-family:"Source Serif 4",serif;font-size:15px;color:var(--accent);font-weight:500}
   .sechead h2{font-size:13px;text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin:0}
@@ -37,11 +37,11 @@
   .figure .big{font-family:"Source Serif 4",serif;font-size:30px;line-height:1.1}
   .figure .big .a{color:#e0a0a0}
   .figure .cap{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#b8ada0;border-left:1px solid #555;padding-left:20px}
-  .statement{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0;margin:32px 0}
+  .statement{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 0;margin:32px 0}
   .statement .s{font-family:"Source Serif 4",serif;font-size:30px;line-height:1.18;letter-spacing:-.01em;max-width:820px}
   .statement .s em{font-style:italic;color:var(--accent)}
   .statement .t{font-size:15px;color:var(--muted);margin-top:14px;max-width:640px}
-  .ladder{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-top:10px}
+  .ladder{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule);margin-top:10px}
   .ladder div{padding:16px 12px;border-right:1px solid var(--rule)}
   .ladder div:last-child{border-right:0}
   .ladder .yr{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:6px}
@@ -53,7 +53,7 @@
   .tracks .tcov{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.55}
   .tracks .tcov b{display:block;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--accent);margin-bottom:2px}
   /* speakers */
-  .speakers{border-top:2px solid var(--ink);margin-top:30px}
+  .speakers{border-top:1px solid var(--rule);margin-top:30px}
   .sp{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start;padding:16px 0;border-bottom:1px solid var(--rule)}
   .sp .date{font-family:"Source Serif 4",serif;font-size:14px;color:var(--muted);line-height:1.3;min-width:0}
   .sp .date b{display:block;color:var(--accent);font-size:17px;font-weight:600}
@@ -68,7 +68,7 @@
   .projgrid h3{font-size:20px;margin:6px 0 10px}
   .projgrid p{font-size:15px;color:#4a443c;margin:0}
   .supporter-cloud{display:flex;flex-wrap:wrap;gap:12px 14px;max-width:980px}
-  .supporter-chip{position:relative;padding:10px 14px;border:1px solid var(--rule);border-radius:999px;font-size:15px;line-height:1.2;color:var(--ink);background:var(--paper);cursor:help;transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .supporter-chip{position:relative;padding:10px 14px;border:1px solid var(--rule);border-radius:999px;font-size:15px;line-height:1.2;color:var(--ink);background:var(--paper);cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
   .supporter-chip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .supporter-chip .tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(6px);padding:8px 10px;background:var(--ink);color:var(--paper);font-size:12px;line-height:1.3;white-space:nowrap;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:20}
   .supporter-chip:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -193,8 +193,8 @@
       <div class="tcov"><b>Covers</b> why this path, working within institutions, impact measurement, career sustainability.</div>
     </div>
     <div class="track">
-      <div class="tname">Alternative Paths</div>
-      <div class="twho">Builders of alternative institutions (SPC, Entrepreneur First, independent labs), open-source leaders, unconventional research-to-market models.</div>
+      <div class="tname">Research &amp; Venture</div>
+      <div class="twho">Builders of alternative institutions (neo-incubators, independent labs), open-source leaders, unconventional research-to-market models.</div>
       <div class="tcov"><b>Covers</b> why existing institutions fail, designing new ones, what's next.</div>
     </div></div>
 
@@ -213,7 +213,7 @@
     </div>
     <div class="sp">
       <div class="date"><b>21 Sep</b>Mon</div>
-      <div class="who"><b>Rajul Garg</b><div>IIT Delhi · GlobalLogic · Leo Capital</div></div>
+      <div class="who"><b>Rajul Garg</b><div>IIT Delhi · GlobalLogic · Pine Labs · Leo Capital</div></div>
     </div>
     <div class="sp">
       <div class="date"><b>19 Oct</b>Mon</div>
@@ -229,7 +229,7 @@
 <section id="projects"><div class="wrap">
   <div class="sechead"><span class="secno">03</span><h2>Projects</h2></div>
   <div class="projgrid">
-    <div class="p"><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers. Toward a first-author NeurIPS paper from the department.</p></div>
+    <div class="p"><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers.</p></div>
     <div class="p"><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
     <div class="p"><h3>Compute at IIT</h3><p>Closing the infrastructure gap — from shared GPUs to real training clusters — with alumni at NVIDIA and Meta.</p></div>
   </div>
@@ -247,15 +247,17 @@
 <section id="people"><div class="wrap">
   <div class="sechead"><span class="secno">04</span><h2>Supporters</h2></div>
   <div class="supporter-cloud">
-    <span class="supporter-chip">Dhruv Malrana<span class="tooltip">IIT Delhi · DeepMind · Deep Cogito</span></span>
-    <span class="supporter-chip">Ankush Gupta<span class="tooltip">Berkeley · Oxford · DeepMind</span></span>
-    <span class="supporter-chip">Shreya Sharma<span class="tooltip">IIT Delhi · World Labs</span></span>
-    <span class="supporter-chip">Piyush Ahuja<span class="tooltip">IIT Delhi · Oxford · Cambridge</span></span>
-    <span class="supporter-chip">Prof. Chetan Arora<span class="tooltip">CSE, IIT Delhi · Computer Vision</span></span>
-    <span class="supporter-chip">Prof. Naveen Garg<span class="tooltip">Head, CSE, IIT Delhi · Bhatnagar laureate</span></span>
-    <span class="supporter-chip">Ankit Tomar<span class="tooltip">IIT Delhi · Bizongo</span></span>
-    <span class="supporter-chip">Savin Goyal<span class="tooltip">IIT Delhi · Netflix · Outerbounds</span></span>
-    <span class="supporter-chip">Ananye Agarwal<span class="tooltip">IIT Delhi · CMU · Skild AI</span></span>
+    <a class="supporter-chip" href="https://www.linkedin.com/in/drvdhruv" target="_blank" rel="noopener">Dhruv Malrana<span class="tooltip">IIT Delhi · DeepMind · Deep Cogito</span></a>
+    <a class="supporter-chip" href="https://ankushgupta.org/" target="_blank" rel="noopener">Ankush Gupta<span class="tooltip">Berkeley · Oxford · DeepMind</span></a>
+    <a class="supporter-chip" href="https://github.com/ShreyaSharma99" target="_blank" rel="noopener">Shreya Sharma<span class="tooltip">IIT Delhi · World Labs</span></a>
+    <a class="supporter-chip" href="http://piyushahuja.com" target="_blank" rel="noopener">Piyush Ahuja<span class="tooltip">IIT Delhi · Oxford · Cambridge</span></a>
+    <a class="supporter-chip" href="https://www.cse.iitd.ac.in/~chetan/" target="_blank" rel="noopener">Chetan Arora<span class="tooltip">CSE, IIT Delhi · Computer Vision</span></a>
+    <a class="supporter-chip" href="https://www.cse.iitd.ac.in/~naveen/" target="_blank" rel="noopener">Naveen Garg<span class="tooltip">Head, CSE, IIT Delhi · Bhatnagar laureate</span></a>
+    <a class="supporter-chip" href="https://www.artworkflowhq.com/about-us" target="_blank" rel="noopener">Ankit Tomar<span class="tooltip">IIT Delhi · Bizongo</span></a>
+    <a class="supporter-chip" href="https://www.linkedin.com/in/savingoyal/" target="_blank" rel="noopener">Savin Goyal<span class="tooltip">IIT Delhi · Netflix · Outerbounds</span></a>
+    <a class="supporter-chip" href="https://anag.me/" target="_blank" rel="noopener">Ananye Agarwal<span class="tooltip">IIT Delhi · CMU · Skild AI</span></a>
+    <a class="supporter-chip" href="https://scholar.google.com/citations?user=zc6Iy0IAAAAJ" target="_blank" rel="noopener">Avneesh Sud<span class="tooltip">IIT Delhi · DeepMind</span></a>
+    <a class="supporter-chip" href="https://www.linkedin.com/in/dipinder/" target="_blank" rel="noopener">Dipinder Sekhon<span class="tooltip">IIT Delhi · iKites.AI</span></a>
   </div>
 </div></section>
 
@@ -263,5 +265,21 @@
   <span>Frontier · IIT Delhi · frontier tech</span>
   <span>Write to us — <a href="mailto:hello@example.org">hello@example.org</a></span>
 </div></footer>
+<script>
+  // Randomize order of children on each load
+  (function(){
+    function shuffle(container){
+      if(!container) return;
+      var items = Array.prototype.slice.call(container.children);
+      for(var i = items.length - 1; i > 0; i--){
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+      }
+      items.forEach(function(item){ container.appendChild(item); });
+    }
+    shuffle(document.querySelector('#projects .projgrid'));
+    shuffle(document.querySelector('#people .supporter-cloud'));
+  })();
+</script>
 </body>
 </html>
