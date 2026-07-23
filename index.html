@@ -79,7 +79,57 @@
   footer{background:var(--ink);color:var(--paper);padding:40px 0}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
   footer a{color:#e0a0a0}
-  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .supporter-cloud{gap:10px 12px} .tracks{grid-template-columns:1fr} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
+  /* value-capture figure (the ownership gap) */
+  .capture{margin:8px 0 6px;max-width:860px}
+  .capture .eyebrow{margin-bottom:14px}
+  .capture .headline{font-family:"Source Serif 4",serif;font-weight:500;font-size:clamp(26px,3.4vw,36px);line-height:1.08;letter-spacing:-.012em;margin:0 0 24px;max-width:20ch}
+  .capture .big{font-family:"Source Serif 4",serif;font-weight:500;font-size:clamp(58px,8.5vw,88px);line-height:.86;color:var(--accent);letter-spacing:-.025em}
+  .capture .bigsub{font-size:15px;color:var(--muted);margin:12px 0 30px;max-width:52ch}
+  .capture .barlbl{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600;margin-bottom:11px}
+  .split{display:flex;gap:2px;border-radius:5px;overflow:hidden}
+  .split .seg{padding:15px 18px;min-width:0;display:flex;flex-direction:column;justify-content:center}
+  .split .seg .v{font-family:"Source Serif 4",serif;font-size:21px;font-weight:600;line-height:1.05}
+  .split .seg .m{font-size:12.5px;margin-top:4px;line-height:1.3}
+  .split .india{flex:0 0 20%;background:#e9e1d1;color:var(--ink)}
+  .split .india .v{color:var(--accent)}
+  .split .india .m{color:#6f665c}
+  .split .abroad{flex:1 1 80%;background:var(--ink);color:var(--paper)}
+  .split .abroad .m{color:#b8ada0}
+  .split-legend{display:none}
+  .capture .read{font-size:15.5px;color:#4a443c;margin:22px 0 0;max-width:660px;line-height:1.65}
+  .capture .read b{font-weight:600;color:var(--ink)}
+  .capture .src{font-size:12.5px;color:var(--muted);margin-top:22px;padding-top:16px;border-top:1px solid var(--rule);line-height:1.55;max-width:740px}
+  /* lifecycle timeline (project -> funded company) */
+  .flow{margin:26px 0 2px;max-width:1000px}
+  .flow .track{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+  .flow .track::before{content:"";position:absolute;left:7px;right:34px;top:13px;height:2px;background:var(--ink)}
+  .flow .track::after{content:"";position:absolute;right:22px;top:7px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--ink)}
+  .flow .node{position:relative;padding:34px 22px 0 0}
+  .flow .node::before{content:"";position:absolute;top:6px;left:0;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink);z-index:1}
+  .flow .node.dest::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px rgba(124,29,29,.14)}
+  .flow .yr{font-size:11px;text-transform:uppercase;letter-spacing:.11em;color:var(--accent);font-weight:600;margin-bottom:5px}
+  .flow .t{font-family:"Source Serif 4",serif;font-size:20px;line-height:1.12;font-weight:500}
+  .flow .d{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4;max-width:19ch}
+  .flow .node.dest .t{color:var(--accent)}
+  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .supporter-cloud{gap:10px 12px} .tracks{grid-template-columns:1fr} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w}
+    /* split bar -> proportional block + legend below */
+    .split{border-radius:4px}
+    .split .seg{padding:0;min-height:40px}
+    .split .seg .v,.split .seg .m{display:none}
+    .split-legend{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+    .split-legend .li{display:flex;gap:10px;font-size:14px;line-height:1.35;align-items:flex-start}
+    .split-legend .sw{flex:0 0 auto;width:14px;height:14px;border-radius:3px;margin-top:3px}
+    .split-legend .sw.india{background:#e9e1d1;border:1px solid var(--rule)}
+    .split-legend .sw.abroad{background:var(--ink)}
+    .split-legend .li b{font-weight:600}
+    /* timeline -> vertical line */
+    .flow .track{grid-template-columns:1fr;row-gap:0}
+    .flow .track::before{left:13px;right:auto;top:6px;bottom:24px;height:auto;width:2px}
+    .flow .track::after{display:none}
+    .flow .node{padding:2px 0 22px 40px}
+    .flow .node::before{top:2px}
+    .flow .d{max-width:none}
+  }
 </style>
 </head>
 <body>
@@ -158,13 +208,34 @@
     <p><em>Compounding is invisible and decisive.</em> Learning, capital, and power all compound. Most careers progress linearly; the ones that matter find a compounding curve early.</p>
     <p><em>Risk is cheaper than you think.</em> People overestimate risk and underestimate reward. Early in a career there is little to lose and everything to gain. Be willing to let small opportunities go for potential step changes — small bets where you lose 1x if wrong but make 100x if right.</p>
     <p><em>Own, don't rent.</em> Most wealth comes not from high salaries but from owning things that increase rapidly in value. Selling your time scales linearly. Owning a venture that grows compounds. Over the past decade, long-term ownership capital came through India's border, then plateaued — and barely any of it reached frontier tech. It came, increasingly, to <em>rent</em> Indian talent, not to <em>own</em> what that talent creates.</p>
+  </div>
+
+  <div class="capture">
+    <div class="eyebrow">The ownership gap</div>
+    <div class="headline">Indians founded ~$600B of unicorns. India kept about a fifth.</div>
+    <div class="big">~$600B</div>
+    <div class="bigsub">217 unicorns co-founded by people of Indian origin, worldwide (Hurun 2026).</div>
+    <div class="barlbl">How much of that value India actually captured</div>
+    <div class="split" role="img" aria-label="Of ~$600B, India kept about $120B across 61 companies; ~$480B was built abroad across 156 companies, 142 of them in the US.">
+      <div class="seg india"><span class="v">~$120B</span><span class="m">in India · 61 cos</span></div>
+      <div class="seg abroad"><span class="v">~$480B abroad</span><span class="m">156 cos · 142 in the US</span></div>
+    </div>
+    <div class="split-legend">
+      <div class="li"><span class="sw india"></span><span><b>~$120B</b> kept in India · 61 companies</span></div>
+      <div class="li"><span class="sw abroad"></span><span><b>~$480B</b> built abroad · 156 companies, 142 in the US</span></div>
+    </div>
+    <p class="read">India keeps about a quarter of the <b>companies</b> (61 of 217) but only about a fifth of the <b>value</b> — the largest are built abroad (Perplexity, Cursor). India's most valuable is Zerodha, at $9B.</p>
+    <div class="src">Hurun Global Unicorn Index 2026: 217 Indian-founded unicorns worth ~$599B; 156 abroad (142 in the US), 61 in India (Zerodha $9B, Zepto $7B, Razorpay $6B). India's ~$120B is our estimate from disclosed marks — Hurun does not publish the home/abroad value split.</div>
+  </div>
+
+  <div class="cols">
     <p>In Joseph Campbell's monomyth, the hero departs the ordinary world when he receives a call to adventure — Frodo in the Shire, Harry Potter at Privet Drive, Luke Skywalker on Tatooine. With the help of a mentor — Gandalf, Hagrid, Obi-Wan — the hero crosses a guarded threshold into a world of wonder. There, assisted by allies, the hero faces an ordeal and rises to it.</p>
     <p>We are the mentors and the allies. We are Gandalf, Hagrid. Self-reliance — <em>atmanirbharta</em> — was the first step. But for self-reliance to mature into contribution, India must be a <em>maker</em> at the frontier, not merely a market for it. That does not happen in policy documents. It happens when one student meets one person a few steps ahead, early enough, and gets permission to take a risk worth taking.</p>
   </div>
 </div></section>
 
 <section id="series"><div class="wrap">
-  <div class="sechead"><span class="secno">02</span><h2>Talks</h2></div>
+  <div class="sechead"><h2>Talks</h2></div>
   <p class="lead-serif">On campus, weekly, through the Monsoon semester ('26). Alumni ten to twenty years ahead return to tell the truth about the decisions they made.</p>
   <p style="max-width:780px">Not placement talks: first-person reflection — what they got right, what they got wrong, what they wish they had known. Convened at IIT Delhi's Department of Computer Science with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.</p>
   <div class="tracks">    <div class="track">
@@ -227,25 +298,47 @@
 </div></section>
 
 <section id="projects"><div class="wrap">
-  <div class="sechead"><span class="secno">03</span><h2>Projects</h2></div>
+  <div class="sechead"><h2>Projects</h2></div>
   <div class="projgrid">
     <div class="p"><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers.</p></div>
     <div class="p"><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
-    <div class="p"><h3>Compute at IIT</h3><p>Closing the infrastructure gap — from shared GPUs to real training clusters — with alumni at NVIDIA and Meta.</p></div>
+    <div class="p"><h3>Multi-Node Compute</h3><p>Closing the infrastructure gap — from single shared GPUs to multi-node training clusters that can actually hold a frontier run — with alumni at NVIDIA and Meta.</p></div>
   </div>
-  <h3 style="font-family:'Source Serif 4',serif;font-weight:500;font-size:22px;margin:44px 0 0">Timeline — a six-year ladder</h3>
-  <p style="max-width:780px;margin:8px 0 0;color:#4a443c">From lecture hall to frontier lab: exposure in year two, real research by year three, published work at the frontier by year four, companies within a year or two of graduating — and, in time, one of genuine global consequence.</p>
-  <div class="ladder">
-    <div><div class="yr">Year 2</div><div class="t">Exposure</div></div>
-    <div><div class="yr">Year 3</div><div class="t">Projects</div></div>
-    <div><div class="yr">Year 4</div><div class="t">Publish</div></div>
-    <div><div class="yr">+1–2 yrs</div><div class="t">Found</div></div>
-    <div><div class="yr">Then</div><div class="t">Frontier</div></div>
+  <h3 style="font-family:'Source Serif 4',serif;font-weight:500;font-size:22px;margin:44px 0 0">Timeline — from project to funded company</h3>
+  <p style="max-width:780px;margin:8px 0 0;color:#4a443c">One straight line, six years long: from the first contact with real research to a company of genuine global consequence.</p>
+  <div class="flow">
+    <div class="track">
+      <div class="node">
+        <div class="yr">Year 2</div>
+        <div class="t">Exposure</div>
+        <div class="d">First contact with real research and people a few steps ahead.</div>
+      </div>
+      <div class="node">
+        <div class="yr">Year 3</div>
+        <div class="t">Projects</div>
+        <div class="d">Real work — beat a published benchmark, join a live problem.</div>
+      </div>
+      <div class="node">
+        <div class="yr">Year 4</div>
+        <div class="t">Publish</div>
+        <div class="d">Work that stands at the frontier, in the open.</div>
+      </div>
+      <div class="node">
+        <div class="yr">+1–2 yrs</div>
+        <div class="t">Found</div>
+        <div class="d">A company within a year or two of graduating, with backing.</div>
+      </div>
+      <div class="node dest">
+        <div class="yr">Then</div>
+        <div class="t">Frontier</div>
+        <div class="d">In time, one of genuine global consequence.</div>
+      </div>
+    </div>
   </div>
 </div></section>
 
 <section id="people"><div class="wrap">
-  <div class="sechead"><span class="secno">04</span><h2>Supporters</h2></div>
+  <div class="sechead"><h2>Supporters</h2></div>
   <div class="supporter-cloud">
     <a class="supporter-chip" href="https://www.linkedin.com/in/drvdhruv" target="_blank" rel="noopener">Dhruv Malrana<span class="tooltip">IIT Delhi · DeepMind · Deep Cogito</span></a>
     <a class="supporter-chip" href="https://ankushgupta.org/" target="_blank" rel="noopener">Ankush Gupta<span class="tooltip">Berkeley · Oxford · DeepMind</span></a>
