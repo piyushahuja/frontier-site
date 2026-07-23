@@ -46,30 +46,32 @@
   .ladder div:last-child{border-right:0}
   .ladder .yr{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:6px}
   .ladder .t{font-family:"Source Serif 4",serif;font-size:18px}
-  .tracks{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:780px;margin-top:14px}
-  .tracks span{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 16px;font-size:14px;width:33.33%}
+  .tracks{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:920px;margin-top:14px}
+  .tracks .track{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:16px 18px}
+  .tracks .tname{font-family:"Source Serif 4",serif;font-size:17px;font-weight:600;color:var(--ink)}
+  .tracks .twho{font-size:13px;color:#4a443c;margin-top:5px;line-height:1.5}
+  .tracks .tcov{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.55}
+  .tracks .tcov b{display:block;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--accent);margin-bottom:2px}
   /* speakers */
   .speakers{border-top:2px solid var(--ink);margin-top:30px}
-  .sp{display:grid;grid-template-columns:88px 54px 1fr;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule)}
-  .sp .date{font-family:"Source Serif 4",serif;font-size:14px;color:var(--muted);line-height:1.3}
+  .sp{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start;padding:16px 0;border-bottom:1px solid var(--rule)}
+  .sp .date{font-family:"Source Serif 4",serif;font-size:14px;color:var(--muted);line-height:1.3;min-width:0}
   .sp .date b{display:block;color:var(--accent);font-size:17px;font-weight:600}
-  .avatar{position:relative;width:54px;height:54px;border-radius:2px;overflow:hidden;background:var(--paper);border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:"Source Serif 4",serif;font-size:18px;color:var(--ink)}
-  .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .sp .who{min-width:0}
   .sp .who b{font-size:18px;font-weight:600}
   .sp .who div{font-size:14px;color:#4a443c;margin-top:2px}
   .sp.tbd{opacity:.6}
-  .sp.tbd .avatar{border-style:dashed}
   .quote{font-family:"Source Serif 4",serif;font-size:27px;font-style:italic;line-height:1.4;max-width:840px;margin:34px 0 0}
   .quote cite{display:block;font-family:"Libre Franklin";font-size:13px;font-style:normal;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:14px}
   .projgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
   .projgrid .p{background:var(--paper);padding:26px 22px}
-  .projgrid .pn{font-family:"Source Serif 4",serif;font-size:12px;color:var(--accent)}
   .projgrid h3{font-size:20px;margin:6px 0 10px}
   .projgrid p{font-size:15px;color:#4a443c;margin:0}
-  .peoplegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:980px}
-  .person-card{padding:18px 0;border-top:1px solid var(--rule)}
-  .person-name{font-size:18px;font-weight:600;line-height:1.35}
-  .peoplegrid .sub{color:var(--muted);font-size:14px;margin-top:4px;line-height:1.55}
+  .supporter-cloud{display:flex;flex-wrap:wrap;gap:12px 14px;max-width:980px}
+  .supporter-chip{position:relative;padding:10px 14px;border:1px solid var(--rule);border-radius:999px;font-size:15px;line-height:1.2;color:var(--ink);background:var(--paper);cursor:help;transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .supporter-chip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .supporter-chip .tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(6px);padding:8px 10px;background:var(--ink);color:var(--paper);font-size:12px;line-height:1.3;white-space:nowrap;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:20}
+  .supporter-chip:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(0)}
   .supporters{margin-top:40px}
   .supporters .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
   .logos{display:flex;gap:16px;flex-wrap:wrap}
@@ -77,7 +79,7 @@
   footer{background:var(--ink);color:var(--paper);padding:40px 0}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
   footer a{color:#e0a0a0}
-  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .peoplegrid{grid-template-columns:1fr} .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
+  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .supporter-cloud{gap:10px 12px} .tracks{grid-template-columns:1fr} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
 </style>
 </head>
 <body>
@@ -110,6 +112,17 @@
       document.getElementById('pw-input').value='';
     }
   });
+
+  // Randomise project order on each load (Fisher-Yates).
+  var grid = document.querySelector('.projgrid');
+  if(grid){
+    var cards = Array.prototype.slice.call(grid.children);
+    for(var i = cards.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = cards[i]; cards[i] = cards[j]; cards[j] = tmp;
+    }
+    cards.forEach(function(c){ grid.appendChild(c); });
+  }
 })();
 </script>
 
@@ -152,39 +165,62 @@
 
 <section id="series"><div class="wrap">
   <div class="sechead"><span class="secno">02</span><h2>Talks</h2></div>
-  <p class="lead-serif">On campus, weekly, through the Monsoon semester. Alumni ten to twenty years ahead return to tell the truth about the decisions they made.</p>
+  <p class="lead-serif">On campus, weekly, through the Monsoon semester ('26). Alumni ten to twenty years ahead return to tell the truth about the decisions they made.</p>
   <p style="max-width:780px">Not placement talks: first-person reflection — what they got right, what they got wrong, what they wish they had known. Convened at IIT Delhi's Department of Computer Science with Prof. Naveen Garg, Head of Department and Shanti Swarup Bhatnagar laureate.</p>
-  <div class="tracks"><span>Academia &amp; Research</span><span>Research → Venture</span><span>Industry &amp; Product</span><span>Capital &amp; Investing</span><span>Public Service</span><span>Alternative Paths</span></div>
+  <div class="tracks">    <div class="track">
+      <div class="tname">Academia &amp; Research Labs</div>
+      <div class="twho">Professors, lab directors, corporate research scientists.</div>
+      <div class="tcov"><b>Covers</b> the PhD decision, building a lab, publishing vs. impact, academic life in India vs. abroad, academia vs. industry.</div>
+    </div>
+    <div class="track">
+      <div class="tname">Research → Venture</div>
+      <div class="twho">Scientists who translated research into deep-tech companies.</div>
+      <div class="tcov"><b>Covers</b> when to leave the lab, co-founder dynamics, IP and licensing, fundraising as a technical founder.</div>
+    </div>
+    <div class="track">
+      <div class="tname">Industry &amp; Product</div>
+      <div class="twho">Engineers, tech leads, and product leaders at big tech and growth-stage companies, with or without postgraduate study.</div>
+      <div class="tcov"><b>Covers</b> research teams vs. product teams, career growth, compensation vs. learning tradeoffs, India vs. abroad.</div>
+    </div>
+    <div class="track">
+      <div class="tname">Capital &amp; Investing</div>
+      <div class="twho">VCs, angels, and operators-turned-investors.</div>
+      <div class="tcov"><b>Covers</b> how venture capital works, evaluating deep-tech deals, the operator-to-investor transition, what founders get wrong.</div>
+    </div>
+    <div class="track">
+      <div class="tname">Public Service &amp; Impact</div>
+      <div class="twho">Government tech (Aadhaar-scale), NGOs, policy, societal applications of CS.</div>
+      <div class="tcov"><b>Covers</b> why this path, working within institutions, impact measurement, career sustainability.</div>
+    </div>
+    <div class="track">
+      <div class="tname">Alternative Paths</div>
+      <div class="twho">Builders of alternative institutions (SPC, Entrepreneur First, independent labs), open-source leaders, unconventional research-to-market models.</div>
+      <div class="tcov"><b>Covers</b> why existing institutions fail, designing new ones, what's next.</div>
+    </div></div>
 
   <div class="speakers">
     <div class="sp">
       <div class="date"><b>19 Aug</b>Wed</div>
-      <div class="avatar"><img src="assets/speakers/ashish-kapoor.jpg" alt="" onerror="this.remove()">AK</div>
       <div class="who"><b>Ashish Kapoor</b><div>IIT Delhi · Microsoft Research · General Robotics</div></div>
     </div>
     <div class="sp">
       <div class="date"><b>26 Aug</b>Wed</div>
-      <div class="avatar"><img src="assets/speakers/soumyadeb-mitra.jpg" alt="" onerror="this.remove()">SM</div>
       <div class="who"><b>Soumyadeb Mitra</b><div>IIT Delhi · RudderStack</div></div>
     </div>
     <div class="sp">
       <div class="date"><b>Sep</b></div>
-      <div class="avatar"><img src="assets/speakers/otkrist-gupta.jpg" alt="" onerror="this.remove()">OG</div>
       <div class="who"><b>Otkrist Gupta</b><div>IIT Delhi · MIT · Lendbuzz</div></div>
     </div>
     <div class="sp">
       <div class="date"><b>21 Sep</b>Mon</div>
-      <div class="avatar"><img src="assets/speakers/rajul-garg.jpg" alt="" onerror="this.remove()">RG</div>
       <div class="who"><b>Rajul Garg</b><div>IIT Delhi · GlobalLogic · Leo Capital</div></div>
     </div>
     <div class="sp">
       <div class="date"><b>19 Oct</b>Mon</div>
-      <div class="avatar"><img src="assets/speakers/raghu-mahajan.jpg" alt="" onerror="this.remove()">RM</div>
       <div class="who"><b>Raghu Mahajan</b><div>Stanford · IAS Princeton · ICTS-TIFR</div></div>
     </div>
     <div class="sp tbd">
       <div class="date"><b>28 Oct</b></div>
-      <div class="avatar">?</div>
       <div class="who"><b>To be announced</b><div>Further speakers confirmed through November</div></div>
     </div>
   </div>
@@ -193,9 +229,9 @@
 <section id="projects"><div class="wrap">
   <div class="sechead"><span class="secno">03</span><h2>Projects</h2></div>
   <div class="projgrid">
-    <div class="p"><div class="pn">i.</div><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers. Toward a first-author NeurIPS paper from the department.</p></div>
-    <div class="p"><div class="pn">ii.</div><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
-    <div class="p"><div class="pn">iii.</div><h3>Compute at IIT</h3><p>Closing the infrastructure gap — from shared GPUs to real training clusters — with alumni at NVIDIA and Meta.</p></div>
+    <div class="p"><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers. Toward a first-author NeurIPS paper from the department.</p></div>
+    <div class="p"><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
+    <div class="p"><h3>Compute at IIT</h3><p>Closing the infrastructure gap — from shared GPUs to real training clusters — with alumni at NVIDIA and Meta.</p></div>
   </div>
   <h3 style="font-family:'Source Serif 4',serif;font-weight:500;font-size:22px;margin:44px 0 0">Timeline — a six-year ladder</h3>
   <p style="max-width:780px;margin:8px 0 0;color:#4a443c">From lecture hall to frontier lab: exposure in year two, real research by year three, published work at the frontier by year four, companies within a year or two of graduating — and, in time, one of genuine global consequence.</p>
@@ -210,38 +246,16 @@
 
 <section id="people"><div class="wrap">
   <div class="sechead"><span class="secno">04</span><h2>Supporters</h2></div>
-  <div class="peoplegrid">
-    <div class="person-card">
-      <div class="person-name">Piyush Ahuja</div>
-<div class="sub">IIT Delhi · Oxford · Cambridge</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Dhruv Malrana</div>
-<div class="sub">IIT Delhi · DeepMind · Deep Cogito</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Ankush Gupta</div>
-<div class="sub">Berkeley · Oxford · DeepMind</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Prof. Naveen Garg</div>
-<div class="sub">Head, CSE, IIT Delhi · Bhatnagar laureate</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Prof. Chetan Arora</div>
-<div class="sub">CSE, IIT Delhi · Computer Vision</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Ananye Agarwal</div>
-<div class="sub">IIT Delhi · CMU · Skild AI</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Shreya Sharma</div>
-<div class="sub">IIT Delhi · World Labs</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Savin Goyal</div>
-<div class="sub">IIT Delhi · Netflix · Outerbounds</div>    </div>
-    <div class="person-card">
-      <div class="person-name">Ankit Tomar</div>
-<div class="sub">IIT Delhi · Bizongo</div>    </div>
-  </div>
-  <div class="supporters">
-    <div class="lbl">Supported by</div>
-    <div class="logos"><div class="slot">logo</div><div class="slot">logo</div><div class="slot">logo</div></div>
+  <div class="supporter-cloud">
+    <span class="supporter-chip">Dhruv Malrana<span class="tooltip">IIT Delhi · DeepMind · Deep Cogito</span></span>
+    <span class="supporter-chip">Ankush Gupta<span class="tooltip">Berkeley · Oxford · DeepMind</span></span>
+    <span class="supporter-chip">Shreya Sharma<span class="tooltip">IIT Delhi · World Labs</span></span>
+    <span class="supporter-chip">Piyush Ahuja<span class="tooltip">IIT Delhi · Oxford · Cambridge</span></span>
+    <span class="supporter-chip">Prof. Chetan Arora<span class="tooltip">CSE, IIT Delhi · Computer Vision</span></span>
+    <span class="supporter-chip">Prof. Naveen Garg<span class="tooltip">Head, CSE, IIT Delhi · Bhatnagar laureate</span></span>
+    <span class="supporter-chip">Ankit Tomar<span class="tooltip">IIT Delhi · Bizongo</span></span>
+    <span class="supporter-chip">Savin Goyal<span class="tooltip">IIT Delhi · Netflix · Outerbounds</span></span>
+    <span class="supporter-chip">Ananye Agarwal<span class="tooltip">IIT Delhi · CMU · Skild AI</span></span>
   </div>
 </div></section>
 

@@ -21,7 +21,7 @@ manifesto.md format:
   - Wrap emphasis in *asterisks* -> renders italic accent, e.g. *atmanirbharta*.
   - Every other paragraph flows into the two-column body automatically.
 """
-import os, re, html, sys
+import os, re, html, sys, random
 import yaml
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,6 +63,24 @@ def initials(name):
     parts = [p for p in re.split(r"\s+", name) if p]
     letters = [p[0] for p in parts[:2]]
     return "".join(letters).upper()
+
+
+# ---- tracks ----------------------------------------------------------------
+def build_tracks(tracks):
+    cells = []
+    for t in tracks:
+        if isinstance(t, str):          # legacy: bare label
+            t = {"name": t}
+        name = fmt(t["name"])
+        who = fmt(t.get("who", ""))
+        covers = fmt(t.get("covers", ""))
+        parts = ['      <div class="tname">%s</div>' % name]
+        if who:
+            parts.append('      <div class="twho">%s</div>' % who)
+        if covers:
+            parts.append('      <div class="tcov"><b>Covers</b> %s</div>' % covers)
+        cells.append('    <div class="track">\n%s\n    </div>' % "\n".join(parts))
+    return "\n".join(cells)
 
 
 # ---- manifesto -------------------------------------------------------------
@@ -118,21 +136,12 @@ def build_speakers(speakers):
         day = fmt(s.get("day", "") or "")
         name = fmt(s["name"])
         bio = fmt(s.get("bio", ""))
-        if s.get("tbd"):
-            avatar = '<div class="avatar">?</div>'
-            cls = "sp tbd"
-        else:
-            slug = slugify(s["name"])
-            avatar = ('<div class="avatar"><img src="assets/speakers/%s.jpg" '
-                      'alt="" onerror="this.remove()">%s</div>'
-                      % (slug, initials(s["name"])))
-            cls = "sp"
+        cls = "sp tbd" if s.get("tbd") else "sp"
         rows.append(
             '    <div class="%s">\n'
             '      <div class="date"><b>%s</b>%s</div>\n'
-            '      %s\n'
             '      <div class="who"><b>%s</b><div>%s</div></div>\n'
-            '    </div>' % (cls, date, day, avatar, name, bio)
+            '    </div>' % (cls, date, day, name, bio)
         )
     return "\n".join(rows)
 
@@ -140,10 +149,10 @@ def build_speakers(speakers):
 # ---- projects + timeline ---------------------------------------------------
 def build_projects(projects):
     cards = []
-    for i, p in enumerate(projects):
+    for p in projects:
         cards.append(
-            '    <div class="p"><div class="pn">%s.</div><h3>%s</h3><p>%s</p></div>'
-            % (ROMAN[i], fmt(p["name"]), fmt(p["body"]))
+            '    <div class="p"><h3>%s</h3><p>%s</p></div>'
+            % (fmt(p["name"]), fmt(p["body"]))
         )
     return "\n".join(cards)
 
@@ -161,18 +170,15 @@ def build_people(groups):
     for g in groups:
         members.extend(g.get("members", []))
 
-    cards = []
+    random.shuffle(members)
+    chips = []
     for m in members:
         name = fmt(m["name"])
         sub = fmt(m.get("sub", ""))
-        sub_html = '<div class="sub">%s</div>' % sub if sub else ""
-        cards.append(
-            '    <div class="person-card">\n'
-            '      <div class="person-name">%s</div>\n'
-            '%s'
-            '    </div>' % (name, sub_html)
+        chips.append(
+            '    <span class="supporter-chip">%s<span class="tooltip">%s</span></span>' % (name, sub)
         )
-    return "\n".join(cards)
+    return "\n".join(chips)
 
 
 def build_logos(supporters):
@@ -201,7 +207,7 @@ def main():
         "{{MANIFESTO}}": build_manifesto(read("manifesto.md")),
         "{{SERIES_LEAD}}": fmt(series["lead"]),
         "{{SERIES_BODY}}": fmt(series["body"]),
-        "{{TRACKS}}": "".join("<span>%s</span>" % fmt(t) for t in series["tracks"]),
+        "{{TRACKS}}": build_tracks(series["tracks"]),
         "{{SPEAKERS}}": build_speakers(speakers),
         "{{PROJECTS}}": build_projects(projects["projects"]),
         "{{TIMELINE_TITLE}}": fmt(projects["timeline"]["title"]),

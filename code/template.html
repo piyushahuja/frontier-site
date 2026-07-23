@@ -46,30 +46,32 @@
   .ladder div:last-child{border-right:0}
   .ladder .yr{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:6px}
   .ladder .t{font-family:"Source Serif 4",serif;font-size:18px}
-  .tracks{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:780px;margin-top:14px}
-  .tracks span{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 16px;font-size:14px;width:33.33%}
+  .tracks{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:920px;margin-top:14px}
+  .tracks .track{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:16px 18px}
+  .tracks .tname{font-family:"Source Serif 4",serif;font-size:17px;font-weight:600;color:var(--ink)}
+  .tracks .twho{font-size:13px;color:#4a443c;margin-top:5px;line-height:1.5}
+  .tracks .tcov{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.55}
+  .tracks .tcov b{display:block;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--accent);margin-bottom:2px}
   /* speakers */
   .speakers{border-top:2px solid var(--ink);margin-top:30px}
-  .sp{display:grid;grid-template-columns:88px 54px 1fr;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--rule)}
-  .sp .date{font-family:"Source Serif 4",serif;font-size:14px;color:var(--muted);line-height:1.3}
+  .sp{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start;padding:16px 0;border-bottom:1px solid var(--rule)}
+  .sp .date{font-family:"Source Serif 4",serif;font-size:14px;color:var(--muted);line-height:1.3;min-width:0}
   .sp .date b{display:block;color:var(--accent);font-size:17px;font-weight:600}
-  .avatar{position:relative;width:54px;height:54px;border-radius:2px;overflow:hidden;background:var(--paper);border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:"Source Serif 4",serif;font-size:18px;color:var(--ink)}
-  .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .sp .who{min-width:0}
   .sp .who b{font-size:18px;font-weight:600}
   .sp .who div{font-size:14px;color:#4a443c;margin-top:2px}
   .sp.tbd{opacity:.6}
-  .sp.tbd .avatar{border-style:dashed}
   .quote{font-family:"Source Serif 4",serif;font-size:27px;font-style:italic;line-height:1.4;max-width:840px;margin:34px 0 0}
   .quote cite{display:block;font-family:"Libre Franklin";font-size:13px;font-style:normal;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:14px}
   .projgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
   .projgrid .p{background:var(--paper);padding:26px 22px}
-  .projgrid .pn{font-family:"Source Serif 4",serif;font-size:12px;color:var(--accent)}
   .projgrid h3{font-size:20px;margin:6px 0 10px}
   .projgrid p{font-size:15px;color:#4a443c;margin:0}
-  .peoplegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:980px}
-  .person-card{padding:18px 0;border-top:1px solid var(--rule)}
-  .person-name{font-size:18px;font-weight:600;line-height:1.35}
-  .peoplegrid .sub{color:var(--muted);font-size:14px;margin-top:4px;line-height:1.55}
+  .supporter-cloud{display:flex;flex-wrap:wrap;gap:12px 14px;max-width:980px}
+  .supporter-chip{position:relative;padding:10px 14px;border:1px solid var(--rule);border-radius:999px;font-size:15px;line-height:1.2;color:var(--ink);background:var(--paper);cursor:help;transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .supporter-chip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .supporter-chip .tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(6px);padding:8px 10px;background:var(--ink);color:var(--paper);font-size:12px;line-height:1.3;white-space:nowrap;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:20}
+  .supporter-chip:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(0)}
   .supporters{margin-top:40px}
   .supporters .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
   .logos{display:flex;gap:16px;flex-wrap:wrap}
@@ -77,7 +79,7 @@
   footer{background:var(--ink);color:var(--paper);padding:40px 0}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
   footer a{color:#e0a0a0}
-  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .peoplegrid{grid-template-columns:1fr} .tracks span{width:100%} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
+  @media(max-width:760px){ .cols{column-count:1} header.hero .wrap{grid-template-columns:1fr} h1{font-size:40px} .projgrid{grid-template-columns:1fr 1fr} .supporter-cloud{gap:10px 12px} .tracks{grid-template-columns:1fr} .ladder{grid-template-columns:1fr} .ladder div{border-right:0;border-bottom:1px solid var(--rule)} .sp{grid-template-columns:54px 1fr;grid-template-areas:"a w" "d w";row-gap:2px} .sp .date{grid-area:d} .avatar{grid-area:a} .sp .who{grid-area:w} }
 </style>
 </head>
 <body>
@@ -110,6 +112,17 @@
       document.getElementById('pw-input').value='';
     }
   });
+
+  // Randomise project order on each load (Fisher-Yates).
+  var grid = document.querySelector('.projgrid');
+  if(grid){
+    var cards = Array.prototype.slice.call(grid.children);
+    for(var i = cards.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = cards[i]; cards[i] = cards[j]; cards[j] = tmp;
+    }
+    cards.forEach(function(c){ grid.appendChild(c); });
+  }
 })();
 </script>
 
@@ -158,12 +171,8 @@
 
 <section id="people"><div class="wrap">
   <div class="sechead"><span class="secno">04</span><h2>Supporters</h2></div>
-  <div class="peoplegrid">
+  <div class="supporter-cloud">
 {{PEOPLE}}
-  </div>
-  <div class="supporters">
-    <div class="lbl">{{SUPPORTERS_LABEL}}</div>
-    <div class="logos">{{SUPPORTERS_LOGOS}}</div>
   </div>
 </div></section>
 

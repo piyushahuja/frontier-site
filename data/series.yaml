@@ -1,4 +1,4 @@
-lead: On campus, weekly, through the Monsoon semester. Alumni ten to twenty years ahead return to tell the truth about the decisions they made.
+lead: On campus, weekly, through the Monsoon semester ('26). Alumni ten to twenty years ahead return to tell the truth about the decisions they made.
 
 body: >-
   Not placement talks: first-person reflection — what they got right, what they
@@ -7,9 +7,21 @@ body: >-
   Bhatnagar laureate.
 
 tracks:
-  - Academia & Research
-  - Research → Venture
-  - Industry & Product
-  - Capital & Investing
-  - Public Service
-  - Alternative Paths
+  - name: Academia & Research Labs
+    who: Professors, lab directors, corporate research scientists.
+    covers: the PhD decision, building a lab, publishing vs. impact, academic life in India vs. abroad, academia vs. industry.
+  - name: Research → Venture
+    who: Scientists who translated research into deep-tech companies.
+    covers: when to leave the lab, co-founder dynamics, IP and licensing, fundraising as a technical founder.
+  - name: Industry & Product
+    who: Engineers, tech leads, and product leaders at big tech and growth-stage companies, with or without postgraduate study.
+    covers: research teams vs. product teams, career growth, compensation vs. learning tradeoffs, India vs. abroad.
+  - name: Capital & Investing
+    who: VCs, angels, and operators-turned-investors.
+    covers: how venture capital works, evaluating deep-tech deals, the operator-to-investor transition, what founders get wrong.
+  - name: Public Service & Impact
+    who: Government tech (Aadhaar-scale), NGOs, policy, societal applications of CS.
+    covers: why this path, working within institutions, impact measurement, career sustainability.
+  - name: Alternative Paths
+    who: Builders of alternative institutions (SPC, Entrepreneur First, independent labs), open-source leaders, unconventional research-to-market models.
+    covers: why existing institutions fail, designing new ones, what's next.
