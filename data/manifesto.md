@@ -1,5 +1,5 @@
 %% lead
-Every student has a kernel — a life force, a *vita activa* — that holds the potential for their life's best work. Most emerge from the assembly line of family, school, and college with their wings compressed. Some find they have wings and start to spread them, but this can take years. With the right person at the right moment, we can speed that up. And when you speed it up across enough people, something shifts — not just for them, but for the country.
+Every student has a kernel — a life force, a *Pravṛtti* — that holds the potential for their life's best work. Most emerge from the assembly line of family, school, and college with their wings compressed. Some find they have wings and start to spread them, but this can take years. With the right person at the right moment, we can speed that up. And when you speed it up across enough people, something shifts — not just for them, but for the country.
 
 %% pull
 "We are living through a transformative period in technology, and today's students have an extraordinary opportunity to shape what comes next."
