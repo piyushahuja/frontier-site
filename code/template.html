@@ -148,7 +148,7 @@
     .frow .amt{font-size:16px}
     /* timeline -> vertical line */
     .flow .track{grid-template-columns:1fr;row-gap:0}
-    .flow .track::before{left:13px;right:auto;top:6px;bottom:24px;height:auto;width:2px}
+    .flow .track::before{left:7px;right:auto;top:10px;bottom:24px;height:auto;width:2px}
     .flow .track::after{display:none}
     .flow .node{padding:2px 0 22px 40px}
     .flow .node::before{top:2px}
@@ -301,7 +301,7 @@
   window.addEventListener('resize', resize);
 
   var drops = [], parts = [];
-  var mouse = { x: -999, y: -999 }, hovered = null, T = 0;
+  var mouse = { x: -999, y: -999 }, hovered = null, pinned = null, T = 0;
 
   /* Names are handed out in a pre-shuffled order as drops are burst, so a name
      only recurs once every other supporter has been shown. A drop carries no
@@ -386,6 +386,11 @@
       var rad = d.cloud ? 26 : 16;
       if (Math.abs(mouse.x - d.x) < rad && Math.abs(mouse.y - cy) < rad + 8 && !hovered) hovered = d;
     });
+    /* Touch has no cursor to track a rising bubble, so a tap pins one: it stays
+       held (frozen, tooltip up) until tapped again to open or dismissed. */
+    if (pinned) {
+      if (drops.indexOf(pinned) === -1) pinned = null; else hovered = pinned;
+    }
 
     for (var i2 = drops.length - 1; i2 >= 0; i2--) {
       var d = drops[i2];
@@ -435,12 +440,17 @@
         tip.dataset.for = hovered.s.name;
       }
       tip.hidden = false;
+      /* On touch the card itself is the tap target for opening; on desktop it must
+         stay click-through so it never blocks the hovered bubble. */
+      tip.style.pointerEvents = pinned ? 'auto' : 'none';
+      tip.style.cursor = pinned ? 'pointer' : 'default';
       var tw = tip.offsetWidth || 160, th = tip.offsetHeight || 40;
       tip.style.left = Math.max(6, Math.min(hovered.x - tw / 2, W - tw - 6)) + 'px';
       tip.style.top = Math.max(6, hovered.y - th - 14) + 'px';
     } else {
       stage.style.cursor = 'default';
       tip.hidden = true;
+      tip.style.pointerEvents = 'none';
       tip.dataset.for = '';
     }
     requestAnimationFrame(loop);
@@ -456,15 +466,29 @@
   stage.addEventListener('click', function () {
     if (hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
   });
-  /* Touch: first tap holds the drop (acts as hover), a second tap on it opens the link */
+  /* Touch: no cursor can chase a rising bubble, so a tap grabs the nearest one
+     within a forgiving radius and pins it (frozen, name card up). The link opens
+     only by tapping that card — tapping the bubble again, or empty space, never
+     opens it, it just holds or dismisses. */
+  function pickNear(px, py) {
+    var best = null, bestD = 46 * 46;
+    drops.forEach(function (d) {
+      var cy = d.cloud ? d.y - 8 : (d.falling ? d.y - 14 : d.y);
+      var dx = px - d.x, dy = py - cy, dd = dx * dx + dy * dy;
+      if (dd < bestD) { bestD = dd; best = d; }
+    });
+    return best;
+  }
   stage.addEventListener('touchstart', function (e) {
-    var t = e.changedTouches[0];
-    var wasHovered = hovered;
-    setMouse(t.clientX, t.clientY);
-    if (wasHovered && hovered === wasHovered && hovered.s) {
-      window.open(hovered.s.url, '_blank', 'noopener');
-    } else {
-      e.preventDefault(); /* first tap only reveals */
+    var t = e.changedTouches[0], r = stage.getBoundingClientRect();
+    var hit = pickNear(t.clientX - r.left, t.clientY - r.top);
+    if (hit || pinned) e.preventDefault();  /* grabbing or dismissing — not a page scroll */
+    pinned = hit || null;                   /* hold this bubble; any previously pinned one bursts next frame */
+  }, { passive: false });
+  tip.addEventListener('touchstart', function (e) {
+    if (pinned && pinned.s) {               /* the card is the only thing that opens the link */
+      e.preventDefault();
+      window.open(pinned.s.url, '_blank', 'noopener');
     }
   }, { passive: false });
 })();

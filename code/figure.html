@@ -19,9 +19,10 @@
         <path d="M94,79 C400,80 585,92 690,122 L690,248 L94,248 Z" fill="#efe8d9"/>
         <!-- science moats (solid) — accelerating share, steepening into 2026 -->
         <path d="M94,60 L690,60 L690,122 C585,92 400,80 94,79 Z" fill="#161412"/>
-        <!-- private markets: cross-hatched wedge, ~0 (1980) → ~$8T (2026), on top -->
-        <path d="M94,60 L690,60 L690,30 Z" fill="url(#hatch)"/>
-        <line x1="94" y1="60" x2="690" y2="30" stroke="#161412" stroke-width="1"/>
+        <!-- private markets: cross-hatched wedge, ~0 (1980) → ~$8T (2026), on top —
+             accelerating like the science-moat band, not a straight ramp -->
+        <path d="M94,60 L690,60 L690,30 C585,50 400,59 94,60 Z" fill="url(#hatch)"/>
+        <path d="M94,60 C400,59 585,50 690,30" fill="none" stroke="#161412" stroke-width="1"/>
         <!-- 100% public-listed boundary -->
         <line x1="94" y1="60" x2="690" y2="60" stroke="#161412" stroke-width="1" stroke-dasharray="5 3"/>
         <!-- baseline -->
