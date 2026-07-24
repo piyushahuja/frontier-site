@@ -71,8 +71,11 @@
   .supporter-chip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .supporter-chip .tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(6px);padding:8px 10px;background:var(--ink);color:var(--paper);font-size:12px;line-height:1.3;white-space:nowrap;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:20}
   .supporter-chip:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(0)}
-  footer{background:var(--ink);color:var(--paper);padding:40px 0}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
+  footer{background:var(--ink);color:var(--paper);padding:60px 0 46px}
+  footer .label{color:#b9ad9c}
+  footer .supporter-chip{border-color:rgba(255,255,255,.22);color:var(--paper);background:transparent}
+  footer .supporter-chip:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  footer .supporter-chip .tooltip{background:var(--paper);color:var(--ink)}
   footer a{color:#e0a0a0}
   /* value-capture figure (the ownership gap) */
   .capture{margin:8px 0 6px;max-width:860px}
@@ -181,16 +184,15 @@
   <div class="navlinks">
     <a href="#series">Talks</a>
     <a href="#projects">Projects</a>
-    <a href="#people">Supporters</a>
   </div>
 </div></nav>
 
 <header class="hero"><div class="wrap">
   <div>
     <div class="eyebrow">A public interest initiative · IIT Delhi</div>
-    <h1>A place at the Frontier<br>for Indian Minds<br></h1>
+    <h1>For the Community,<br>a place at the Frontier<br></h1>
   </div>
-  <p class="lede">India doesn't lack talent. It lacks early bridges to the frontier. Let's build them.</p>
+  <p class="lede">India doesn't lack talent. It lacks bridges to the frontier. We should build them.</p>
 </div></header>
 
 <section id="manifesto"><div class="wrap">
@@ -298,10 +300,9 @@
 
 <section id="projects"><div class="wrap">
   <div class="label">Projects</div>
-  <div class="cards">
-    <div class="p"><h3>EMG → Force</h3><p>Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study with frontier researchers.</p></div>
-    <div class="p"><h3>Indic Scaling Laws</h3><p>How model quality scales for Indian languages — the empirical curves nobody has drawn yet.</p></div>
-    <div class="p"><h3>Multi-Node Compute</h3><p>Closing the infrastructure gap — from single shared GPUs to multi-node training clusters that can actually hold a frontier run — with alumni at NVIDIA and Meta.</p></div>
+  <div class="prose">
+    <p>Projects are the proof. Not coursework, but real problems with real stakes, scoped so a first result arrives within a semester. Three are live today. In <strong>EMG → Force</strong>, three undergraduates beat Meta's published EMG-to-pose benchmark, then ran a scaling-law study alongside frontier researchers. <strong>Indic Scaling Laws</strong> draws the empirical curves for how model quality scales across Indian languages, the measurements nobody has published yet. <strong>Multi-Node Compute</strong> closes the infrastructure gap, carrying students from single shared GPUs to multi-node clusters that can actually hold a frontier run, with alumni at NVIDIA and Meta.</p>
+    <p>The next wave reaches past language models into the wider deep-tech frontier. <strong>Protein Design for Neglected Diseases</strong> puts open structure-prediction and binder-design models to work on targets global pharma ignores: dengue, TB, snakebite venom. <strong>ML Potentials for Solid-State Batteries</strong> screens electrolyte and cathode candidates with learned interatomic potentials, compressing years of wet-lab search into weeks of compute. Each is small enough for a team of undergraduates to begin, and large enough to matter.</p>
   </div>
   <h3 style="font-family:'Source Serif 4',serif;font-weight:500;font-size:22px;margin:44px 0 0">Timeline — from project to funded company</h3>
   <p style="max-width:780px;margin:8px 0 0;color:#4a443c">One straight line, six years long: from the first contact with real research to a company of genuine global consequence.</p>
@@ -336,7 +337,7 @@
   </div>
 </div></section>
 
-<section id="people"><div class="wrap">
+<footer><div class="wrap">
   <div class="label">Supporters</div>
   <div class="supporter-cloud">
     <a class="supporter-chip" href="https://www.linkedin.com/in/drvdhruv" target="_blank" rel="noopener">Dhruv Malrana<span class="tooltip">IIT Delhi · DeepMind · Deep Cogito</span></a>
@@ -351,11 +352,6 @@
     <a class="supporter-chip" href="https://scholar.google.com/citations?user=zc6Iy0IAAAAJ" target="_blank" rel="noopener">Avneesh Sud<span class="tooltip">IIT Delhi · DeepMind</span></a>
     <a class="supporter-chip" href="https://www.linkedin.com/in/dipinder/" target="_blank" rel="noopener">Dipinder Sekhon<span class="tooltip">IIT Delhi · iKites.AI</span></a>
   </div>
-</div></section>
-
-<footer><div class="wrap">
-  <span>Frontier · IIT Delhi · frontier tech</span>
-  <span>Write to us — <a href="mailto:hello@example.org">hello@example.org</a></span>
 </div></footer>
 <script>
   // Randomize order of children on each load
@@ -369,8 +365,7 @@
       }
       items.forEach(function(item){ container.appendChild(item); });
     }
-    shuffle(document.querySelector('#projects .cards'));
-    shuffle(document.querySelector('#people .supporter-cloud'));
+    shuffle(document.querySelector('footer .supporter-cloud'));
   })();
 </script>
 </body>
