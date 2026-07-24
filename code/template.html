@@ -162,7 +162,7 @@
 <div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:var(--paper);display:flex;align-items:center;justify-content:center">
   <form id="pw-form" style="text-align:center;font-family:'Libre Franklin',sans-serif">
     <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--label);font-weight:600;margin-bottom:24px">{{GATE_LABEL}}</div>
-    <input id="pw-input" type="password" placeholder="Enter password" autofocus
+    <input id="pw-input" type="password" placeholder="Enter password"
       style="font-size:16px;padding:10px 16px;border:2px solid var(--ink);background:var(--paper);font-family:inherit;width:240px;outline:none">
     <br>
     <button type="submit"
@@ -172,18 +172,27 @@
 </div>
 <script>
 (function(){
+  // Don't let the browser restore a prior scroll position — always start at the top.
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  var gate = document.getElementById('pw-gate');
+  var input = document.getElementById('pw-input');
+  function dismiss(){
+    gate.style.display = 'none';
+    window.scrollTo(0, 0);   // land at the top of the page, never mid-section
+  }
   if(sessionStorage.getItem('pw-ok')==='1'){
-    document.getElementById('pw-gate').style.display='none';
+    dismiss();
+  } else {
+    input.focus({preventScroll:true});   // focus the field without scrolling the page under the gate
   }
   document.getElementById('pw-form').addEventListener('submit', function(e){
     e.preventDefault();
-    var val = document.getElementById('pw-input').value;
-    if(val === '{{PASSWORD}}'){
+    if(input.value === '{{PASSWORD}}'){
       sessionStorage.setItem('pw-ok','1');
-      document.getElementById('pw-gate').style.display='none';
+      dismiss();
     } else {
       document.getElementById('pw-error').style.visibility='visible';
-      document.getElementById('pw-input').value='';
+      input.value='';
     }
   });
 
