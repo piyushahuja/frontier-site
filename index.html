@@ -65,17 +65,25 @@
   .cards .p{border-top:1px solid var(--rule);padding-top:16px}
   .cards h3{font-family:"Source Serif 4",serif;font-weight:500;font-size:21px;margin:0 0 10px}
   .cards p{font-size:15px;color:#4a443c;margin:0;line-height:1.55}
-  /* PRIMITIVE · chips (supporters) */
-  .supporter-cloud{display:flex;flex-wrap:wrap;gap:12px 14px;max-width:none}
-  .supporter-chip{position:relative;padding:10px 14px;border:1px solid var(--rule);border-radius:999px;font-size:15px;line-height:1.2;color:var(--ink);background:var(--paper);cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
-  .supporter-chip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .supporter-chip .tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(6px);padding:8px 10px;background:var(--ink);color:var(--paper);font-size:12px;line-height:1.3;white-space:nowrap;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:20}
-  .supporter-chip:hover .tooltip{opacity:1;transform:translateX(-50%) translateY(0)}
-  footer{background:var(--ink);color:var(--paper);padding:60px 0 46px}
-  footer .label{color:#b9ad9c}
-  footer .supporter-chip{border-color:rgba(255,255,255,.22);color:var(--paper);background:transparent}
-  footer .supporter-chip:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-  footer .supporter-chip .tooltip{background:var(--paper);color:var(--ink)}
+  /* PRIMITIVE · supporter bubbles (canvas fills the whole black band) */
+  .supporter-rain{position:relative;border:0;max-width:800px;margin:0 auto;padding:34px 40px;min-height:240px}
+  .supporter-rain .sr-stage{position:absolute;inset:0}
+  .supporter-rain canvas{display:block;width:100%;height:100%}
+  .supporter-rain .sr-tip{position:absolute;pointer-events:none;white-space:nowrap;background:var(--paper);color:var(--ink);border-radius:5px;padding:8px 11px;z-index:5;box-shadow:0 6px 20px rgba(0,0,0,.28);transition:opacity .15s ease,transform .15s ease}
+  .supporter-rain .sr-tip[hidden]{display:block;opacity:0;transform:translateY(6px)}
+  .supporter-rain .sr-tip b{display:block;font-size:14px;font-weight:600;line-height:1.2}
+  .supporter-rain .sr-tip span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .supporter-rain .sr-list{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media (prefers-reduced-motion:reduce){
+    .supporter-rain{min-height:0}
+    .supporter-rain .sr-stage{display:none}
+    .supporter-rain .sr-list{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:14px 26px}
+    .supporter-rain .sr-list li{line-height:1.35}
+    .supporter-rain .sr-list a{color:var(--paper);text-decoration:none;font-weight:600;font-size:15px}
+    .supporter-rain .sr-list span{display:block;color:#b9ad9c;font-weight:400;font-size:12.5px}
+  }
+  footer{background:var(--ink);color:var(--paper);padding:0;position:relative;overflow:hidden}
+  footer .label{position:relative;z-index:2;color:#b9ad9c;margin-bottom:14px;pointer-events:none}
   footer a{color:#e0a0a0}
   /* science-moat + capital figure */
   .fig{margin:8px 0 4px;max-width:none}
@@ -129,7 +137,7 @@
   @media(max-width:760px){
     header.hero .wrap{gap:16px} h1{font-size:34px}
     .prose,.prose.wide{max-width:none}
-    .supporter-cloud{gap:10px 12px}
+    .supporter-rain{min-height:200px;padding:28px 24px}
     .cards{grid-template-columns:1fr;gap:0}
     .cards .p{border-top:1px solid var(--rule-soft);padding:18px 0}
     .cards .p:first-child{border-top:1px solid var(--rule)}
@@ -392,36 +400,237 @@
   </div>
 </div></section>
 
-<footer><div class="wrap">
-  <div class="label">Supporters</div>
-  <div class="supporter-cloud">
-    <a class="supporter-chip" href="https://www.linkedin.com/in/drvdhruv" target="_blank" rel="noopener">Dhruv Malrana<span class="tooltip">IIT Delhi · DeepMind · Deep Cogito</span></a>
-    <a class="supporter-chip" href="https://ankushgupta.org/" target="_blank" rel="noopener">Ankush Gupta<span class="tooltip">Berkeley · Oxford · DeepMind</span></a>
-    <a class="supporter-chip" href="https://github.com/ShreyaSharma99" target="_blank" rel="noopener">Shreya Sharma<span class="tooltip">IIT Delhi · World Labs</span></a>
-    <a class="supporter-chip" href="http://piyushahuja.com" target="_blank" rel="noopener">Piyush Ahuja<span class="tooltip">IIT Delhi · Oxford · Cambridge</span></a>
-    <a class="supporter-chip" href="https://www.cse.iitd.ac.in/~chetan/" target="_blank" rel="noopener">Chetan Arora<span class="tooltip">CSE, IIT Delhi · Computer Vision</span></a>
-    <a class="supporter-chip" href="https://www.cse.iitd.ac.in/~naveen/" target="_blank" rel="noopener">Naveen Garg<span class="tooltip">Head, CSE, IIT Delhi · Bhatnagar laureate</span></a>
-    <a class="supporter-chip" href="https://www.artworkflowhq.com/about-us" target="_blank" rel="noopener">Ankit Tomar<span class="tooltip">IIT Delhi · Bizongo</span></a>
-    <a class="supporter-chip" href="https://www.linkedin.com/in/savingoyal/" target="_blank" rel="noopener">Savin Goyal<span class="tooltip">IIT Delhi · Netflix · Outerbounds</span></a>
-    <a class="supporter-chip" href="https://anag.me/" target="_blank" rel="noopener">Ananye Agarwal<span class="tooltip">IIT Delhi · CMU · Skild AI</span></a>
-    <a class="supporter-chip" href="https://scholar.google.com/citations?user=zc6Iy0IAAAAJ" target="_blank" rel="noopener">Avneesh Sud<span class="tooltip">IIT Delhi · DeepMind</span></a>
-    <a class="supporter-chip" href="https://www.linkedin.com/in/dipinder/" target="_blank" rel="noopener">Dipinder Sekhon<span class="tooltip">IIT Delhi · iKites.AI</span></a>
-  </div>
-</div></footer>
+<footer>
+  <section class="supporter-rain" aria-label="Our supporters">
+    <div class="sr-stage"><canvas></canvas></div>
+    <div class="sr-tip" hidden></div>
+    <div class="label">Supporters</div>
+    <!-- Real, crawlable supporter list: read by screen readers, shown
+         visually when the user prefers reduced motion. -->
+    <ul class="sr-list"></ul>
+  </section>
+</footer>
 <script>
-  // Randomize order of children on each load
-  (function(){
-    function shuffle(container){
-      if(!container) return;
-      var items = Array.prototype.slice.call(container.children);
-      for(var i = items.length - 1; i > 0; i--){
-        var j = Math.floor(Math.random() * (i + 1));
-        var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
-      }
-      items.forEach(function(item){ container.appendChild(item); });
+/* Supporter bubbles — paper-coloured bubbles rising from the bottom edge into
+   the black band. Hover (or tap) a bubble to hold it and read the supporter;
+   click to open. */
+(function () {
+  var CONFIG = {
+    water: '#f7f4ee',   /* drops, splashes, sprinkles — the page's paper colour */
+    px: 3,              /* pixel cell size */
+    gravity: 0.05,
+    vmax: 3.8,
+    spawnMs: 800
+  };
+  var SUPPORTERS = [
+    { name: 'Dhruv Malrana',  aff: 'IIT Delhi · DeepMind · Deep Cogito',      url: 'https://www.linkedin.com/in/drvdhruv' },
+    { name: 'Ankush Gupta',   aff: 'Berkeley · Oxford · DeepMind',            url: 'https://ankushgupta.org/' },
+    { name: 'Shreya Sharma',  aff: 'IIT Delhi · World Labs',                  url: 'https://github.com/ShreyaSharma99' },
+    { name: 'Piyush Ahuja',   aff: 'IIT Delhi · Oxford · Cambridge',          url: 'http://piyushahuja.com' },
+    { name: 'Chetan Arora',   aff: 'CSE, IIT Delhi · Computer Vision',        url: 'https://www.cse.iitd.ac.in/~chetan/' },
+    { name: 'Naveen Garg',    aff: 'Head, CSE, IIT Delhi · Bhatnagar laureate', url: 'https://www.cse.iitd.ac.in/~naveen/' },
+    { name: 'Ankit Tomar',    aff: 'IIT Delhi · Bizongo',                     url: 'https://www.artworkflowhq.com/about-us' },
+    { name: 'Savin Goyal',    aff: 'IIT Delhi · Netflix · Outerbounds',       url: 'https://www.linkedin.com/in/savingoyal/' },
+    { name: 'Ananye Agarwal', aff: 'IIT Delhi · CMU · Skild AI',              url: 'https://anag.me/' },
+    { name: 'Avneesh Sud',    aff: 'IIT Delhi · DeepMind',                    url: 'https://scholar.google.com/citations?user=zc6Iy0IAAAAJ' },
+    { name: 'Dipinder Sekhon', aff: 'IIT Delhi · iKites.AI',                  url: 'https://www.linkedin.com/in/dipinder/' }
+  ];
+
+  var root = document.querySelector('.supporter-rain');
+  if (!root) return;
+  var stage = root.querySelector('.sr-stage');
+  var cv = root.querySelector('canvas');
+  var ctx = cv.getContext('2d');
+  var tip = root.querySelector('.sr-tip');
+  var list = root.querySelector('.sr-list');
+
+  SUPPORTERS.forEach(function (s) {
+    var li = document.createElement('li'), a = document.createElement('a'), sp = document.createElement('span');
+    a.href = s.url; a.textContent = s.name; a.target = '_blank'; a.rel = 'noopener';
+    sp.textContent = s.aff;
+    li.appendChild(a); li.appendChild(sp); list.appendChild(li);
+  });
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var PX = CONFIG.px, G = CONFIG.gravity, VMAX = CONFIG.vmax, CEIL = 6;
+  var W, H, SRC;
+  function resize() {
+    W = stage.clientWidth; H = stage.clientHeight;
+    cv.width = W * devicePixelRatio; cv.height = H * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    SRC = H - 6;   /* bubbles are born on the bottom edge and rise to CEIL */
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var drops = [], parts = [];
+  var mouse = { x: -999, y: -999 }, hovered = null, T = 0;
+
+  /* Names are handed out in a pre-shuffled order as drops are burst, so a name
+     only recurs once every other supporter has been shown. A drop carries no
+     name until the moment it is caught. */
+  function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  var order = shuffle(SUPPORTERS.map(function (_, i) { return i; })), qi = 0;
+  function nextSupporter() {
+    var s = SUPPORTERS[order[qi]];
+    if (++qi >= order.length) {                 /* full pass done — reshuffle for the next */
+      var last = order[order.length - 1];
+      shuffle(order);
+      if (order.length > 1 && order[0] === last) { var t = order[0]; order[0] = order[1]; order[1] = t; }
+      qi = 0;
     }
-    shuffle(document.querySelector('footer .supporter-cloud'));
-  })();
+    return s;
+  }
+
+  function spawn() {
+    var band = Math.min(W * 0.34, 260); /* narrow centred column of fall */
+    drops.push({
+      x: Math.round((W / 2 - band / 2 + Math.random() * band) / PX) * PX,
+      y: SRC, v: 0,
+      phase: Math.random() * Math.PI * 2,
+      grow: 0, gspd: 0.006 + Math.random() * 0.008,
+      falling: false,
+      s: null,
+      cloud: null, hold: 0
+    });
+  }
+  setInterval(spawn, CONFIG.spawnMs);
+  for (var i0 = 0; i0 < 5; i0++) {
+    spawn();
+    var d0 = drops[i0];
+    d0.grow = 1; d0.falling = true;
+    d0.y = SRC - 30 - Math.random() * Math.max(20, H - 150);
+    d0.v = Math.sqrt(2 * G * (SRC - d0.y));
+  }
+
+  function drawDrop(d) {
+    var st = d.falling ? Math.min(d.v / VMAX, 1) : 0;
+    var squash = 1 + 0.1 * Math.sin(T * 0.12 + d.phase) * (1 - st * 0.85);
+    var rows = Math.round((4 + st * 3) * (d.falling ? 1 : 0.5 + 0.5 * d.grow));
+    var maxHalf = (1.5 - st * 0.5) * squash * (d.falling ? 1 : 0.35 + 0.65 * d.grow);
+    var topY = d.falling ? d.y - rows * PX : SRC - rows * PX;
+    ctx.fillStyle = CONFIG.water;
+    for (var j = 0; j < rows; j++) {
+      var t = rows > 1 ? 1 - j / (rows - 1) : 1; /* round head up, tail down — a rising bubble */
+      var w = maxHalf * Math.pow(Math.sin(Math.PI * Math.pow(t, 1.5)) + 0.001, 0.7);
+      var half = Math.max(0, Math.round(w));
+      for (var i = -half; i <= half; i++) {
+        ctx.fillRect(d.x + i * PX, topY + j * PX, PX - 0.5, PX - 0.5);
+      }
+    }
+  }
+
+  function ignite(d) {
+    if (!d.s) d.s = nextSupporter();
+    d.cloud = [];
+    for (var k = 0; k < 16; k++) {
+      var a = (k / 16) * Math.PI * 2 + Math.random() * 0.5;
+      var sp = 1.1 + Math.random() * 1.9;
+      d.cloud.push({ x: d.x, y: d.y - 8, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1 });
+    }
+    d.hold = 0;
+  }
+
+  function release(d, idx) {
+    d.cloud.forEach(function (p) {
+      parts.push({ x: p.x, y: p.y, vx: p.vx, vy: p.vy, life: 1, decay: 0.03 + Math.random() * 0.025 });
+    });
+    drops.splice(idx, 1);
+  }
+
+  function loop() {
+    T++;
+    ctx.clearRect(0, 0, W, H);
+
+    hovered = null;
+    drops.forEach(function (d) {
+      /* forming drops on the top edge are catchable too, not just falling ones */
+      var cy = d.cloud ? d.y - 8 : (d.falling ? d.y - 14 : d.y);
+      var rad = d.cloud ? 26 : 16;
+      if (Math.abs(mouse.x - d.x) < rad && Math.abs(mouse.y - cy) < rad + 8 && !hovered) hovered = d;
+    });
+
+    for (var i2 = drops.length - 1; i2 >= 0; i2--) {
+      var d = drops[i2];
+      if (hovered === d) {
+        if (!d.cloud) ignite(d);
+        d.hold = Math.min(d.hold + 0.09, 1);
+        var ts = Math.max(0.04, 1 - d.hold);
+        ctx.fillStyle = CONFIG.water;
+        d.cloud.forEach(function (p) {
+          p.x += p.vx * ts; p.y += p.vy * ts; p.vy += G * 0.4 * ts;
+          var jx = Math.sin(T * 0.1 + p.vx * 7) * 0.4;
+          ctx.fillRect(Math.round((p.x + jx) / PX) * PX, Math.round(p.y / PX) * PX, PX - 0.5, PX - 0.5);
+        });
+        continue;
+      }
+      if (d.cloud) { release(d, i2); continue; }   /* was held, now let go — burst it */
+      if (!d.falling) {
+        d.grow += d.gspd;
+        if (d.grow >= 1) { d.falling = true; d.v = 0; d.y = SRC - PX * 4; }
+        drawDrop(d);
+        continue;
+      }
+      d.v = Math.min(d.v + G, VMAX);
+      d.y -= d.v;
+      drawDrop(d);
+      if (d.y < CEIL) { drops.splice(i2, 1); }
+    }
+
+    ctx.fillStyle = CONFIG.water;
+    for (var i3 = parts.length - 1; i3 >= 0; i3--) {
+      var p = parts[i3];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.09; p.vx *= 0.99; p.life -= p.decay;
+      if (p.y > H || p.y < 0) { p.life -= 0.25; } /* fade once it leaves the band, never pile into a line */
+      if (p.life <= 0) { parts.splice(i3, 1); continue; }
+      ctx.globalAlpha = Math.min(p.life * 1.5, 1);
+      ctx.fillRect(Math.round(p.x / PX) * PX, Math.round(p.y / PX) * PX, PX - 1, PX - 1);
+    }
+    ctx.globalAlpha = 1;
+
+    if (hovered && hovered.s) {
+      stage.style.cursor = 'pointer';
+      if (tip.dataset.for !== hovered.s.name) {
+        tip.innerHTML = '';
+        var b = document.createElement('b'); b.textContent = hovered.s.name;
+        var sp2 = document.createElement('span'); sp2.textContent = hovered.s.aff;
+        tip.appendChild(b); tip.appendChild(sp2);
+        tip.dataset.for = hovered.s.name;
+      }
+      tip.hidden = false;
+      var tw = tip.offsetWidth || 160, th = tip.offsetHeight || 40;
+      tip.style.left = Math.max(6, Math.min(hovered.x - tw / 2, W - tw - 6)) + 'px';
+      tip.style.top = Math.max(6, hovered.y - th - 14) + 'px';
+    } else {
+      stage.style.cursor = 'default';
+      tip.hidden = true;
+      tip.dataset.for = '';
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  function setMouse(cx, cy) {
+    var r = stage.getBoundingClientRect();
+    mouse.x = cx - r.left; mouse.y = cy - r.top;
+  }
+  stage.addEventListener('mousemove', function (e) { setMouse(e.clientX, e.clientY); });
+  stage.addEventListener('mouseleave', function () { mouse.x = -999; mouse.y = -999; });
+  stage.addEventListener('click', function () {
+    if (hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
+  });
+  /* Touch: first tap holds the drop (acts as hover), a second tap on it opens the link */
+  stage.addEventListener('touchstart', function (e) {
+    var t = e.changedTouches[0];
+    var wasHovered = hovered;
+    setMouse(t.clientX, t.clientY);
+    if (wasHovered && hovered === wasHovered && hovered.s) {
+      window.open(hovered.s.url, '_blank', 'noopener');
+    } else {
+      e.preventDefault(); /* first tap only reveals */
+    }
+  }, { passive: false });
+})();
 </script>
 </body>
 </html>
