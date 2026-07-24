@@ -2,20 +2,22 @@
 # In prose, **double asterisks** render bold (used for project names).
 prose:
   - >-
-    Projects are the proof. Not coursework, but real problems with real stakes,
-    scoped so a first result arrives within a semester. Three are live today. In
-    **EMG → Force**, three undergraduates beat Meta's published EMG-to-pose
+    Projects are about real problems with real stakes, scoped so a first result arrives within a semester. Three are live today:
+    
+    * In EMG → Force, an undergraduate beat Meta's published EMG-to-pose
     benchmark, then ran a scaling-law study alongside frontier researchers.
-    **Indic Scaling Laws** draws the empirical curves for how model quality
+    
+    * Indic Scaling Laws draws the empirical curves for how model quality
     scales across Indian languages, the measurements nobody has published yet.
-    **Multi-Node Compute** closes the infrastructure gap, carrying students from
+    
+    * Multi-Node Compute closes the infrastructure gap, carrying students from
     single shared GPUs to multi-node clusters that can actually hold a frontier
     run, with alumni at NVIDIA and Meta.
   - >-
     The next wave reaches past language models into the wider deep-tech frontier.
-    **Protein Design for Neglected Diseases** puts open structure-prediction and
+    Protein Design for Neglected Diseases puts open structure-prediction and
     binder-design models to work on targets global pharma ignores: dengue, TB,
-    snakebite venom. **ML Potentials for Solid-State Batteries** screens
+    snakebite venom. ML Potentials for Solid-State Batteries screens
     electrolyte and cathode candidates with learned interatomic potentials,
     compressing years of wet-lab search into weeks of compute. Each is small
     enough for a team of undergraduates to begin, and large enough to matter.

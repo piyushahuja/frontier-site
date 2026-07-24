@@ -158,8 +158,24 @@ def build_speakers(events):
 
 
 # ---- projects prose + timeline ---------------------------------------------
+def para_to_html(p):
+    """Convert a prose paragraph to HTML, handling `* bullet` lists."""
+    lines = p.split('\n')
+    if any(l.startswith('* ') for l in lines):
+        first_bullet = next(i for i, l in enumerate(lines) if l.startswith('* '))
+        intro = ' '.join(lines[:first_bullet]).strip()
+        bullets = [l[2:] for l in lines if l.startswith('* ')]
+        parts = []
+        if intro:
+            parts.append('    <p>%s</p>' % fmt(intro))
+        items = '\n'.join('      <li>%s</li>' % fmt(b) for b in bullets)
+        parts.append('    <ul>\n%s\n    </ul>' % items)
+        return '\n'.join(parts)
+    return '    <p>%s</p>' % fmt(p)
+
+
 def build_prose(paras):
-    return "\n".join("    <p>%s</p>" % fmt(p) for p in paras)
+    return "\n".join(para_to_html(p) for p in paras)
 
 
 def build_timeline(steps):

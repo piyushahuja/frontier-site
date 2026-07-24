@@ -7,9 +7,13 @@ password: community              # gate password (client-side only — not real 
 
 eyebrow: A public interest initiative · IIT Delhi
 hero_headline: |
-  For the Community,
-  a place at the Frontier
-hero_lede: India doesn't lack talent. It lacks bridges to the frontier. We should build them.
+  A place for India's finest minds to meet the frontier
+hero_lede: India doesn't lack talent. It lacks bridges to the frontier. Time is nigh we build them.
+
+# India produces world-class talent.
+#   Capital and attention flow to everything except hard tech.
+#   One student, one mentor, at the right moment, changes the
+#   trajectory.
 
 # Sticky-nav links (anchors into the page)
 nav:
