@@ -1,34 +1,36 @@
-# One block per speaker. Photo is auto-loaded from
-# assets/speakers/<slugified-name>.jpg  (falls back to initials if missing).
-# Add tbd: true for a placeholder slot.
+# The Schedule: one block per event, in order.
+#   day / mon  -> the calendar chip (big number, small line under it)
+#   nodate: true  -> render day as text (e.g. "Sep") for a month-only slot
+#   tbd:    true  -> dim the row (placeholder / to-be-announced)
 
-- date: "19 Aug"
-  day: Wed
+- day: "19"
+  mon: Aug · Wed
   name: Ashish Kapoor
-  bio: IIT Delhi · Microsoft Research · General Robotics
+  detail: IIT Delhi · Microsoft Research · General Robotics
 
-- date: "26 Aug"
-  day: Wed
+- day: "26"
+  mon: Aug · Wed
   name: Soumyadeb Mitra
-  bio: IIT Delhi · RudderStack
+  detail: IIT Delhi · RudderStack
 
-- date: Sep
-  day: ""
+- day: Sep
+  mon: Date TBC
+  nodate: true
   name: Otkrist Gupta
-  bio: IIT Delhi · MIT · Lendbuzz
+  detail: IIT Delhi · MIT · Lendbuzz
 
-- date: "21 Sep"
-  day: Mon
+- day: "21"
+  mon: Sep · Mon
   name: Rajul Garg
-  bio: IIT Delhi · GlobalLogic · Leo Capital
+  detail: IIT Delhi · GlobalLogic · Pine Labs · Leo Capital
 
-- date: "19 Oct"
-  day: Mon
+- day: "19"
+  mon: Oct · Mon
   name: Raghu Mahajan
-  bio: Stanford · IAS Princeton · ICTS-TIFR
+  detail: Stanford · IAS Princeton · ICTS-TIFR
 
-- date: "28 Oct"
-  day: ""
-  name: To be announced
-  bio: Further speakers confirmed through November
+- day: "28"
+  mon: Oct
   tbd: true
+  name: To be announced
+  detail: Further speakers confirmed through November

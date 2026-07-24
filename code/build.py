@@ -2,26 +2,33 @@
 """
 Frontier site builder.
 
-Edit the plain-text files in ../data/ and run:  python3 build.py
-It regenerates ../index.html from ../code/template.html. Never edit index.html by hand.
+Edit the content files in ../data/ and run:  python3 build.py
+It regenerates ../index.html from the design in ../code/. Never edit index.html
+by hand — your changes are overwritten on the next build.
 
-Data files:
-  data/meta.yaml       site name, tagline, eyebrow, hero line, contact email, noindex
-  data/manifesto.md    the manifesto prose (see format notes below)
-  data/series.yaml     lecture-series lead/body + the six tracks
-  data/speakers.yaml   the speaker calendar (one block per speaker)
-  data/projects.yaml   live projects + the timeline ladder
-  data/people.yaml     organisers / advisors / friends + supporters
+Content lives in data/:
+  meta.yaml       name, title, eyebrow, hero headline + lede, nav, password, noindex
+  manifesto.md    the manifesto prose (format notes below)
+  series.yaml     talks lead/body + the six tracks (name + body)
+  speakers.yaml   the schedule (one block per event)
+  projects.yaml   projects prose + the timeline steps
+  people.yaml     supporters (name, aff, url) — the rising bubbles in the footer
+
+Design lives in code/:
+  template.html   page shell, CSS, and the supporter animation
+  figure.html     the hand-built data-figure (an infographic); its numbers are
+                  content-adjacent — edit them there, they are not in data/.
 
 manifesto.md format:
   - Blank-line-separated paragraphs.
-  - A line "%% lead" marks the next paragraph as the large intro line.
-  - A line "%% statement" marks the next block as the pull-quote:
-        first line = the quote, a line starting with "—" = the attribution.
-  - Wrap emphasis in *asterisks* -> renders italic accent, e.g. *atmanirbharta*.
-  - Every other paragraph flows into the two-column body automatically.
+  - "%% lead"   marks the next paragraph as the large serif intro line.
+  - "%% pull"   marks the next block as the pull-quote:
+        first line(s) = the quote, a line starting with "—" = the attribution.
+  - "%% figure" drops the data-figure (code/figure.html) in at that point.
+  - *asterisks* -> italic accent (<em>); **double** -> bold (<strong>).
+  - Every other paragraph flows into a .prose block automatically.
 """
-import os, re, html, sys, random
+import os, re, html
 import yaml
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,22 +36,26 @@ DATA = os.path.join(BASE, "data")
 CODE = os.path.join(BASE, "code")
 OUT  = os.path.join(BASE, "index.html")
 
-ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x"]
-
 
 def load_yaml(name):
     with open(os.path.join(DATA, name), encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
-def read(name):
+def read_data(name):
     with open(os.path.join(DATA, name), encoding="utf-8") as f:
         return f.read()
 
 
+def read_code(name):
+    with open(os.path.join(CODE, name), encoding="utf-8") as f:
+        return f.read()
+
+
 def fmt(s):
-    """Escape HTML, then turn *emphasis* into <em>…</em>."""
+    """Escape HTML, then *emphasis* -> <em>, **strong** -> <strong>."""
     s = html.escape(str(s), quote=False)
+    s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", s)
     return s
 
@@ -53,46 +64,30 @@ def fmt_breaks(s):
     return fmt(s).replace("\n", "<br>")
 
 
-def slugify(name):
-    s = name.lower()
-    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-    return s
+def js_str(s):
+    """Escape a value for use inside a single-quoted JS string literal."""
+    s = str(s).replace("\\", "\\\\").replace("'", "\\'").replace("\n", "\\n")
+    return s.replace("</", "<\\/")   # never let content close the <script>
 
 
-def initials(name):
-    parts = [p for p in re.split(r"\s+", name) if p]
-    letters = [p[0] for p in parts[:2]]
-    return "".join(letters).upper()
-
-
-# ---- tracks ----------------------------------------------------------------
-def build_tracks(tracks):
-    cells = []
-    for t in tracks:
-        if isinstance(t, str):          # legacy: bare label
-            t = {"name": t}
-        name = fmt(t["name"])
-        who = fmt(t.get("who", ""))
-        covers = fmt(t.get("covers", ""))
-        parts = ['      <div class="tname">%s</div>' % name]
-        if who:
-            parts.append('      <div class="twho">%s</div>' % who)
-        if covers:
-            parts.append('      <div class="tcov"><b>Covers</b> %s</div>' % covers)
-        cells.append('    <div class="track">\n%s\n    </div>' % "\n".join(parts))
-    return "\n".join(cells)
+# ---- nav -------------------------------------------------------------------
+def build_nav(links):
+    return "\n".join(
+        '    <a href="%s">%s</a>' % (html.escape(l["href"]), fmt(l["label"]))
+        for l in links
+    )
 
 
 # ---- manifesto -------------------------------------------------------------
-def build_manifesto(text):
+def build_manifesto(text, figure_html):
     blocks = [b.strip() for b in re.split(r"\n\s*\n", text) if b.strip()]
-    out, cols = [], []
+    out, prose = [], []
 
-    def flush_cols():
-        if cols:
-            paras = "".join("    <p>%s</p>\n" % fmt(p) for p in cols)
-            out.append('  <div class="cols">\n%s  </div>' % paras)
-            cols.clear()
+    def flush_prose():
+        if prose:
+            paras = "".join("    <p>%s</p>\n" % fmt(p) for p in prose)
+            out.append('  <div class="prose">\n%s  </div>' % paras)
+            prose.clear()
 
     pending = None
     for b in blocks:
@@ -101,89 +96,95 @@ def build_manifesto(text):
             first, _, rest = b.partition("\n")
             role = first.strip()[2:].strip().lower()
             body = rest.strip()
-            if not body:            # marker alone -> applies to the next block
+            if not body:                 # marker alone -> applies to the next block
+                if role == "figure":     # ...except the figure, which has no body
+                    flush_prose()
+                    out.append(figure_html.rstrip("\n"))
+                    continue
                 pending = role
                 continue
         elif pending:
             role, pending = pending, None
 
         if role == "lead":
-            flush_cols()
+            flush_prose()
             out.append('  <p class="lead-serif">%s</p>' % fmt(body))
-        elif role == "statement":
-            flush_cols()
+        elif role == "pull":
+            flush_prose()
             lines = [l for l in body.splitlines() if l.strip()]
             quote = " ".join(l for l in lines if not l.lstrip().startswith("—"))
             attr = next((l.lstrip("— ").strip() for l in lines
                          if l.lstrip().startswith("—")), "")
             out.append(
-                '  <div class="statement">\n'
-                '    <div class="s" style="font-style:italic">%s</div>\n'
+                '  <div class="pull">\n'
+                '    <div class="s">%s</div>\n'
                 '    <div class="t">%s</div>\n'
                 '  </div>' % (fmt(quote), fmt(attr))
             )
         else:
-            cols.append(body)
-    flush_cols()
+            prose.append(body)
+    flush_prose()
     return "\n".join(out)
 
 
-# ---- speakers --------------------------------------------------------------
-def build_speakers(speakers):
+# ---- tracks ----------------------------------------------------------------
+def build_tracks(tracks):
     rows = []
-    for s in speakers:
-        date = fmt(s.get("date", ""))
-        day = fmt(s.get("day", "") or "")
-        name = fmt(s["name"])
-        bio = fmt(s.get("bio", ""))
-        cls = "sp tbd" if s.get("tbd") else "sp"
+    for t in tracks:
         rows.append(
-            '    <div class="%s">\n'
-            '      <div class="date"><b>%s</b>%s</div>\n'
-            '      <div class="who"><b>%s</b><div>%s</div></div>\n'
-            '    </div>' % (cls, date, day, name, bio)
+            '    <div class="row">\n'
+            '      <div class="rname">%s</div>\n'
+            '      <div class="rbody">%s</div>\n'
+            '    </div>' % (fmt(t["name"]), fmt(t["body"]))
         )
     return "\n".join(rows)
 
 
-# ---- projects + timeline ---------------------------------------------------
-def build_projects(projects):
-    cards = []
-    for p in projects:
-        cards.append(
-            '    <div class="p"><h3>%s</h3><p>%s</p></div>'
-            % (fmt(p["name"]), fmt(p["body"]))
+# ---- schedule --------------------------------------------------------------
+def build_speakers(events):
+    rows = []
+    for e in events:
+        ev_cls = "ev tbd" if e.get("tbd") else "ev"
+        cal_cls = "cal nodate" if e.get("nodate") else "cal"
+        rows.append(
+            '    <div class="%s">\n'
+            '      <div class="%s"><span class="day">%s</span><span class="mon">%s</span></div>\n'
+            '      <div class="who"><b>%s</b>%s</div>\n'
+            '    </div>'
+            % (ev_cls, cal_cls, fmt(e["day"]), fmt(e.get("mon", "")),
+               fmt(e["name"]), fmt(e.get("detail", "")))
         )
-    return "\n".join(cards)
+    return "\n".join(rows)
 
 
-def build_ladder(steps):
-    return "\n".join(
-        '    <div><div class="yr">%s</div><div class="t">%s</div></div>'
-        % (fmt(s["year"]), fmt(s["label"])) for s in steps
-    )
+# ---- projects prose + timeline ---------------------------------------------
+def build_prose(paras):
+    return "\n".join("    <p>%s</p>" % fmt(p) for p in paras)
 
 
-# ---- people ----------------------------------------------------------------
-def build_people(groups):
-    members = []
-    for g in groups:
-        members.extend(g.get("members", []))
-
-    random.shuffle(members)
-    chips = []
-    for m in members:
-        name = fmt(m["name"])
-        sub = fmt(m.get("sub", ""))
-        chips.append(
-            '    <span class="supporter-chip">%s<span class="tooltip">%s</span></span>' % (name, sub)
+def build_timeline(steps):
+    nodes = []
+    for s in steps:
+        cls = "node dest" if s.get("dest") else "node"
+        nodes.append(
+            '      <div class="%s">\n'
+            '        <div class="yr">%s</div>\n'
+            '        <div class="t">%s</div>\n'
+            '        <div class="d">%s</div>\n'
+            '      </div>' % (cls, fmt(s["year"]), fmt(s["title"]), fmt(s["desc"]))
         )
-    return "\n".join(chips)
+    return "\n".join(nodes)
 
 
-def build_logos(supporters):
-    n = int(supporters.get("logos", 0))
-    return "".join('<div class="slot">logo</div>' for _ in range(n))
+# ---- supporters (injected into the footer animation) -----------------------
+def build_supporters(supporters):
+    rows = []
+    for s in supporters:
+        rows.append(
+            "    { name: '%s', aff: '%s', url: '%s' }"
+            % (js_str(s["name"]), js_str(s["aff"]), js_str(s["url"]))
+        )
+    return ",\n".join(rows)
 
 
 # ---- main ------------------------------------------------------------------
@@ -194,30 +195,28 @@ def main():
     projects = load_yaml("projects.yaml")
     people = load_yaml("people.yaml")
 
-    with open(os.path.join(CODE, "template.html"), encoding="utf-8") as f:
-        tpl = f.read()
+    figure_html = read_code("figure.html")
+    tpl = read_code("template.html")
 
     repl = {
         "{{ROBOTS}}": '<meta name="robots" content="noindex">' if meta.get("noindex") else "",
         "{{TITLE}}": fmt(meta.get("title", meta["name"])),
-        "{{NAME}}": fmt(meta["name"]),
+        "{{GATE_LABEL}}": fmt(meta.get("gate_label", "")),
+        "{{PASSWORD}}": js_str(meta.get("password", "")),
+        "{{NAV}}": build_nav(meta.get("nav", [])),
         "{{EYEBROW}}": fmt(meta["eyebrow"]),
-        "{{TAGLINE}}": fmt_breaks(meta["tagline"]),
+        "{{HERO_HEADLINE}}": fmt_breaks(meta["hero_headline"]),
         "{{HERO_LEDE}}": fmt(meta["hero_lede"]),
-        "{{MANIFESTO}}": build_manifesto(read("manifesto.md")),
+        "{{MANIFESTO}}": build_manifesto(read_data("manifesto.md"), figure_html),
         "{{SERIES_LEAD}}": fmt(series["lead"]),
         "{{SERIES_BODY}}": fmt(series["body"]),
         "{{TRACKS}}": build_tracks(series["tracks"]),
         "{{SPEAKERS}}": build_speakers(speakers),
-        "{{PROJECTS}}": build_projects(projects["projects"]),
+        "{{PROJECTS_PROSE}}": build_prose(projects["prose"]),
         "{{TIMELINE_TITLE}}": fmt(projects["timeline"]["title"]),
         "{{TIMELINE_INTRO}}": fmt(projects["timeline"]["intro"]),
-        "{{LADDER}}": build_ladder(projects["timeline"]["steps"]),
-        "{{PEOPLE}}": build_people(people["groups"]),
-        "{{SUPPORTERS_LABEL}}": fmt(people["supporters"]["label"]),
-        "{{SUPPORTERS_LOGOS}}": build_logos(people["supporters"]),
-        "{{FOOTER_LEFT}}": fmt(meta["footer_left"]),
-        "{{EMAIL}}": fmt(meta["contact_email"]),
+        "{{TIMELINE_STEPS}}": build_timeline(projects["timeline"]["steps"]),
+        "{{SUPPORTERS}}": build_supporters(people["supporters"]),
     }
     for k, v in repl.items():
         tpl = tpl.replace(k, v)

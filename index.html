@@ -161,7 +161,7 @@
 <!-- Password Gate -->
 <div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:var(--paper);display:flex;align-items:center;justify-content:center">
   <form id="pw-form" style="text-align:center;font-family:'Libre Franklin',sans-serif">
-    <div style="font-weight:700;font-size:19px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:24px"><span style="color:var(--accent)">■</span> Frontiers</div>
+    <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--label);font-weight:600;margin-bottom:24px">A public interest initiative</div>
     <input id="pw-input" type="password" placeholder="Enter password" autofocus
       style="font-size:16px;padding:10px 16px;border:2px solid var(--ink);background:var(--paper);font-family:inherit;width:240px;outline:none">
     <br>
@@ -224,7 +224,6 @@
   <div class="prose">
     <p>At critical moments, you can raise someone's aspirations simply by suggesting they do something more ambitious than they had in mind. It costs relatively little to do this, but the benefit to them — and to the world — can be enormous.</p>
   </div>
-
   <div class="fig">
     <div class="fig-stat">
       <div class="fig-num">1 in 7</div>
@@ -293,7 +292,6 @@
 
     <div class="src"><span class="src-cite" tabindex="0">Sources &amp; notes<span class="src-pop"><b>Founders</b> — Hurun Global Unicorn Index 2026: 217 of 1,603 unicorns worldwide co-founded by people of Indian origin (13.5%).<br><br><b>Listed value</b> — 1980 world total ~$3T, science-moat share about a tenth; 2026 ~$150T, science-moat share about a third; India ~$5T (BSE, June 2026), heavily weighted to banks, energy, consumer and IT services.<br><br><b>Private markets</b> — total unicorn value ~$8T, AI ~36% of it.<br><br><b>Flows</b> — AMFI SIP inflows ~₹32,000 crore/month; Nasscom–Zinnov 2025: $9.1B tech-startup funding, of which $2.3B deep tech; AI took ~91% of that, leaving ~$0.2B for space, semiconductors, quantum, robotics and materials combined.</span></span></div>
   </div>
-
   <div class="prose">
     <p>A nation that only imports the frontier cannot help steer it; a country that consumes what others invent is a client, not a partner. But nations do not build at the frontier — <em>people</em> do. And those people are sitting in lecture halls from Pilani and Delhi to Kanpur and Guwahati right now, their wings folded, waiting for someone to tell them the sky is real.</p>
     <p>The old stories know this shape. Arjuna — the finest archer of his age — sat down in his chariot and would not rise until Krishna, his <em>sarathi</em> rather than his commander, lifted his gaze past his own fear. Chandragupta was an unknown boy until Chanakya found him. In our tradition the hero rarely rises alone: a guru meets the <em>shishya</em> at the threshold and gives permission to cross it. That is the part we mean to play. Self-reliance — <em>atmanirbharta</em> — was the first step; it matures into contribution only when India becomes a <em>maker</em> at the frontier, not merely a market for it. And that turn is not made in policy documents. It happens when one student meets one person a few steps ahead, early enough, and is given permission to take a risk worth taking.</p>
@@ -423,17 +421,17 @@
     spawnMs: 800
   };
   var SUPPORTERS = [
-    { name: 'Dhruv Malrana',  aff: 'IIT Delhi · DeepMind · Deep Cogito',      url: 'https://www.linkedin.com/in/drvdhruv' },
-    { name: 'Ankush Gupta',   aff: 'Berkeley · Oxford · DeepMind',            url: 'https://ankushgupta.org/' },
-    { name: 'Shreya Sharma',  aff: 'IIT Delhi · World Labs',                  url: 'https://github.com/ShreyaSharma99' },
-    { name: 'Piyush Ahuja',   aff: 'IIT Delhi · Oxford · Cambridge',          url: 'http://piyushahuja.com' },
-    { name: 'Chetan Arora',   aff: 'CSE, IIT Delhi · Computer Vision',        url: 'https://www.cse.iitd.ac.in/~chetan/' },
-    { name: 'Naveen Garg',    aff: 'Head, CSE, IIT Delhi · Bhatnagar laureate', url: 'https://www.cse.iitd.ac.in/~naveen/' },
-    { name: 'Ankit Tomar',    aff: 'IIT Delhi · Bizongo',                     url: 'https://www.artworkflowhq.com/about-us' },
-    { name: 'Savin Goyal',    aff: 'IIT Delhi · Netflix · Outerbounds',       url: 'https://www.linkedin.com/in/savingoyal/' },
-    { name: 'Ananye Agarwal', aff: 'IIT Delhi · CMU · Skild AI',              url: 'https://anag.me/' },
-    { name: 'Avneesh Sud',    aff: 'IIT Delhi · DeepMind',                    url: 'https://scholar.google.com/citations?user=zc6Iy0IAAAAJ' },
-    { name: 'Dipinder Sekhon', aff: 'IIT Delhi · iKites.AI',                  url: 'https://www.linkedin.com/in/dipinder/' }
+    { name: 'Dhruv Malrana', aff: 'IIT Delhi · DeepMind · Deep Cogito', url: 'https://www.linkedin.com/in/drvdhruv' },
+    { name: 'Ankush Gupta', aff: 'Berkeley · Oxford · DeepMind', url: 'https://ankushgupta.org/' },
+    { name: 'Shreya Sharma', aff: 'IIT Delhi · World Labs', url: 'https://github.com/ShreyaSharma99' },
+    { name: 'Piyush Ahuja', aff: 'IIT Delhi · Oxford · Cambridge', url: 'http://piyushahuja.com' },
+    { name: 'Chetan Arora', aff: 'CSE, IIT Delhi · Computer Vision', url: 'https://www.cse.iitd.ac.in/~chetan/' },
+    { name: 'Naveen Garg', aff: 'Head, CSE, IIT Delhi · Bhatnagar laureate', url: 'https://www.cse.iitd.ac.in/~naveen/' },
+    { name: 'Ankit Tomar', aff: 'IIT Delhi · Bizongo', url: 'https://www.artworkflowhq.com/about-us' },
+    { name: 'Savin Goyal', aff: 'IIT Delhi · Netflix · Outerbounds', url: 'https://www.linkedin.com/in/savingoyal/' },
+    { name: 'Ananye Agarwal', aff: 'IIT Delhi · CMU · Skild AI', url: 'https://anag.me/' },
+    { name: 'Avneesh Sud', aff: 'IIT Delhi · DeepMind', url: 'https://scholar.google.com/citations?user=zc6Iy0IAAAAJ' },
+    { name: 'Dipinder Sekhon', aff: 'IIT Delhi · iKites.AI', url: 'https://www.linkedin.com/in/dipinder/' }
   ];
 
   var root = document.querySelector('.supporter-rain');

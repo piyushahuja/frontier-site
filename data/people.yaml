@@ -1,31 +1,37 @@
-groups:
-  - title: Organisers
-    members:
-      - name: Piyush Ahuja
-        sub: IIT Delhi · Oxford · Cambridge
-      - name: Dhruv Malrana
-        sub: IIT Delhi · DeepMind · Deep Cogito
-      - name: Ankush Gupta
-        sub: Berkeley · Oxford · DeepMind
-
-  - title: Advisors
-    members:
-      - name: Prof. Naveen Garg
-        sub: Head, CSE, IIT Delhi · Bhatnagar laureate
-      - name: Prof. Chetan Arora
-        sub: CSE, IIT Delhi · Computer Vision
-
-  - title: Friends
-    members:
-      - name: Ananye Agarwal
-        sub: IIT Delhi · CMU · Skild AI
-      - name: Shreya Sharma
-        sub: IIT Delhi · World Labs
-      - name: Savin Goyal
-        sub: IIT Delhi · Netflix · Outerbounds
-      - name: Ankit Tomar
-        sub: IIT Delhi · Bizongo
-
+# Supporters — the rising bubbles in the footer band.
+# Each becomes a bubble; hover/tap shows name + affiliation, click opens the url.
+# Order here is the base order; the page reshuffles on every load.
 supporters:
-  label: Supported by
-  logos: 3
+  - name: Dhruv Malrana
+    aff: IIT Delhi · DeepMind · Deep Cogito
+    url: https://www.linkedin.com/in/drvdhruv
+  - name: Ankush Gupta
+    aff: Berkeley · Oxford · DeepMind
+    url: https://ankushgupta.org/
+  - name: Shreya Sharma
+    aff: IIT Delhi · World Labs
+    url: https://github.com/ShreyaSharma99
+  - name: Piyush Ahuja
+    aff: IIT Delhi · Oxford · Cambridge
+    url: http://piyushahuja.com
+  - name: Chetan Arora
+    aff: CSE, IIT Delhi · Computer Vision
+    url: https://www.cse.iitd.ac.in/~chetan/
+  - name: Naveen Garg
+    aff: Head, CSE, IIT Delhi · Bhatnagar laureate
+    url: https://www.cse.iitd.ac.in/~naveen/
+  - name: Ankit Tomar
+    aff: IIT Delhi · Bizongo
+    url: https://www.artworkflowhq.com/about-us
+  - name: Savin Goyal
+    aff: IIT Delhi · Netflix · Outerbounds
+    url: https://www.linkedin.com/in/savingoyal/
+  - name: Ananye Agarwal
+    aff: IIT Delhi · CMU · Skild AI
+    url: https://anag.me/
+  - name: Avneesh Sud
+    aff: IIT Delhi · DeepMind
+    url: https://scholar.google.com/citations?user=zc6Iy0IAAAAJ
+  - name: Dipinder Sekhon
+    aff: IIT Delhi · iKites.AI
+    url: https://www.linkedin.com/in/dipinder/

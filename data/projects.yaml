@@ -1,32 +1,45 @@
-projects:
-  - name: EMG → Force
-    body: >-
-      Three undergraduates beat Meta's published EMG-to-pose benchmark, then ran
-      a scaling-law study with frontier researchers. Toward a first-author
-      NeurIPS paper from the department.
-  - name: Indic Scaling Laws
-    body: >-
-      How model quality scales for Indian languages — the empirical curves
-      nobody has drawn yet.
-  - name: Compute at IIT
-    body: >-
-      Closing the infrastructure gap — from shared GPUs to real training
-      clusters — with alumni at NVIDIA and Meta.
+# The Projects section: prose paragraphs, then the timeline ladder.
+# In prose, **double asterisks** render bold (used for project names).
+prose:
+  - >-
+    Projects are the proof. Not coursework, but real problems with real stakes,
+    scoped so a first result arrives within a semester. Three are live today. In
+    **EMG → Force**, three undergraduates beat Meta's published EMG-to-pose
+    benchmark, then ran a scaling-law study alongside frontier researchers.
+    **Indic Scaling Laws** draws the empirical curves for how model quality
+    scales across Indian languages, the measurements nobody has published yet.
+    **Multi-Node Compute** closes the infrastructure gap, carrying students from
+    single shared GPUs to multi-node clusters that can actually hold a frontier
+    run, with alumni at NVIDIA and Meta.
+  - >-
+    The next wave reaches past language models into the wider deep-tech frontier.
+    **Protein Design for Neglected Diseases** puts open structure-prediction and
+    binder-design models to work on targets global pharma ignores: dengue, TB,
+    snakebite venom. **ML Potentials for Solid-State Batteries** screens
+    electrolyte and cathode candidates with learned interatomic potentials,
+    compressing years of wet-lab search into weeks of compute. Each is small
+    enough for a team of undergraduates to begin, and large enough to matter.
 
 timeline:
-  title: Timeline — a six-year ladder
+  title: Timeline — from project to funded company
   intro: >-
-    From lecture hall to frontier lab: exposure in year two, real research by
-    year three, published work at the frontier by year four, companies within a
-    year or two of graduating — and, in time, one of genuine global consequence.
+    One straight line, six years long: from the first contact with real research
+    to a company of genuine global consequence.
+  # Set dest: true on the final node (rendered in accent red).
   steps:
     - year: Year 2
-      label: Exposure
+      title: Exposure
+      desc: First contact with real research and people a few steps ahead.
     - year: Year 3
-      label: Projects
+      title: Projects
+      desc: Real work — beat a published benchmark, join a live problem.
     - year: Year 4
-      label: Publish
+      title: Publish
+      desc: Work that stands at the frontier, in the open.
     - year: +1–2 yrs
-      label: Found
+      title: Found
+      desc: A company within a year or two of graduating, with backing.
     - year: Then
-      label: Frontier
+      title: Frontier
+      desc: In time, one of genuine global consequence.
+      dest: true

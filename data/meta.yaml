@@ -1,11 +1,17 @@
-name: Frontiers
-title: Frontier — draft
+# Site-wide text and settings. Edit here, then run: python3 code/build.py
+name: Frontiers                 # used as the <title> fallback
+title: Frontier — draft         # browser tab / <title>
+gate_label: A public interest initiative   # small label on the password gate
+noindex: true                   # true keeps search engines out; set false to go public
+password: frontier              # gate password (client-side only — not real security)
+
 eyebrow: A public interest initiative · IIT Delhi
-tagline: |
-  A place at the Frontier
-  for Indian Minds
-hero_lede: India doesn't lack talent. It lacks early bridges to the frontier. Let's
-  build them.
-contact_email: hello@example.org
-footer_left: Frontier · IIT Delhi · frontier tech
-noindex: true
+hero_headline: |
+  For the Community,
+  a place at the Frontier
+hero_lede: India doesn't lack talent. It lacks bridges to the frontier. We should build them.
+
+# Sticky-nav links (anchors into the page)
+nav:
+  - {label: Talks, href: "#series"}
+  - {label: Projects, href: "#projects"}
