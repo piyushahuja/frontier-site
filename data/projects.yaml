@@ -1,9 +1,12 @@
 # The Projects section: prose paragraphs, then the timeline ladder.
 # In prose, **double asterisks** render bold (used for project names).
+# `lead` renders above the timeline graphic; `prose` renders below it.
+lead: >-
+  Projects are the natural continuation of the talks — the interests they awaken, carried into real work. They are about real problems with real stakes, scoped so a first result arrives within a semester.
 prose:
   - >-
-    Projects are about real problems with real stakes, scoped so a first result arrives within a semester. Three are live today:
-    
+    Three projects are live today:
+
     * In EMG → Force, an undergraduate beat Meta's published EMG-to-pose
     benchmark, then ran a scaling-law study alongside frontier researchers.
     
@@ -23,15 +26,11 @@ prose:
     enough for a team of undergraduates to begin, and large enough to matter.
 
 timeline:
-  title: Timeline — from first project to the frontier
-  intro: >-
-    One straight line: from the first contact with real research
-    to work of genuine global consequence.
   # Set dest: true on the final node (rendered in accent red).
   steps:
     - year: Year 1
       title: Exposure
-      desc: Real research, and people a few steps ahead.
+      desc: The talks, and people a few steps ahead.
     - year: Year 2
       title: Projects
       desc: Beat a published benchmark, join a live problem.
