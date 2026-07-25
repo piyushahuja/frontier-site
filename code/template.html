@@ -40,20 +40,12 @@
   .pull{border-top:1px solid var(--rule);padding:24px 0 4px;margin:32px 0 36px;max-width:none}
   .pull .s{font-family:"Source Serif 4",serif;font-size:25px;line-height:1.24;letter-spacing:-.01em;font-style:italic}
   .pull .t{font-size:14px;color:var(--muted);margin-top:13px;font-style:normal}
-  /* PRIMITIVE · row (tracks + speakers) */
-  .rows{max-width:none;margin-top:16px}
-  .row{display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
-  .rows .row:last-child{border-bottom:0}
-  .row .rname{font-family:"Source Serif 4",serif;font-size:20px;font-weight:500;line-height:1.2}
-  .row .rmeta{font-family:"Source Serif 4",serif;font-size:17px;font-weight:600;color:var(--ink);line-height:1.25}
-  .row .rmeta span{display:block;font-family:"Libre Franklin";font-size:13px;font-weight:400;color:var(--muted);margin-top:2px}
-  .row .rbody{font-size:15px;color:#4a443c;line-height:1.55}
-  .row .rbody b{display:block;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:2px}
-  .row.tbd{opacity:.5}
   .subhead{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:600;color:var(--label);margin:34px 0 0}
+  .subhead.schead{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
   /* schedule · date-block agenda */
   .agenda{max-width:none;margin-top:14px}
-  .agenda .ev{display:grid;grid-template-columns:88px 1fr;gap:28px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
+  .agenda .ev{display:grid;grid-template-columns:88px 1fr 150px;gap:28px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
+  .agenda .trk{font-size:14px;color:var(--muted);text-align:right;line-height:1.4;align-self:center}
   .agenda .ev:last-child{border-bottom:0}
   .agenda .cal{line-height:1}
   .agenda .cal .day{font-family:"Source Serif 4",serif;font-size:34px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
@@ -89,43 +81,17 @@
   footer a{color:#e0a0a0}
   /* science-moat + capital figure */
   .fig{margin:8px 0 4px;max-width:none}
-  .fig-stat{border-top:1px solid var(--rule);padding-top:18px;margin-bottom:40px}
-  .fig-num{font-family:"Source Serif 4",serif;font-weight:500;font-size:clamp(44px,6.8vw,68px);line-height:.88;letter-spacing:-.022em;color:var(--ink)}
-  .fig-num-note{font-size:14px;color:var(--muted);margin-top:12px;max-width:46ch;line-height:1.55}
+  .fig-lead{border-top:1px solid var(--rule);padding-top:22px;margin:0 0 20px;font-size:17px;line-height:1.62;color:#3a352f;max-width:none}
+  .fig-lead strong{color:var(--ink);font-weight:600}
   /* moat chart — TikZ-style diagram */
   .moat{margin:0 0 8px}
   .moat svg{display:block;width:100%;height:auto;font-family:"Source Serif 4",Georgia,serif}
   .moat-x{display:flex;justify-content:space-between;gap:16px;margin-top:6px;font-size:12px;color:var(--muted)}
   .moat-x b{color:var(--ink);font-weight:600}
-  .moat-key{display:flex;flex-wrap:wrap;justify-content:center;gap:7px 20px;margin-bottom:18px;font-size:13px;color:#4a443c}
-  .moat-key span{display:inline-flex;align-items:center;gap:8px;line-height:1.3}
-  .moat-key .sw{width:22px;height:12px;flex:none;border:1px solid var(--ink)}
-  .moat-key .sw-moat{background:var(--ink)}
-  .moat-key .sw-else{background:#efe8d9;border-color:var(--rule)}
   .figcap{font-family:"Source Serif 4",serif;font-size:13px;line-height:1.5;color:var(--muted);margin:14px 0 0;max-width:none}
   .figcap b{color:var(--ink);font-weight:600}
-  /* capital flows — India-specific */
-  .flows-head{font-family:"Source Serif 4",serif;font-weight:500;font-size:18px;line-height:1.3;color:var(--ink);margin:36px 0 20px;padding-top:26px;border-top:1px solid var(--rule-soft)}
-  .flows{margin:2px 0 0}
-  .frow{display:grid;grid-template-columns:1fr 66px;gap:16px;align-items:start;padding:10px 0}
-  .frow .track{min-width:0}
-  .frow .bar{height:22px;display:block}
-  .frow .cap{font-size:13.5px;color:var(--muted);line-height:1.35;margin-top:8px}
-  .frow .amt{font-family:"Source Serif 4",serif;font-weight:600;font-size:17px;text-align:right;line-height:1.1;color:var(--ink);padding-top:1px}
-  .frow.sip .bar{background:var(--ink)}
-  .frow.tech .bar{background:#4a443c}
-  .frow.deep .bar{background:#8a8178}
-  .frow.rest .bar{background:var(--accent);min-width:5px}
-  .frow.rest .amt{color:var(--accent)}
-  .frow.rest .cap b{color:var(--accent);font-weight:700}
-  .fig-note{font-size:13px;color:var(--muted);margin:18px 0 0;max-width:none;line-height:1.55}
-  .fig .src{font-size:13px;color:var(--muted);margin-top:24px;line-height:1.55;border-top:1px solid var(--rule-soft);padding-top:18px}
-  .fig .src-cite{position:relative;cursor:help;border-bottom:1px dotted var(--divider-soft)}
-  .fig .src-pop{position:absolute;left:0;bottom:calc(100% + 12px);width:min(460px,86vw);background:var(--ink);color:var(--paper);font-size:12.5px;line-height:1.5;padding:14px 16px;border-radius:6px;opacity:0;transform:translateY(5px);pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:40;box-shadow:0 8px 28px rgba(0,0,0,.22)}
-  .fig .src-cite:hover .src-pop,.fig .src-cite:focus .src-pop{opacity:1;transform:translateY(0)}
-  .fig .src-pop b{color:#e9dfce;font-weight:600}
   /* lifecycle timeline (project -> funded company) */
-  .flow{margin:26px 0 2px;max-width:none}
+  .flow{margin:26px 0 40px;max-width:none}
   .flow .track{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
   .flow .track::before{content:"";position:absolute;left:7px;right:34px;top:13px;height:2px;background:var(--ink)}
   .flow .track::after{content:"";position:absolute;right:22px;top:7px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--ink)}
@@ -143,11 +109,10 @@
     .cards{grid-template-columns:1fr;gap:0}
     .cards .p{border-top:1px solid var(--rule-soft);padding:18px 0}
     .cards .p:first-child{border-top:1px solid var(--rule)}
-    .row{grid-template-columns:1fr;gap:4px;padding:16px 0}
-    .row .rname,.row .rmeta{margin-bottom:2px}
-    /* figure: keep flows readable on narrow screens */
-    .frow{grid-template-columns:1fr 60px;gap:12px}
-    .frow .amt{font-size:16px}
+    /* schedule: track drops under the name */
+    .subhead.schead .thead{display:none}
+    .agenda .ev{grid-template-columns:64px 1fr;gap:16px}
+    .agenda .trk{grid-column:2;text-align:left;margin-top:2px}
     /* timeline -> vertical line */
     .flow .track{grid-template-columns:1fr;row-gap:0}
     .flow .track::before{left:7px;right:auto;top:10px;bottom:24px;height:auto;width:2px}
@@ -233,12 +198,7 @@
   <div class="label">Talks</div>
   <p class="lead-serif">{{SERIES_LEAD}}</p>
   <p class="prose wide">{{SERIES_BODY}}</p>
-  <div class="subhead">Tracks</div>
-  <div class="rows">
-{{TRACKS}}
-  </div>
-
-  <div class="subhead">Schedule</div>
+  <div class="subhead schead"><span>Schedule</span><span class="thead">Track</span></div>
   <div class="agenda">
 {{SPEAKERS}}
   </div>
@@ -256,29 +216,29 @@
 {{TIMELINE_STEPS}}
     </div>
   </div>
+{{FIGURE}}
 </div></section>
 
 <footer>
   <section class="supporter-rain" aria-label="Our supporters">
     <div class="sr-stage"><canvas></canvas></div>
     <div class="sr-tip" hidden></div>
-    <div class="label">Supporters</div>
     <!-- Real, crawlable supporter list: read by screen readers, shown
          visually when the user prefers reduced motion. -->
     <ul class="sr-list"></ul>
   </section>
 </footer>
 <script>
-/* Supporter bubbles — paper-coloured bubbles rising from the bottom edge into
-   the black band. Hover (or tap) a bubble to hold it and read the supporter;
-   click to open. */
+/* Supporters — paper-coloured droplets sit at fixed pixels that spell the word
+   SUPPORTERS. Each droplet only twinkles in and out on the spot; nothing drifts.
+   Hover (or tap) one and it bursts into a name-carrying cloud, then reforms. */
 (function () {
   var CONFIG = {
     water: '#f7f4ee',   /* drops, splashes, sprinkles — the page's paper colour */
-    px: 3,              /* pixel cell size */
-    gravity: 0.05,
-    vmax: 3.8,
-    spawnMs: 800
+    px: 4,              /* pixel cell size */
+    step: 8,            /* spacing of the droplet grid that forms the word */
+    word: 'SUPPORTERS',
+    gravity: 0.05
   };
   var SUPPORTERS = [
 {{SUPPORTERS}}
@@ -300,22 +260,56 @@
   });
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var PX = CONFIG.px, G = CONFIG.gravity, VMAX = CONFIG.vmax, CEIL = 6;
-  var W, H, SRC;
+  var PX = CONFIG.px, STEP = CONFIG.step, G = CONFIG.gravity;
+  var FONT = '800 %px "Helvetica Neue", Arial, sans-serif';
+  var W, H, cells = [];
+
+  /* Rasterise the word once to an offscreen canvas and keep every grid cell that
+     lands on a glyph — those anchors are the droplet positions. They never move;
+     a droplet just fades in and out at its fixed spot (or bursts on hover). */
+  function buildCells() {
+    cells = [];
+    if (!W || !H) return;
+    var tc = document.createElement('canvas');
+    tc.width = W; tc.height = H;
+    var tx = tc.getContext('2d');
+    tx.font = FONT.replace('%', 100);
+    var wide = tx.measureText(CONFIG.word).width || W;
+    var fs = Math.min(100 * (W * 0.9) / wide, H * 0.6);
+    tx.font = FONT.replace('%', fs);
+    tx.textAlign = 'center'; tx.textBaseline = 'middle';
+    tx.fillStyle = '#fff';
+    tx.fillText(CONFIG.word, W / 2, H / 2);
+    var data = tx.getImageData(0, 0, W, H).data;
+    for (var y = STEP; y < H - STEP; y += STEP) {
+      for (var x = 0; x < W; x += STEP) {
+        if (data[(y * W + x) * 4 + 3] > 130) {
+          cells.push({
+            x: Math.round(x / PX) * PX,
+            y: Math.round(y / PX) * PX,
+            phase: Math.random() * Math.PI * 2,
+            spd: 0.005 + Math.random() * 0.008,
+            cloud: null, hold: 0, s: null, cool: 0
+          });
+        }
+      }
+    }
+  }
+
   function resize() {
     W = stage.clientWidth; H = stage.clientHeight;
     cv.width = W * devicePixelRatio; cv.height = H * devicePixelRatio;
     ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-    SRC = H - 6;   /* bubbles are born on the bottom edge and rise to CEIL */
+    buildCells();
   }
   resize();
   window.addEventListener('resize', resize);
 
-  var drops = [], parts = [];
+  var parts = [];
   var mouse = { x: -999, y: -999 }, hovered = null, pinned = null, T = 0;
 
-  /* Names are handed out in a pre-shuffled order as drops are burst, so a name
-     only recurs once every other supporter has been shown. A drop carries no
+  /* Names are handed out in a pre-shuffled order as droplets burst, so a name
+     only recurs once every other supporter has been shown. A droplet carries no
      name until the moment it is caught. */
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   var order = shuffle(SUPPORTERS.map(function (_, i) { return i; })), qi = 0;
@@ -330,85 +324,63 @@
     return s;
   }
 
-  function spawn() {
-    var band = Math.min(W * 0.34, 260); /* narrow centred column of fall */
-    drops.push({
-      x: Math.round((W / 2 - band / 2 + Math.random() * band) / PX) * PX,
-      y: SRC, v: 0,
-      phase: Math.random() * Math.PI * 2,
-      grow: 0, gspd: 0.006 + Math.random() * 0.008,
-      falling: false,
-      s: null,
-      cloud: null, hold: 0
-    });
-  }
-  setInterval(spawn, CONFIG.spawnMs);
-  for (var i0 = 0; i0 < 5; i0++) {
-    spawn();
-    var d0 = drops[i0];
-    d0.grow = 1; d0.falling = true;
-    d0.y = SRC - 30 - Math.random() * Math.max(20, H - 150);
-    d0.v = Math.sqrt(2 * G * (SRC - d0.y));
+  /* A resting droplet's opacity: eases fully on, holds lit for most of the
+     cycle, dips briefly to nothing, then returns — so at any moment most of the
+     word is present and only a few pixels are blinking out of the shape. */
+  function twinkle(c) {
+    var v = 0.5 + 0.5 * Math.sin(T * c.spd + c.phase);
+    return Math.max(0, Math.min(1, (v - 0.06) / 0.24));
   }
 
-  function drawDrop(d) {
-    var st = d.falling ? Math.min(d.v / VMAX, 1) : 0;
-    var squash = 1 + 0.1 * Math.sin(T * 0.12 + d.phase) * (1 - st * 0.85);
-    var rows = Math.round((4 + st * 3) * (d.falling ? 1 : 0.5 + 0.5 * d.grow));
-    var maxHalf = (1.5 - st * 0.5) * squash * (d.falling ? 1 : 0.35 + 0.65 * d.grow);
-    var topY = d.falling ? d.y - rows * PX : SRC - rows * PX;
-    ctx.fillStyle = CONFIG.water;
-    for (var j = 0; j < rows; j++) {
-      var t = rows > 1 ? 1 - j / (rows - 1) : 1; /* round head up, tail down — a rising bubble */
-      var w = maxHalf * Math.pow(Math.sin(Math.PI * Math.pow(t, 1.5)) + 0.001, 0.7);
-      var half = Math.max(0, Math.round(w));
-      for (var i = -half; i <= half; i++) {
-        ctx.fillRect(d.x + i * PX, topY + j * PX, PX - 0.5, PX - 0.5);
-      }
-    }
-  }
-
-  function ignite(d) {
-    if (!d.s) d.s = nextSupporter();
-    d.cloud = [];
+  function ignite(c) {
+    if (!c.s) c.s = nextSupporter();
+    c.cloud = [];
     for (var k = 0; k < 16; k++) {
       var a = (k / 16) * Math.PI * 2 + Math.random() * 0.5;
       var sp = 1.1 + Math.random() * 1.9;
-      d.cloud.push({ x: d.x, y: d.y - 8, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1 });
+      c.cloud.push({ x: c.x, y: c.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1 });
     }
-    d.hold = 0;
+    c.hold = 0;
   }
 
-  function release(d, idx) {
-    d.cloud.forEach(function (p) {
+  function release(c) {
+    c.cloud.forEach(function (p) {
       parts.push({ x: p.x, y: p.y, vx: p.vx, vy: p.vy, life: 1, decay: 0.03 + Math.random() * 0.025 });
     });
-    drops.splice(idx, 1);
+    c.cloud = null; c.s = null; c.hold = 0;
+    c.cool = 80 + Math.floor(Math.random() * 70);   /* stay dark a beat, then reform */
   }
 
   function loop() {
     T++;
     ctx.clearRect(0, 0, W, H);
 
+    /* nearest catchable droplet under the cursor; a held one keeps a wider grip */
     hovered = null;
-    drops.forEach(function (d) {
-      /* forming drops on the top edge are catchable too, not just falling ones */
-      var cy = d.cloud ? d.y - 8 : (d.falling ? d.y - 14 : d.y);
-      var rad = d.cloud ? 26 : 16;
-      if (Math.abs(mouse.x - d.x) < rad && Math.abs(mouse.y - cy) < rad + 8 && !hovered) hovered = d;
-    });
-    /* Touch has no cursor to track a rising bubble, so a tap pins one: it stays
-       held (frozen, tooltip up) until tapped again to open or dismissed. */
+    var best = Infinity;
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
+      if (c.cool > 0 && !c.cloud) continue;
+      var rad = c.cloud ? 26 : 13;
+      var dx = mouse.x - c.x, dy = mouse.y - c.y;
+      if (Math.abs(dx) < rad && Math.abs(dy) < rad) {
+        var dd = dx * dx + dy * dy;
+        if (dd < best) { best = dd; hovered = c; }
+      }
+    }
+    /* Touch has no cursor to track, so a tap pins a droplet: it stays held
+       (frozen, tooltip up) until tapped again to open or dismissed. */
     if (pinned) {
-      if (drops.indexOf(pinned) === -1) pinned = null; else hovered = pinned;
+      if (cells.indexOf(pinned) === -1) pinned = null; else hovered = pinned;
     }
 
-    for (var i2 = drops.length - 1; i2 >= 0; i2--) {
-      var d = drops[i2];
+    for (var i2 = 0; i2 < cells.length; i2++) {
+      var d = cells[i2];
       if (hovered === d) {
         if (!d.cloud) ignite(d);
         d.hold = Math.min(d.hold + 0.09, 1);
         var ts = Math.max(0.04, 1 - d.hold);
+        ctx.globalAlpha = 1;
         ctx.fillStyle = CONFIG.water;
         d.cloud.forEach(function (p) {
           p.x += p.vx * ts; p.y += p.vy * ts; p.vy += G * 0.4 * ts;
@@ -417,17 +389,13 @@
         });
         continue;
       }
-      if (d.cloud) { release(d, i2); continue; }   /* was held, now let go — burst it */
-      if (!d.falling) {
-        d.grow += d.gspd;
-        if (d.grow >= 1) { d.falling = true; d.v = 0; d.y = SRC - PX * 4; }
-        drawDrop(d);
-        continue;
-      }
-      d.v = Math.min(d.v + G, VMAX);
-      d.y -= d.v;
-      drawDrop(d);
-      if (d.y < CEIL) { drops.splice(i2, 1); }
+      if (d.cloud) { release(d); continue; }   /* was held, now let go — burst it */
+      if (d.cool > 0) { d.cool--; continue; }  /* burnt spot, still dark — reforming */
+      var al = twinkle(d);
+      if (al <= 0.01) continue;
+      ctx.globalAlpha = al;
+      ctx.fillStyle = CONFIG.water;
+      ctx.fillRect(d.x, d.y, PX - 0.5, PX - 0.5);
     }
 
     ctx.fillStyle = CONFIG.water;
@@ -452,7 +420,7 @@
       }
       tip.hidden = false;
       /* On touch the card itself is the tap target for opening; on desktop it must
-         stay click-through so it never blocks the hovered bubble. */
+         stay click-through so it never blocks the hovered droplet. */
       tip.style.pointerEvents = pinned ? 'auto' : 'none';
       tip.style.cursor = pinned ? 'pointer' : 'default';
       var tw = tip.offsetWidth || 160, th = tip.offsetHeight || 40;
@@ -477,16 +445,15 @@
   stage.addEventListener('click', function () {
     if (hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
   });
-  /* Touch: no cursor can chase a rising bubble, so a tap grabs the nearest one
-     within a forgiving radius and pins it (frozen, name card up). The link opens
-     only by tapping that card — tapping the bubble again, or empty space, never
-     opens it, it just holds or dismisses. */
+  /* Touch: a tap grabs the nearest droplet within a forgiving radius and pins it
+     (frozen, name card up). The link opens only by tapping that card — tapping
+     the pixel again, or empty space, never opens it, it just holds or dismisses. */
   function pickNear(px, py) {
-    var best = null, bestD = 46 * 46;
-    drops.forEach(function (d) {
-      var cy = d.cloud ? d.y - 8 : (d.falling ? d.y - 14 : d.y);
-      var dx = px - d.x, dy = py - cy, dd = dx * dx + dy * dy;
-      if (dd < bestD) { bestD = dd; best = d; }
+    var best = null, bestD = 40 * 40;
+    cells.forEach(function (c) {
+      if (c.cool > 0 && !c.cloud) return;
+      var dx = px - c.x, dy = py - c.y, dd = dx * dx + dy * dy;
+      if (dd < bestD) { bestD = dd; best = c; }
     });
     return best;
   }
@@ -494,7 +461,7 @@
     var t = e.changedTouches[0], r = stage.getBoundingClientRect();
     var hit = pickNear(t.clientX - r.left, t.clientY - r.top);
     if (hit || pinned) e.preventDefault();  /* grabbing or dismissing — not a page scroll */
-    pinned = hit || null;                   /* hold this bubble; any previously pinned one bursts next frame */
+    pinned = hit || null;                   /* hold this droplet; any previously pinned one bursts next frame */
   }, { passive: false });
   tip.addEventListener('touchstart', function (e) {
     if (pinned && pinned.s) {               /* the card is the only thing that opens the link */

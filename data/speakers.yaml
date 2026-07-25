@@ -7,27 +7,32 @@
   mon: Aug · Wed
   name: Ashish Kapoor
   detail: IIT Delhi · Microsoft Research · General Robotics
+  track: Research, Industry, Venture
 
 - day: "26"
   mon: Aug · Wed
   name: Soumyadeb Mitra
   detail: IIT Delhi · RudderStack
+  track: Venture, Product
 
 - day: Sep
   mon: Date TBC
   nodate: true
   name: Otkrist Gupta
   detail: IIT Delhi · MIT · Lendbuzz
+  track: Product, Industry
 
 - day: "21"
   mon: Sep · Mon
   name: Rajul Garg
   detail: IIT Delhi · GlobalLogic · Pine Labs · Leo Capital
+  track: Venture, Capital, Investing
 
 - day: "19"
   mon: Oct · Mon
   name: Raghu Mahajan
   detail: Stanford · IAS Princeton · ICTS-TIFR
+  track: Academia, Research
 
 - day: "28"
   mon: Oct

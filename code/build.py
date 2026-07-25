@@ -127,32 +127,23 @@ def build_manifesto(text, figure_html):
     return "\n".join(out)
 
 
-# ---- tracks ----------------------------------------------------------------
-def build_tracks(tracks):
-    rows = []
-    for t in tracks:
-        rows.append(
-            '    <div class="row">\n'
-            '      <div class="rname">%s</div>\n'
-            '      <div class="rbody">%s</div>\n'
-            '    </div>' % (fmt(t["name"]), fmt(t["body"]))
-        )
-    return "\n".join(rows)
-
-
 # ---- schedule --------------------------------------------------------------
 def build_speakers(events):
     rows = []
     for e in events:
         ev_cls = "ev tbd" if e.get("tbd") else "ev"
         cal_cls = "cal nodate" if e.get("nodate") else "cal"
+        track = e.get("track", "")
+        # Only emit the track cell when set; the fixed grid keeps the column
+        # aligned for rows without one, and no empty cell clutters mobile.
+        trk = ('\n      <div class="trk">%s</div>' % fmt(track)) if track else ""
         rows.append(
             '    <div class="%s">\n'
             '      <div class="%s"><span class="day">%s</span><span class="mon">%s</span></div>\n'
-            '      <div class="who"><b>%s</b>%s</div>\n'
+            '      <div class="who"><b>%s</b>%s</div>%s\n'
             '    </div>'
             % (ev_cls, cal_cls, fmt(e["day"]), fmt(e.get("mon", "")),
-               fmt(e["name"]), fmt(e.get("detail", "")))
+               fmt(e["name"]), fmt(e.get("detail", "")), trk)
         )
     return "\n".join(rows)
 
@@ -226,12 +217,12 @@ def main():
         "{{MANIFESTO}}": build_manifesto(read_data("manifesto.md"), figure_html),
         "{{SERIES_LEAD}}": fmt(series["lead"]),
         "{{SERIES_BODY}}": fmt(series["body"]),
-        "{{TRACKS}}": build_tracks(series["tracks"]),
         "{{SPEAKERS}}": build_speakers(speakers),
         "{{PROJECTS_PROSE}}": build_prose(projects["prose"]),
         "{{TIMELINE_TITLE}}": fmt(projects["timeline"]["title"]),
         "{{TIMELINE_INTRO}}": fmt(projects["timeline"]["intro"]),
         "{{TIMELINE_STEPS}}": build_timeline(projects["timeline"]["steps"]),
+        "{{FIGURE}}": figure_html.rstrip("\n"),
         "{{SUPPORTERS}}": build_supporters(people["supporters"]),
     }
     for k, v in repl.items():

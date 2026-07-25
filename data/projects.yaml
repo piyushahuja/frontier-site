@@ -23,25 +23,25 @@ prose:
     enough for a team of undergraduates to begin, and large enough to matter.
 
 timeline:
-  title: Timeline — from project to funded company
+  title: Timeline — from first project to the frontier
   intro: >-
-    One straight line, six years long: from the first contact with real research
-    to a company of genuine global consequence.
+    One straight line: from the first contact with real research
+    to work of genuine global consequence.
   # Set dest: true on the final node (rendered in accent red).
   steps:
-    - year: Year 2
+    - year: Year 1
       title: Exposure
-      desc: First contact with real research and people a few steps ahead.
-    - year: Year 3
+      desc: Real research, and people a few steps ahead.
+    - year: Year 2
       title: Projects
-      desc: Real work — beat a published benchmark, join a live problem.
-    - year: Year 4
+      desc: Beat a published benchmark, join a live problem.
+    - year: Year 3
       title: Publish
       desc: Work that stands at the frontier, in the open.
-    - year: +1–2 yrs
-      title: Found
-      desc: A company within a year or two of graduating, with backing.
+    - year: Year 4
+      title: Continue
+      desc: Carrying the work forward past graduation.
     - year: Then
       title: Frontier
-      desc: In time, one of genuine global consequence.
+      desc: In time, work of genuine global consequence.
       dest: true
