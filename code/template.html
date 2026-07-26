@@ -86,7 +86,7 @@
     .supporter-rain .sr-stage{display:none}
     .supporter-rain .sr-list{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:14px 26px}
     .supporter-rain .sr-list li{line-height:1.35}
-    .supporter-rain .sr-list a{color:var(--paper);text-decoration:none;font-weight:600;font-size:var(--t-sm)}
+    .supporter-rain .sr-list b{color:var(--paper);font-weight:600;font-size:var(--t-sm)}
     .supporter-rain .sr-list span{display:block;color:#b9ad9c;font-weight:400;font-size:var(--t-small)}
   }
   footer{background:var(--ink);color:var(--paper);padding:0;position:relative;overflow:hidden}
@@ -107,7 +107,7 @@
   @media(max-width:760px){
     header.hero .wrap{gap:16px} h1{font-size:var(--t-display)}
     .prose,.prose.wide{max-width:none}
-    .supporter-rain{min-height:200px;padding:28px 24px}
+    .supporter-rain{min-height:130px;padding:20px 24px}
     .cards{grid-template-columns:1fr;gap:0}
     .cards .p{border-top:1px solid var(--rule-soft);padding:18px 0}
     .cards .p:first-child{border-top:1px solid var(--rule)}
@@ -231,17 +231,60 @@
   </section>
 </footer>
 <script>
-/* Supporters — paper-coloured droplets sit at fixed pixels that spell the word
-   SUPPORTERS. Each droplet only twinkles in and out on the spot; nothing drifts.
-   Hover (or tap) one and it bursts into a name-carrying cloud, then reforms. */
+/* Supporters — paper-coloured pixels sit at fixed spots that spell the word
+   SUPPORT. The word is static; nothing twinkles or drifts. Hover (or tap) a
+   pixel and a supporter's name is shown, in a fresh random order each visit. */
 (function () {
-  var CONFIG = {
-    water: '#f7f4ee',   /* drops, splashes, sprinkles — the page's paper colour */
-    px: 4,              /* pixel cell size */
-    step: 8,            /* spacing of the droplet grid that forms the word */
-    word: 'SUPPORTERS',
-    gravity: 0.05
+  var INK = '#f7f4ee';   /* pixel colour — the page's paper colour */
+
+  /* SUPPORT drawn by hand: each glyph is a 5-wide x 7-tall bitmap, '#' = a lit
+     pixel. Hand-authored (rather than rasterised from a font) so the matrix is
+     perfectly even and the letters read cleanly at any size. */
+  var GLYPHS = {
+    S: ['.####',
+        '#....',
+        '#....',
+        '.###.',
+        '....#',
+        '....#',
+        '####.'],
+    U: ['#...#',
+        '#...#',
+        '#...#',
+        '#...#',
+        '#...#',
+        '#...#',
+        '.###.'],
+    P: ['####.',
+        '#...#',
+        '#...#',
+        '####.',
+        '#....',
+        '#....',
+        '#....'],
+    O: ['.###.',
+        '#...#',
+        '#...#',
+        '#...#',
+        '#...#',
+        '#...#',
+        '.###.'],
+    R: ['####.',
+        '#...#',
+        '#...#',
+        '####.',
+        '#.#..',
+        '#..#.',
+        '#...#'],
+    T: ['#####',
+        '..#..',
+        '..#..',
+        '..#..',
+        '..#..',
+        '..#..',
+        '..#..']
   };
+  var WORD = 'SUPPORT', GLYPH_W = 5, GLYPH_H = 7, GAP = 1;  /* GAP = blank columns between letters */
   var SUPPORTERS = [
 {{SUPPORTERS}}
   ];
@@ -255,49 +298,39 @@
   var list = root.querySelector('.sr-list');
 
   SUPPORTERS.forEach(function (s) {
-    var li = document.createElement('li'), a = document.createElement('a'), sp = document.createElement('span');
-    a.href = s.url; a.textContent = s.name; a.target = '_blank'; a.rel = 'noopener';
+    var li = document.createElement('li'), nm = document.createElement('b'), sp = document.createElement('span');
+    nm.textContent = s.name;
     sp.textContent = s.aff;
-    li.appendChild(a); li.appendChild(sp); list.appendChild(li);
+    li.appendChild(nm); li.appendChild(sp); list.appendChild(li);
   });
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  /* Touch devices have no hover and open external links jarringly, so there the
-     droplets are chunkier and a tap only reveals the name — never navigates. */
+  /* Touch has no hover, so a tap reveals the name instead. */
   var COARSE = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
-  var PX = COARSE ? 5 : CONFIG.px, STEP = CONFIG.step, G = CONFIG.gravity;
-  var FONT = '800 %px "Helvetica Neue", Arial, sans-serif';
-  var W, H, cells = [];
+  var W, H, cells = [], CELL = 8, DOT = 6;
 
-  /* Rasterise the word once to an offscreen canvas and keep every grid cell that
-     lands on a glyph — those anchors are the droplet positions. They never move;
-     a droplet just fades in and out at its fixed spot (or bursts on hover). */
+  /* Lay the bitmap out on an even grid: CELL is the spacing between pixel
+     centres, DOT the drawn square (a touch smaller than CELL, so a hairline
+     gap gives the clean pixel-matrix look). The whole word is sized to fit the
+     band's width and height, then centred. */
   function buildCells() {
     cells = [];
     if (!W || !H) return;
-    var tc = document.createElement('canvas');
-    tc.width = W; tc.height = H;
-    var tx = tc.getContext('2d');
-    tx.font = FONT.replace('%', 100);
-    var wide = tx.measureText(CONFIG.word).width || W;
-    var fs = Math.min(100 * (W * 0.9) / wide, H * 0.6);
-    tx.font = FONT.replace('%', fs);
-    tx.textAlign = 'center'; tx.textBaseline = 'middle';
-    tx.fillStyle = '#fff';
-    tx.fillText(CONFIG.word, W / 2, H / 2);
-    var data = tx.getImageData(0, 0, W, H).data;
-    for (var y = STEP; y < H - STEP; y += STEP) {
-      for (var x = 0; x < W; x += STEP) {
-        if (data[(y * W + x) * 4 + 3] > 130) {
-          cells.push({
-            x: Math.round(x / PX) * PX,
-            y: Math.round(y / PX) * PX,
-            phase: Math.random() * Math.PI * 2,
-            spd: 0.005 + Math.random() * 0.008,
-            cloud: null, hold: 0, s: null, cool: 0
-          });
+    var cols = WORD.length * GLYPH_W + (WORD.length - 1) * GAP;
+    CELL = Math.max(3, Math.floor(Math.min((W * 0.9) / cols, (H * 0.7) / GLYPH_H)));
+    DOT = Math.max(2, Math.round(CELL * 0.82));
+    var ox = Math.round((W - cols * CELL) / 2), oy = Math.round((H - GLYPH_H * CELL) / 2);
+    var col = 0;   /* running column across the whole word */
+    for (var i = 0; i < WORD.length; i++) {
+      var g = GLYPHS[WORD.charAt(i)];
+      for (var r = 0; r < GLYPH_H; r++) {
+        for (var c = 0; c < GLYPH_W; c++) {
+          if (g[r].charAt(c) === '#') {
+            cells.push({ x: ox + (col + c) * CELL, y: oy + r * CELL, s: null });
+          }
         }
       }
+      col += GLYPH_W + GAP;
     }
   }
 
@@ -310,12 +343,11 @@
   resize();
   window.addEventListener('resize', resize);
 
-  var parts = [];
-  var mouse = { x: -999, y: -999 }, hovered = null, pinned = null, T = 0;
+  var mouse = { x: -999, y: -999 }, hovered = null, pinned = null;
 
-  /* Names are handed out in a pre-shuffled order as droplets burst, so a name
-     only recurs once every other supporter has been shown. A droplet carries no
-     name until the moment it is caught. */
+  /* Names are handed out in a pre-shuffled order (reshuffled on every page load)
+     as pixels are caught, so a name only recurs once every other supporter has
+     been shown. A pixel carries no name until the moment it is caught. */
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   var order = shuffle(SUPPORTERS.map(function (_, i) { return i; })), qi = 0;
   function nextSupporter() {
@@ -329,110 +361,55 @@
     return s;
   }
 
-  /* A resting droplet's opacity: eases fully on, holds lit for most of the
-     cycle, dips briefly to nothing, then returns — so at any moment most of the
-     word is present and only a few pixels are blinking out of the shape. */
-  function twinkle(c) {
-    var v = 0.5 + 0.5 * Math.sin(T * c.spd + c.phase);
-    return Math.max(0, Math.min(1, (v - 0.06) / 0.24));
-  }
-
-  function ignite(c) {
-    if (!c.s) c.s = nextSupporter();
-    c.cloud = [];
-    for (var k = 0; k < 16; k++) {
-      var a = (k / 16) * Math.PI * 2 + Math.random() * 0.5;
-      var sp = 1.1 + Math.random() * 1.9;
-      c.cloud.push({ x: c.x, y: c.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1 });
-    }
-    c.hold = 0;
-  }
-
-  function release(c) {
-    c.cloud.forEach(function (p) {
-      parts.push({ x: p.x, y: p.y, vx: p.vx, vy: p.vy, life: 1, decay: 0.03 + Math.random() * 0.025 });
-    });
-    c.cloud = null; c.s = null; c.hold = 0;
-    c.cool = 80 + Math.floor(Math.random() * 70);   /* stay dark a beat, then reform */
-  }
-
   function loop() {
-    T++;
     ctx.clearRect(0, 0, W, H);
 
-    /* nearest catchable droplet under the cursor; a held one keeps a wider grip */
+    /* nearest catchable pixel under the cursor (measured from each pixel's centre) */
     hovered = null;
-    var best = Infinity;
+    var best = Infinity, half = DOT / 2;
     for (var i = 0; i < cells.length; i++) {
       var c = cells[i];
-      if (c.cool > 0 && !c.cloud) continue;
-      var rad = c.cloud ? 26 : 13;
-      var dx = mouse.x - c.x, dy = mouse.y - c.y;
-      if (Math.abs(dx) < rad && Math.abs(dy) < rad) {
+      var dx = mouse.x - (c.x + half), dy = mouse.y - (c.y + half);
+      if (Math.abs(dx) < CELL && Math.abs(dy) < CELL) {
         var dd = dx * dx + dy * dy;
         if (dd < best) { best = dd; hovered = c; }
       }
     }
-    /* Touch has no cursor to track, so a tap pins a droplet: it stays held
-       (frozen, tooltip up) until tapped again to open or dismissed. */
+    /* Touch has no cursor to track, so a tap pins a pixel: its name card stays
+       up until tapped again to dismiss. */
     if (pinned) {
       if (cells.indexOf(pinned) === -1) pinned = null; else hovered = pinned;
     }
 
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = INK;
     for (var i2 = 0; i2 < cells.length; i2++) {
       var d = cells[i2];
-      if (hovered === d) {
-        if (!d.cloud) ignite(d);
-        d.hold = Math.min(d.hold + 0.09, 1);
-        var ts = Math.max(0.04, 1 - d.hold);
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = CONFIG.water;
-        d.cloud.forEach(function (p) {
-          p.x += p.vx * ts; p.y += p.vy * ts; p.vy += G * 0.4 * ts;
-          var jx = Math.sin(T * 0.1 + p.vx * 7) * 0.4;
-          ctx.fillRect(Math.round((p.x + jx) / PX) * PX, Math.round(p.y / PX) * PX, PX - 0.5, PX - 0.5);
-        });
-        continue;
+      if (hovered === d) {                      /* caught: hand it a name, keep it lit */
+        if (!d.s) d.s = nextSupporter();
+      } else if (d.s) {
+        d.s = null;                             /* let go — free the name for the next catch */
       }
-      if (d.cloud) { release(d); continue; }   /* was held, now let go — burst it */
-      if (d.cool > 0) { d.cool--; continue; }  /* burnt spot, still dark — reforming */
-      var al = twinkle(d);
-      if (al <= 0.01) continue;
-      ctx.globalAlpha = al;
-      ctx.fillStyle = CONFIG.water;
-      ctx.fillRect(d.x, d.y, PX - 0.5, PX - 0.5);
+      ctx.fillRect(d.x, d.y, DOT, DOT);         /* every pixel is always fully lit */
     }
-
-    ctx.fillStyle = CONFIG.water;
-    for (var i3 = parts.length - 1; i3 >= 0; i3--) {
-      var p = parts[i3];
-      p.x += p.vx; p.y += p.vy; p.vy += 0.09; p.vx *= 0.99; p.life -= p.decay;
-      if (p.y > H || p.y < 0) { p.life -= 0.25; } /* fade once it leaves the band, never pile into a line */
-      if (p.life <= 0) { parts.splice(i3, 1); continue; }
-      ctx.globalAlpha = Math.min(p.life * 1.5, 1);
-      ctx.fillRect(Math.round(p.x / PX) * PX, Math.round(p.y / PX) * PX, PX - 1, PX - 1);
-    }
-    ctx.globalAlpha = 1;
 
     if (hovered && hovered.s) {
-      stage.style.cursor = 'pointer';
+      stage.style.cursor = 'default';
       if (tip.dataset.for !== hovered.s.name) {
         tip.innerHTML = '';
         var b = document.createElement('b'); b.textContent = hovered.s.name;
         tip.appendChild(b);
-        if (!COARSE) {   /* on touch, show the name alone; desktop keeps the affiliation line */
-          var sp2 = document.createElement('span'); sp2.textContent = hovered.s.aff;
-          tip.appendChild(sp2);
-        }
+        var sp2 = document.createElement('span'); sp2.textContent = hovered.s.aff;
+        tip.appendChild(sp2);   /* name + affiliation, on both desktop and touch */
         tip.dataset.for = hovered.s.name;
       }
       tip.hidden = false;
-      /* On touch the card is a tap-to-dismiss target; on desktop it must stay
-         click-through so it never blocks the hovered droplet. */
+      /* On touch the card is a tap-to-dismiss target; on desktop it stays
+         click-through so it never blocks the hovered pixel. */
       tip.style.pointerEvents = pinned ? 'auto' : 'none';
-      tip.style.cursor = (pinned && !COARSE) ? 'pointer' : 'default';
+      tip.style.cursor = 'default';
       var tw = tip.offsetWidth || 160, th = tip.offsetHeight || 40;
-      tip.style.left = Math.max(6, Math.min(hovered.x - tw / 2, W - tw - 6)) + 'px';
+      tip.style.left = Math.max(6, Math.min(hovered.x + DOT / 2 - tw / 2, W - tw - 6)) + 'px';
       tip.style.top = Math.max(6, hovered.y - th - 14) + 'px';
     } else {
       stage.style.cursor = 'default';
@@ -450,17 +427,13 @@
   }
   stage.addEventListener('mousemove', function (e) { setMouse(e.clientX, e.clientY); });
   stage.addEventListener('mouseleave', function () { mouse.x = -999; mouse.y = -999; });
-  stage.addEventListener('click', function () {
-    if (!COARSE && hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
-  });
-  /* Touch: a tap grabs the nearest droplet within a forgiving radius and pins it
-     (frozen, name card up). The link opens only by tapping that card — tapping
-     the pixel again, or empty space, never opens it, it just holds or dismisses. */
+  /* Touch: a tap grabs the nearest pixel within a forgiving radius and pins it
+     (name card up); tapping the card, another pixel, or empty space dismisses it.
+     Nothing ever navigates away — there are no outbound links. */
   function pickNear(px, py) {
-    var best = null, bestD = 40 * 40;
+    var half = DOT / 2, reach = Math.max(22, CELL * 2.5), bestD = reach * reach, best = null;
     cells.forEach(function (c) {
-      if (c.cool > 0 && !c.cloud) return;
-      var dx = px - c.x, dy = py - c.y, dd = dx * dx + dy * dy;
+      var dx = px - (c.x + half), dy = py - (c.y + half), dd = dx * dx + dy * dy;
       if (dd < bestD) { bestD = dd; best = c; }
     });
     return best;
@@ -469,13 +442,12 @@
     var t = e.changedTouches[0], r = stage.getBoundingClientRect();
     var hit = pickNear(t.clientX - r.left, t.clientY - r.top);
     if (hit || pinned) e.preventDefault();  /* grabbing or dismissing — not a page scroll */
-    pinned = hit || null;                   /* hold this droplet; any previously pinned one bursts next frame */
+    pinned = hit || null;                   /* hold this pixel; switches from any previously pinned one */
   }, { passive: false });
   tip.addEventListener('touchstart', function (e) {
     if (!pinned) return;
     e.preventDefault();
-    if (COARSE) { pinned = null; }          /* the card only shows the name — tap it to dismiss, never navigate */
-    else if (pinned.s) { window.open(pinned.s.url, '_blank', 'noopener'); }
+    pinned = null;                          /* the card only shows the name — tap it to dismiss */
   }, { passive: false });
 })();
 </script>
