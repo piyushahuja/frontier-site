@@ -24,6 +24,10 @@ prose:
     electrolyte and cathode candidates with learned interatomic potentials,
     compressing years of wet-lab search into weeks of compute. Each is small
     enough for a team of undergraduates to begin, and large enough to matter.
+  - >-
+    If you already work at the frontier, here is the ask: a little of your
+    time, a problem from your own work that a team could carry, and the
+    stewardship to stay with them while they carry it.
 
 timeline:
   # Set dest: true on the final node (rendered in accent red).
