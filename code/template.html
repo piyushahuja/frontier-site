@@ -73,7 +73,7 @@
   .cards h3{font-family:"Source Serif 4",serif;font-weight:500;font-size:var(--t-h3);margin:0 0 10px}
   .cards p{font-size:var(--t-sm);color:#4a443c;margin:0;line-height:1.55}
   /* PRIMITIVE · supporter bubbles (canvas fills the whole black band) */
-  .supporter-rain{position:relative;border:0;max-width:800px;margin:0 auto;padding:34px 40px;min-height:240px}
+  .supporter-rain{position:relative;border:0;max-width:560px;margin:0 auto;padding:26px 40px;min-height:170px}
   .supporter-rain .sr-stage{position:absolute;inset:0}
   .supporter-rain canvas{display:block;width:100%;height:100%}
   .supporter-rain .sr-tip{position:absolute;pointer-events:none;white-space:nowrap;background:var(--paper);color:var(--ink);border-radius:5px;padding:8px 11px;z-index:5;box-shadow:0 6px 20px rgba(0,0,0,.28);transition:opacity .15s ease,transform .15s ease}
@@ -438,17 +438,33 @@
     });
     return best;
   }
+  /* Pinning a pixel arms a timer so the card fades on its own if left untouched;
+     any new pin resets it, and clearing cancels it. */
+  var pinTimer = null;
+  function setPinned(c) {
+    if (pinTimer) { clearTimeout(pinTimer); pinTimer = null; }
+    pinned = c || null;
+    if (pinned) pinTimer = setTimeout(function () { pinned = null; pinTimer = null; }, 2600);
+  }
   stage.addEventListener('touchstart', function (e) {
     var t = e.changedTouches[0], r = stage.getBoundingClientRect();
     var hit = pickNear(t.clientX - r.left, t.clientY - r.top);
     if (hit || pinned) e.preventDefault();  /* grabbing or dismissing — not a page scroll */
-    pinned = hit || null;                   /* hold this pixel; switches from any previously pinned one */
+    setPinned(hit);                         /* hold this pixel; switches from any previously pinned one */
   }, { passive: false });
   tip.addEventListener('touchstart', function (e) {
     if (!pinned) return;
     e.preventDefault();
-    pinned = null;                          /* the card only shows the name — tap it to dismiss */
+    setPinned(null);                        /* the card only shows the name — tap it to dismiss */
   }, { passive: false });
+  /* A tap anywhere else on the page also dismisses a pinned card. The stage and
+     card handlers above own taps that land on them, so ignore those here. */
+  document.addEventListener('touchstart', function (e) {
+    if (!pinned) return;
+    var t = e.target;
+    if (t === stage || stage.contains(t) || t === tip || tip.contains(t)) return;
+    setPinned(null);
+  }, { passive: true });
 })();
 </script>
 </body>
