@@ -2,7 +2,7 @@
 # In prose, **double asterisks** render bold (used for project names).
 # `lead` renders above the timeline graphic; `prose` renders below it.
 lead: >-
-  Projects are the natural continuation of the talks — the interests they awaken, carried into real work. They are about real problems with real stakes, scoped so a first result arrives within a semester.
+  Projects are the natural continuation of the talks, the interests they awaken carried into real work. They are about scalable problems with geopolitical stakes, scoped so a first result arrives within a semester.
 prose:
   - >-
     Three projects are live today:
