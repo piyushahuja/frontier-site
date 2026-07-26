@@ -7,8 +7,9 @@ prose:
   - >-
     Three projects are live today:
 
-    * In EMG → Force, an undergraduate beat Meta's published EMG-to-pose
-    benchmark, then ran a scaling-law study alongside frontier researchers.
+    * In EMG for Dexterous Manipulation, an undergraduate innovated on the
+    architecture, beat Meta's published baseline, and is now building a
+    combined touch-and-EMG capture harness to deploy in the field.
     
     * Indic Scaling Laws draws the empirical curves for how model quality
     scales across Indian languages, the measurements nobody has published yet.

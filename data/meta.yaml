@@ -3,7 +3,7 @@ name: Frontiers                 # used as the <title> fallback
 title: Frontier — draft         # browser tab / <title>
 gate_label: A public interest initiative   # small label on the password gate
 noindex: true                   # true keeps search engines out; set false to go public
-password: community              # gate password (client-side only — not real security)
+password: giving                 # gate password (client-side only — not real security)
 
 eyebrow: A public interest initiative · IIT Delhi
 hero_headline: |
