@@ -11,7 +11,7 @@
   /* PRIMITIVE · type scale (parsimonized) */
   :root{
     --t-label:12px;  /* labels, eyebrows, subheads, captions, tiny meta */
-    --t-small:13px;  /* nav, timeline desc, figcap, fine print */
+    --t-small:13px;  /* nav, timeline desc, fine print */
     --t-meta:14px;   /* attributions, track, tooltip name */
     --t-sm:15px;     /* agenda speaker line, card body, supporter link */
     --t-base:16.5px; /* body */
@@ -92,20 +92,9 @@
   footer{background:var(--ink);color:var(--paper);padding:0;position:relative;overflow:hidden}
   footer .label{position:relative;z-index:2;color:#b9ad9c;margin-bottom:14px;pointer-events:none}
   footer a{color:#e0a0a0}
-  /* science-moat + capital figure */
-  .fig{margin:8px 0 4px;max-width:none}
-  .fig-lead{margin:0 0 20px;max-width:none}
-  .fig-lead strong{color:var(--ink);font-weight:600}
-  /* moat chart — TikZ-style diagram */
-  .moat{margin:0 0 8px}
-  .moat svg{display:block;width:100%;height:auto;font-family:"Source Serif 4",Georgia,serif}
-  .moat-x{display:flex;justify-content:space-between;gap:16px;margin-top:6px;font-size:var(--t-label);color:var(--muted)}
-  .moat-x b{color:var(--ink);font-weight:600}
-  .figcap{font-family:"Source Serif 4",serif;font-size:var(--t-small);line-height:1.5;color:var(--muted);margin:14px 0 0;max-width:none}
-  .figcap b{color:var(--ink);font-weight:600}
   /* lifecycle timeline (project -> funded company) */
   .flow{margin:26px 0 40px;max-width:none}
-  .flow .track{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+  .flow .track{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
   .flow .track::before{content:"";position:absolute;left:7px;right:34px;top:13px;height:2px;background:var(--ink)}
   .flow .track::after{content:"";position:absolute;right:22px;top:7px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--ink)}
   .flow .node{position:relative;padding:34px 22px 0 0}
@@ -227,10 +216,15 @@
     <div class="ev">
       <div class="cal"><span class="day">19</span><span class="mon">Aug · Wed</span></div>
       <div class="who"><b>Ashish Kapoor</b>IIT Delhi · Microsoft Research · General Robotics</div>
-      <div class="trk">Research, Industry, Venture</div>
+      <div class="trk">Applied Research, Venture</div>
     </div>
     <div class="ev">
       <div class="cal"><span class="day">26</span><span class="mon">Aug · Wed</span></div>
+      <div class="who"><b>Ankush Gupta</b>Berkeley · Oxford · DeepMind</div>
+      <div class="trk">Applied Research, Philanthropy</div>
+    </div>
+    <div class="ev">
+      <div class="cal"><span class="day">2</span><span class="mon">Sep · Wed</span></div>
       <div class="who"><b>Soumyadeb Mitra</b>IIT Delhi · RudderStack</div>
       <div class="trk">Venture, Product</div>
     </div>
@@ -278,13 +272,8 @@
         <div class="t">Publish</div>
         <div class="d">Work that stands at the frontier, in the open.</div>
       </div>
-      <div class="node">
-        <div class="yr">Year 4</div>
-        <div class="t">Continue</div>
-        <div class="d">Carrying the work forward past graduation.</div>
-      </div>
       <div class="node dest">
-        <div class="yr">Then</div>
+        <div class="yr">Year 4</div>
         <div class="t">Frontier</div>
         <div class="d">In time, work of genuine global consequence.</div>
       </div>
@@ -298,40 +287,6 @@
       <li>Multi-Node Compute closes the infrastructure gap, carrying students from single shared GPUs to multi-node clusters that can actually hold a frontier run, with alumni at NVIDIA and Meta.</li>
     </ul>
     <p>The next wave reaches past language models into the wider deep-tech frontier. Protein Design for Neglected Diseases puts open structure-prediction and binder-design models to work on targets global pharma ignores: dengue, TB, snakebite venom. ML Potentials for Solid-State Batteries screens electrolyte and cathode candidates with learned interatomic potentials, compressing years of wet-lab search into weeks of compute. Each is small enough for a team of undergraduates to begin, and large enough to matter.</p>
-  </div>
-  <div class="fig">
-    <p class="fig-lead">Work at the scientific frontier has shaped our lives more than anything else. India's growth, though remarkable, has happened entirely outside it, despite the talent.</p>
-
-    <div class="moat">
-      <svg viewBox="0 0 760 258" role="img" aria-label="World public listed value, 1980 to 2026. The science-moat share — repeated scientific breakthroughs — grew to about a third of the total. An outlined bar at the 2026 edge marks private-market value of about $8 trillion stacked on top. A dotted line shows India's public listed value growing from near zero to about $5 trillion, staying entirely in the non-moat band.">
-        <!-- everything else (light) -->
-        <path d="M94,79 C400,80 585,92 690,122 L690,248 L94,248 Z" fill="#efe8d9"/>
-        <!-- science moats (solid) — accelerating share, steepening into 2026 -->
-        <path d="M94,60 L690,60 L690,122 C585,92 400,80 94,79 Z" fill="#161412"/>
-        <!-- private markets: an outlined (no-fill) black bar on top, at the 2026
-             edge only, one year wide (~13px). No growth curve — a present-day stack. -->
-        <rect x="677" y="50" width="13" height="10" fill="none" stroke="#161412" stroke-width="1.5"/>
-        <!-- 100% public-listed boundary -->
-        <line x1="94" y1="60" x2="690" y2="60" stroke="#161412" stroke-width="1" stroke-dasharray="5 3"/>
-        <!-- baseline -->
-        <line x1="94" y1="248" x2="690" y2="248" stroke="#161412" stroke-width="1"/>
-        <text x="86" y="63" text-anchor="end" fill="#6f665c" font-size="11">100%</text>
-        <text x="86" y="251" text-anchor="end" fill="#6f665c" font-size="11">0</text>
-        <text x="32" y="154" transform="rotate(-90 32 154)" text-anchor="middle" fill="#6f665c" font-size="10.5" letter-spacing=".02em">share of world</text>
-        <!-- in-area labels (no legend) -->
-        <text x="110" y="74" fill="#f7f4ee" font-size="12" font-style="italic">Science moats</text>
-        <text x="112" y="182" fill="#6f665c" font-size="13" font-style="italic">Everything else — oil, banks, retail, industrials</text>
-        <!-- moat ratio label -->
-        <text x="682" y="110" text-anchor="end" fill="#f7f4ee" font-size="12" font-style="italic">~1 in 3</text>
-        <!-- private annotation -->
-        <text x="670" y="44" text-anchor="end" fill="#161412" font-size="11.5" font-style="italic">private markets · ~$8T (~⅓ AI)</text>
-        <!-- India: dotted line, ~0 (1980) → ~$5T (2026), drawn to scale in the non-moat band -->
-        <path d="M94,248 C300,247 520,245 690,242" fill="none" stroke="#161412" stroke-width="1.8" stroke-dasharray="2 3.5" stroke-linecap="round"/>
-        <circle cx="690" cy="242" r="3.2" fill="#161412"/>
-        <text x="684" y="236" text-anchor="end" fill="#161412" font-size="12.5" font-weight="600">India ~$5T</text>
-      </svg>
-      <div class="moat-x"><span><b>1980</b> · world public listed value ~$3T</span><span><b>2026</b> · ~$150T</span></div>
-    </div>
   </div>
 </div></section>
 
@@ -390,7 +345,10 @@
   });
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var PX = CONFIG.px, STEP = CONFIG.step, G = CONFIG.gravity;
+  /* Touch devices have no hover and open external links jarringly, so there the
+     droplets are chunkier and a tap only reveals the name — never navigates. */
+  var COARSE = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+  var PX = COARSE ? 5 : CONFIG.px, STEP = CONFIG.step, G = CONFIG.gravity;
   var FONT = '800 %px "Helvetica Neue", Arial, sans-serif';
   var W, H, cells = [];
 
@@ -544,15 +502,18 @@
       if (tip.dataset.for !== hovered.s.name) {
         tip.innerHTML = '';
         var b = document.createElement('b'); b.textContent = hovered.s.name;
-        var sp2 = document.createElement('span'); sp2.textContent = hovered.s.aff;
-        tip.appendChild(b); tip.appendChild(sp2);
+        tip.appendChild(b);
+        if (!COARSE) {   /* on touch, show the name alone; desktop keeps the affiliation line */
+          var sp2 = document.createElement('span'); sp2.textContent = hovered.s.aff;
+          tip.appendChild(sp2);
+        }
         tip.dataset.for = hovered.s.name;
       }
       tip.hidden = false;
-      /* On touch the card itself is the tap target for opening; on desktop it must
-         stay click-through so it never blocks the hovered droplet. */
+      /* On touch the card is a tap-to-dismiss target; on desktop it must stay
+         click-through so it never blocks the hovered droplet. */
       tip.style.pointerEvents = pinned ? 'auto' : 'none';
-      tip.style.cursor = pinned ? 'pointer' : 'default';
+      tip.style.cursor = (pinned && !COARSE) ? 'pointer' : 'default';
       var tw = tip.offsetWidth || 160, th = tip.offsetHeight || 40;
       tip.style.left = Math.max(6, Math.min(hovered.x - tw / 2, W - tw - 6)) + 'px';
       tip.style.top = Math.max(6, hovered.y - th - 14) + 'px';
@@ -573,7 +534,7 @@
   stage.addEventListener('mousemove', function (e) { setMouse(e.clientX, e.clientY); });
   stage.addEventListener('mouseleave', function () { mouse.x = -999; mouse.y = -999; });
   stage.addEventListener('click', function () {
-    if (hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
+    if (!COARSE && hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
   });
   /* Touch: a tap grabs the nearest droplet within a forgiving radius and pins it
      (frozen, name card up). The link opens only by tapping that card — tapping
@@ -594,10 +555,10 @@
     pinned = hit || null;                   /* hold this droplet; any previously pinned one bursts next frame */
   }, { passive: false });
   tip.addEventListener('touchstart', function (e) {
-    if (pinned && pinned.s) {               /* the card is the only thing that opens the link */
-      e.preventDefault();
-      window.open(pinned.s.url, '_blank', 'noopener');
-    }
+    if (!pinned) return;
+    e.preventDefault();
+    if (COARSE) { pinned = null; }          /* the card only shows the name — tap it to dismiss, never navigate */
+    else if (pinned.s) { window.open(pinned.s.url, '_blank', 'noopener'); }
   }, { passive: false });
 })();
 </script>

@@ -11,7 +11,7 @@
   /* PRIMITIVE · type scale (parsimonized) */
   :root{
     --t-label:12px;  /* labels, eyebrows, subheads, captions, tiny meta */
-    --t-small:13px;  /* nav, timeline desc, figcap, fine print */
+    --t-small:13px;  /* nav, timeline desc, fine print */
     --t-meta:14px;   /* attributions, track, tooltip name */
     --t-sm:15px;     /* agenda speaker line, card body, supporter link */
     --t-base:16.5px; /* body */
@@ -92,20 +92,9 @@
   footer{background:var(--ink);color:var(--paper);padding:0;position:relative;overflow:hidden}
   footer .label{position:relative;z-index:2;color:#b9ad9c;margin-bottom:14px;pointer-events:none}
   footer a{color:#e0a0a0}
-  /* science-moat + capital figure */
-  .fig{margin:8px 0 4px;max-width:none}
-  .fig-lead{margin:0 0 20px;max-width:none}
-  .fig-lead strong{color:var(--ink);font-weight:600}
-  /* moat chart — TikZ-style diagram */
-  .moat{margin:0 0 8px}
-  .moat svg{display:block;width:100%;height:auto;font-family:"Source Serif 4",Georgia,serif}
-  .moat-x{display:flex;justify-content:space-between;gap:16px;margin-top:6px;font-size:var(--t-label);color:var(--muted)}
-  .moat-x b{color:var(--ink);font-weight:600}
-  .figcap{font-family:"Source Serif 4",serif;font-size:var(--t-small);line-height:1.5;color:var(--muted);margin:14px 0 0;max-width:none}
-  .figcap b{color:var(--ink);font-weight:600}
   /* lifecycle timeline (project -> funded company) */
   .flow{margin:26px 0 40px;max-width:none}
-  .flow .track{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+  .flow .track{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
   .flow .track::before{content:"";position:absolute;left:7px;right:34px;top:13px;height:2px;background:var(--ink)}
   .flow .track::after{content:"";position:absolute;right:22px;top:7px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--ink)}
   .flow .node{position:relative;padding:34px 22px 0 0}
@@ -230,7 +219,6 @@
   <div class="prose">
 {{PROJECTS_PROSE}}
   </div>
-{{FIGURE}}
 </div></section>
 
 <footer>
@@ -274,7 +262,10 @@
   });
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var PX = CONFIG.px, STEP = CONFIG.step, G = CONFIG.gravity;
+  /* Touch devices have no hover and open external links jarringly, so there the
+     droplets are chunkier and a tap only reveals the name — never navigates. */
+  var COARSE = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+  var PX = COARSE ? 5 : CONFIG.px, STEP = CONFIG.step, G = CONFIG.gravity;
   var FONT = '800 %px "Helvetica Neue", Arial, sans-serif';
   var W, H, cells = [];
 
@@ -428,15 +419,18 @@
       if (tip.dataset.for !== hovered.s.name) {
         tip.innerHTML = '';
         var b = document.createElement('b'); b.textContent = hovered.s.name;
-        var sp2 = document.createElement('span'); sp2.textContent = hovered.s.aff;
-        tip.appendChild(b); tip.appendChild(sp2);
+        tip.appendChild(b);
+        if (!COARSE) {   /* on touch, show the name alone; desktop keeps the affiliation line */
+          var sp2 = document.createElement('span'); sp2.textContent = hovered.s.aff;
+          tip.appendChild(sp2);
+        }
         tip.dataset.for = hovered.s.name;
       }
       tip.hidden = false;
-      /* On touch the card itself is the tap target for opening; on desktop it must
-         stay click-through so it never blocks the hovered droplet. */
+      /* On touch the card is a tap-to-dismiss target; on desktop it must stay
+         click-through so it never blocks the hovered droplet. */
       tip.style.pointerEvents = pinned ? 'auto' : 'none';
-      tip.style.cursor = pinned ? 'pointer' : 'default';
+      tip.style.cursor = (pinned && !COARSE) ? 'pointer' : 'default';
       var tw = tip.offsetWidth || 160, th = tip.offsetHeight || 40;
       tip.style.left = Math.max(6, Math.min(hovered.x - tw / 2, W - tw - 6)) + 'px';
       tip.style.top = Math.max(6, hovered.y - th - 14) + 'px';
@@ -457,7 +451,7 @@
   stage.addEventListener('mousemove', function (e) { setMouse(e.clientX, e.clientY); });
   stage.addEventListener('mouseleave', function () { mouse.x = -999; mouse.y = -999; });
   stage.addEventListener('click', function () {
-    if (hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
+    if (!COARSE && hovered && hovered.s) window.open(hovered.s.url, '_blank', 'noopener');
   });
   /* Touch: a tap grabs the nearest droplet within a forgiving radius and pins it
      (frozen, name card up). The link opens only by tapping that card — tapping
@@ -478,10 +472,10 @@
     pinned = hit || null;                   /* hold this droplet; any previously pinned one bursts next frame */
   }, { passive: false });
   tip.addEventListener('touchstart', function (e) {
-    if (pinned && pinned.s) {               /* the card is the only thing that opens the link */
-      e.preventDefault();
-      window.open(pinned.s.url, '_blank', 'noopener');
-    }
+    if (!pinned) return;
+    e.preventDefault();
+    if (COARSE) { pinned = null; }          /* the card only shows the name — tap it to dismiss, never navigate */
+    else if (pinned.s) { window.open(pinned.s.url, '_blank', 'noopener'); }
   }, { passive: false });
 })();
 </script>

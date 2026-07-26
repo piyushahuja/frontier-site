@@ -7,10 +7,16 @@
   mon: Aug · Wed
   name: Ashish Kapoor
   detail: IIT Delhi · Microsoft Research · General Robotics
-  track: Research, Industry, Venture
+  track: Applied Research, Venture
 
 - day: "26"
   mon: Aug · Wed
+  name: Ankush Gupta
+  detail: Berkeley · Oxford · DeepMind
+  track: Applied Research, Philanthropy
+
+- day: "2"
+  mon: Sep · Wed
   name: Soumyadeb Mitra
   detail: IIT Delhi · RudderStack
   track: Venture, Product

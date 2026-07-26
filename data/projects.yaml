@@ -38,9 +38,6 @@ timeline:
       title: Publish
       desc: Work that stands at the frontier, in the open.
     - year: Year 4
-      title: Continue
-      desc: Carrying the work forward past graduation.
-    - year: Then
       title: Frontier
       desc: In time, work of genuine global consequence.
       dest: true
